@@ -1,0 +1,3770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alloco — Flat Full Page Demo</title>
+<style>
+:root{
+  --bg:#f5f5f2;
+  --bg-soft:#efefea;
+  --surface:#ffffff;
+  --ink:#0b0b0a;
+  --muted:#666861;
+  --line:rgba(0,0,0,.10);
+  --line-soft:rgba(0,0,0,.06);
+  --green:#14905f;
+  --green-soft:#edf8f3;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+body{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+.app{width:100vw;height:100vh;background:linear-gradient(180deg,#fafaf8 0%,#f1f1ed 100%)}
+.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid var(--line);background:rgba(245,245,242,.88);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+.brand{display:flex;align-items:center;gap:10px;font-weight:680;letter-spacing:-.03em}
+.logo{width:22px;height:22px;display:inline-block;position:relative}
+.logo:before,.logo:after{content:"";position:absolute;bottom:1px;width:7px;height:20px;background:#111;border-radius:2px}
+.logo:before{left:3px;transform:skew(-24deg)}
+.logo:after{right:3px;transform:skew(24deg)}
+.logo i{position:absolute;left:9px;top:5px;width:4px;height:9px;background:#fff;border-radius:1px;z-index:2}
+.nav{display:flex;gap:28px;align-items:center;font-size:14px;color:#6d6d66}
+.nav a{cursor:pointer;transition:.2s}
+.nav a.active,.nav a:hover{color:#111}
+.nav a.active{font-weight:650}
+.actions{display:flex;gap:10px}
+.pill{border:1px solid rgba(0,0,0,.16);background:transparent;padding:10px 14px;border-radius:999px;cursor:pointer;transition:.2s}
+.pill:hover{background:#fff}
+.pill.black{background:#111;color:#fff;border-color:#111}
+.pill.black:hover{opacity:.92}
+.pill.soft{background:#fff}
+.screen{display:none;height:calc(100vh - 78px);overflow:auto}
+.screen.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.wrap{width:min(1400px,calc(100vw - 72px));margin:0 auto}
+.section{padding:42px 0;border-bottom:1px solid var(--line-soft)}
+#themes .section:first-child{padding-top:54px}
+.section:last-child{border-bottom:0}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;min-height:420px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7a7a73;margin-bottom:16px}
+.hero h1,.title{font-size:72px;line-height:.94;letter-spacing:-.08em;margin:0 0 18px;font-weight:700}
+.hero p,.sub{font-size:17px;line-height:1.6;color:var(--muted);margin:0}
+.hero-copy p{max-width:620px}
+.hero-actions{display:flex;gap:12px;align-items:center;margin-top:28px}
+.hero-visual{height:100%;min-height:390px;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#f1f1ee,#ebebe7)}
+.brutal-visual{overflow:hidden;background:#f1f1ed;min-height:500px}
+.brutal-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px);background-size:54px 54px}
+.brutal-mark{position:absolute;inset:24px 34px 126px;display:grid;place-items:center}
+.geo-motion{width:100%;height:100%;position:relative}
+.geo-motion svg{width:100%;height:100%;display:block;overflow:visible}
+.geo-motion .stroke{fill:none;stroke:#0b0b0a;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.geo-motion .main{stroke-width:7}
+.geo-motion .medium{stroke-width:4.5;opacity:.9}
+.geo-motion .fine{stroke-width:2.25;opacity:.3}
+.geo-motion .soft{stroke-width:1.5;opacity:.16}
+.geo-motion .fill-soft{fill:rgba(0,0,0,.03)}
+.geo-ellipse{transform-origin:30% 50%;animation:floatRing 11s ease-in-out infinite}
+.geo-diamond{transform-origin:49% 41%;animation:rotateDiamond 10s ease-in-out infinite}
+.geo-arc{transform-origin:72% 66%;animation:pulseArc 7.2s ease-in-out infinite}
+.geo-arrow{transform-origin:75% 25%;animation:glideArrow 9.5s ease-in-out infinite}
+.geo-line-a{animation:drawA 7.8s ease-in-out infinite}
+.geo-line-b{animation:drawB 9.2s ease-in-out infinite}
+.geo-orbit-dot{fill:#0b0b0a;opacity:.88;animation:orbitDot 10s linear infinite}
+.geo-orbit-dot.b{animation-delay:-2.5s}
+.geo-orbit-dot.c{animation-delay:-5s}
+.geo-float-dot{fill:#0b0b0a;opacity:.6;animation:floatDot 6.6s ease-in-out infinite}
+.geo-float-dot.b{animation-delay:-2.2s}
+.geo-float-dot.c{animation-delay:-4.3s}
+@keyframes floatRing{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6px,8px) scale(1.02)}}
+@keyframes rotateDiamond{0%,100%{transform:rotate(0deg) translate(0,0)}50%{transform:rotate(8deg) translate(8px,-6px)}}
+@keyframes pulseArc{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes glideArrow{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(10px,-8px) rotate(1.8deg)}}
+@keyframes drawA{0%,100%{stroke-dasharray:360 0;stroke-dashoffset:0}50%{stroke-dasharray:220 140;stroke-dashoffset:-32}}
+@keyframes drawB{0%,100%{stroke-dasharray:0 260;stroke-dashoffset:0;opacity:.2}50%{stroke-dasharray:180 80;stroke-dashoffset:-18;opacity:.4}}
+@keyframes orbitDot{0%{transform:translate(0,0)}25%{transform:translate(18px,-14px)}50%{transform:translate(34px,2px)}75%{transform:translate(12px,16px)}100%{transform:translate(0,0)}}
+@keyframes floatDot{0%,100%{transform:translate(0,0)}50%{transform:translate(8px,-10px)}}
+.brutal-meta{position:absolute;left:50px;right:50px;bottom:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.brutal-meta div{border-top:1px solid rgba(0,0,0,.16);padding-top:16px}
+.brutal-meta small{display:block;color:#77776f;letter-spacing:.13em;font-size:12px}
+.brutal-meta b{display:block;font-size:30px;letter-spacing:0.02em;margin-top:8px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,rgba(0,0,0,.75),transparent 95%)}
+.hero-wave{width:82%;height:60%;position:relative}
+.hero-wave svg{width:100%;height:100%}
+.floating-stats{position:absolute;left:0;right:0;bottom:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 34px}
+.stat{padding-top:10px;border-top:1px solid var(--line)}
+.stat small{display:block;color:#7a7a73;text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.stat b{display:block;font-size:26px;letter-spacing:-.04em;margin-top:7px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.product{cursor:pointer;padding:0 0 24px;border-bottom:1px solid var(--line);transition:.18s;min-height:360px;display:flex;flex-direction:column;justify-content:space-between}
+.product:hover{transform:translateY(-2px)}
+.product-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:16px}
+.token{width:44px;height:44px;border-radius:50%;background:transparent;border:1px solid #111;color:#111;display:grid;place-items:center}.token svg,.asset-avatar svg{width:22px;height:22px;display:block}.token svg *,.asset-avatar svg *{vector-effect:non-scaling-stroke}
+.product h3{font-size:26px;letter-spacing:-.05em;margin:0 0 6px}
+.product p{font-size:14px;line-height:1.58;color:var(--muted);margin:0 0 18px;max-width:92%}
+.price{font-size:24px;font-weight:680;letter-spacing:-.04em}
+.chart{height:110px;width:100%;margin-top:8px}
+.search-row{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);border-top:1px solid var(--line)}
+.search-row input{flex:1;background:transparent;border:0;outline:0;font-size:15px}
+.search-row .search-tag{font-size:12px;color:#777;padding:6px 10px;background:#fff;border-radius:999px;border:1px solid var(--line)}
+.table{width:100%;border-collapse:collapse}
+.table th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#7a7a73;text-align:left;font-weight:600;padding:18px 8px;border-bottom:1px solid var(--line)}
+.table td{padding:18px 8px;border-bottom:1px solid var(--line-soft);font-size:14px;vertical-align:middle}
+.table tr:last-child td{border-bottom:0}
+.view-link{font-size:13px;font-weight:600;cursor:pointer}
+.pos{color:var(--green)}
+.detail-layout{display:grid;grid-template-columns:1.02fr .98fr;gap:40px;padding:34px 0 48px}
+.headline{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}
+.big-price{font-size:46px;font-weight:700;letter-spacing:-.06em;margin:18px 0 8px}
+.linechart{width:100%;height:290px;margin:18px 0 10px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:18px 0 30px}
+.metric{padding-top:10px;border-top:1px solid var(--line)}
+.metric span{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#7a7a73}
+.metric b{display:block;font-size:24px;letter-spacing:-.05em;margin-top:8px}
+.inline-actions{display:flex;gap:10px;flex-wrap:wrap}
+.side-surface{background:linear-gradient(180deg,#ffffff,#f8f8f5);padding:28px;border-left:1px solid var(--line);min-height:100%}
+.side-surface h3{margin:0 0 8px;font-size:24px;letter-spacing:-.04em}
+.side-surface p{margin:0;color:var(--muted);line-height:1.6}
+.input,.form input,.form textarea,.form select{width:100%;background:#fff;border:1px solid var(--line);padding:14px 15px;border-radius:14px;outline:0}
+.form label{display:block;margin:16px 0 8px;color:#666861;font-size:13px}
+.form textarea{min-height:130px;resize:vertical}
+.research-grid,.create-grid,.portfolio-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:34px 0 48px}
+.content-block{padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.content-block:last-child{border-bottom:0;margin-bottom:0}
+.info-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 30px}
+.allocation{display:grid;grid-template-columns:170px 1fr;gap:24px;align-items:center}
+.donut{width:170px;height:170px;border-radius:50%;background:conic-gradient(#111 0 32%,#555 32% 55%,#8b8b84 55% 80%,#d8d8d1 80% 100%);position:relative}
+.donut:after{content:"";position:absolute;inset:38px;background:var(--bg);border-radius:50%}
+.overlay{position:fixed;inset:0;background:rgba(245,245,242,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px;z-index:40}
+.overlay.show{display:flex}
+.modal{width:min(430px,100%);background:#fff;border:1px solid var(--line);padding:28px;border-radius:24px}
+.modal h2{font-size:30px;letter-spacing:-.06em;margin:0 0 8px}.modal p{color:var(--muted);line-height:1.6;margin:0 0 18px}
+.toast{position:fixed;right:22px;top:94px;background:#111;color:#fff;padding:12px 16px;border-radius:999px;font-size:13px;opacity:0;transform:translateY(-8px);transition:.22s;z-index:50}
+.toast.show{opacity:1;transform:none}
+.detail-page{padding:28px 0 54px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#4d5566;cursor:pointer;margin-bottom:18px}
+.detail-hero{display:grid;grid-template-columns:1fr 320px;gap:34px;align-items:start}
+.detail-main{min-width:0}
+.detail-summary{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+.product-head{display:flex;gap:22px;align-items:flex-start}
+.product-logo-box{width:112px;height:112px;border-radius:22px;background:linear-gradient(145deg,#eef1fb,#f8f8f5);display:grid;place-items:center;border:1px solid var(--line)}
+.dna{width:58px;height:82px;position:relative}
+.dna:before,.dna:after{content:"";position:absolute;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#5d84ff,#4064f1);border-radius:4px}
+.dna:before{left:18px;transform:rotate(18deg)}
+.dna:after{right:18px;transform:rotate(-18deg)}
+.dna i{position:absolute;left:14px;right:14px;height:3px;background:#5d84ff;border-radius:3px}
+.dna i:nth-child(1){top:10px;transform:rotate(23deg)}
+.dna i:nth-child(2){top:24px;transform:rotate(-18deg)}
+.dna i:nth-child(3){top:38px;transform:rotate(20deg)}
+.dna i:nth-child(4){top:52px;transform:rotate(-18deg)}
+.dna i:nth-child(5){top:66px;transform:rotate(20deg)}
+.product-title{font-size:64px;line-height:.94;letter-spacing:-.08em;margin:0 0 12px;font-weight:600;font-family:Georgia,"Times New Roman",serif}
+.product-title .ticker{font-size:.52em;letter-spacing:-.03em;font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:500;color:#2e3750}
+.tag-row{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.badge{display:inline-flex;align-items:center;padding:7px 14px;border-radius:999px;background:#edf0ec;color:#334056;font-size:13px;line-height:1}
+.summary-copy{font-size:18px;line-height:1.6;color:#42506a;max-width:760px}
+.mini-actions{display:flex;gap:14px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.outline-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:#fff;padding:12px 18px;border-radius:14px;cursor:pointer;color:#1d2740}
+.outline-btn:hover{background:#fafafa}
+.subnav{display:flex;gap:34px;border-bottom:1px solid var(--line);margin-top:22px}
+.subnav a{padding:18px 0;color:#41506f;cursor:pointer;position:relative;font-weight:500}
+.subnav a.active{color:#111}
+.subnav a.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:#15915f;border-radius:999px}
+.tab-panel{display:none;padding-top:18px}
+.tab-panel.active{display:block;animation:fade .18s ease}
+.overview-layout,.trade-layout,.docs-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:22px;align-items:start}
+.content-grid-3{display:grid;grid-template-columns:1.05fr 1fr .95fr;gap:18px}
+.subcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+.subcard h4{margin:0 0 12px;font-size:14px;color:#161c2f}
+.price-line{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.big-number{font-size:52px;line-height:1;letter-spacing:-.06em;font-weight:650;color:#0f1525}
+.delta{font-size:16px;font-weight:600;color:#14905f}
+.timestamp{font-size:14px;color:#6d7587;margin-bottom:14px}
+.mini-select,.segmented,.chart-type{display:inline-flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.mini-select button,.segmented button,.chart-type button{border:0;background:transparent;padding:9px 12px;cursor:pointer;color:#43506d}
+.mini-select button.active,.segmented button.active,.chart-type button.active{background:#f3f7f3;color:#15915f}
+.chart-area{height:235px;width:100%;margin-top:8px}
+.story-list{display:grid;gap:12px;margin-top:18px}
+.story-item{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}
+.story-icon{width:26px;height:26px;border-radius:8px;background:#ecf7ef;color:#15915f;display:grid;place-items:center;font-size:14px}
+.story-item b{display:block;font-size:14px;color:#182338;margin-bottom:3px}
+.story-item span{display:block;font-size:12px;color:#6f7c90;line-height:1.45}
+.video-thumb{height:214px;border-radius:14px;background:linear-gradient(135deg,#dce5ef,#8fa6bd 48%,#485a72);position:relative;overflow:hidden;margin-bottom:12px}
+.video-thumb:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 20%,rgba(255,255,255,.28),transparent 18%),linear-gradient(180deg,transparent 58%,rgba(0,0,0,.45) 100%)}
+.video-thumb:after{content:"";position:absolute;right:24px;top:24px;width:82px;height:150px;border:4px solid rgba(255,255,255,.7);border-left:0;border-radius:60px;transform:rotate(8deg);opacity:.55}
+.play-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.play-btn:before{content:"";width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:20px solid #111;margin-left:4px}
+.video-controls{position:absolute;left:14px;right:14px;bottom:10px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:12px}
+.ai-box{margin-top:18px}
+.ai-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ai-header .spark{width:26px;height:26px;border-radius:10px;background:#edf8f3;color:#15915f;display:grid;place-items:center}
+.ask-row{display:grid;grid-template-columns:1fr 44px;gap:12px;margin:12px 0}
+.ask-row input{width:100%;border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.send-btn{width:44px;height:44px;border-radius:50%;border:0;background:#15915f;color:#fff;cursor:pointer;font-size:18px}
+.chip-row{display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:#334056;font-size:13px}
+.allocation-grid{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:12px}
+.allocation-card{display:grid;grid-template-columns:170px 1fr;gap:14px;align-items:center}
+.allocation-donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(#058644 0 45%,#2f9e60 45% 70%,#85c594 70% 85%,#84b5ff 85% 92%,#4f82f2 92% 100%);position:relative;margin:0 auto}
+.allocation-donut:after{content:"100%\A Total";white-space:pre;position:absolute;inset:34px;background:#fff;border-radius:50%;display:grid;place-items:center;font-weight:650;color:#1b2234;text-align:center;line-height:1.2}
+.legend{display:grid;gap:11px}
+.legend-row{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;font-size:14px;color:#30405b}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.holdings-table td,.holdings-table th{padding:10px 6px}
+.side-stack{display:grid;gap:18px}
+.info-list{display:grid;gap:0}
+.info-item{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.info-item:last-child{border-bottom:0}
+.info-item span{color:#5d6880;font-size:14px}
+.info-item b{font-size:16px;color:#172135;text-align:right}
+.side-section-title{font-size:20px;margin:0 0 10px;color:#152036}
+.perf-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.perf-tab{padding:8px 12px;border:1px solid var(--line);border-radius:10px;font-size:12px;color:#50607d}
+.perf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.perf-box{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.perf-box small{display:block;color:#6a7589;margin-bottom:8px}
+.perf-box b{font-size:26px;letter-spacing:-.05em}
+.risk-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:14px 0 8px}
+.risk-dot{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:#4d5b76;background:#fff}
+.risk-dot.active{background:#15915f;color:#fff;border-color:#15915f}
+.help-card p,.compliance-box p{font-size:14px;line-height:1.55;color:#627089}
+.support-box{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fbfcfb;margin:18px 0}
+.support-icon{width:42px;height:42px;border-radius:50%;background:#eef7f0;color:#15915f;display:grid;place-items:center;font-size:18px}
+.overview-tab-wrap{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}
+.trade-main .subcard{padding:20px}
+.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.route-step{display:grid;grid-template-columns:58px 1fr;gap:14px;align-items:start}
+.route-icon{width:58px;height:58px;border-radius:14px;background:#eef5ef;color:#15915f;display:grid;place-items:center;font-size:26px}
+.route-step b{display:block;color:#1b2640;margin-bottom:4px}
+.route-step span{display:block;color:#627089;font-size:14px;line-height:1.55}
+.arrow-mid{display:none}
+.order-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}
+.buy-sell{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px}
+.buy-sell button{border:0;background:#f6f6f4;padding:14px 0;cursor:pointer;font-size:16px;color:#2b3650}
+.buy-sell button.active{background:#fff;color:#15915f;font-weight:700}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:14px;color:#546176;margin-bottom:8px}
+.money-input{display:grid;grid-template-columns:1fr 110px;gap:10px}
+.money-box,.select-box,.estimate-box,.route-box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;color:#1b2237}
+.money-box{font-size:16px}
+.money-box strong{font-size:18px}
+.swap-icon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#f3f8f4;color:#15915f;border:1px solid var(--line);margin:6px auto 16px}
+.estimate-box b{font-size:16px}
+.review-btn{width:100%;background:#0e8f4f;color:#fff;border:0;border-radius:14px;padding:16px 18px;font-size:16px;font-weight:650;cursor:pointer}
+.secondary-btn{width:100%;background:#fff;color:#172135;border:1px solid var(--line);border-radius:14px;padding:15px 18px;font-size:16px;font-weight:500;cursor:pointer;margin-top:12px}
+.secure-note{display:flex;align-items:center;gap:10px;color:#627089;font-size:13px;margin-top:14px}
+.doc-group{margin-bottom:16px}
+.doc-group h3{margin:0 0 14px;font-size:18px;color:#182339}
+.doc-list{display:grid;gap:0}
+.doc-item{display:grid;grid-template-columns:46px minmax(0,1fr) 150px 116px;gap:16px;align-items:center;padding:14px 12px;border:1px solid var(--line);border-top:0;background:#fff}
+.doc-item:first-child{border-top:1px solid var(--line);border-top-left-radius:16px;border-top-right-radius:16px}
+.doc-item:last-child{border-bottom-left-radius:16px;border-bottom-right-radius:16px}
+.doc-ico{width:36px;height:36px;border-radius:10px;background:#eef7f0;color:#15915f;display:grid;place-items:center;font-size:17px}
+.doc-meta b{display:block;font-size:15px;color:#172135;margin-bottom:4px}
+.doc-meta span,.doc-date,.doc-size{font-size:13px;color:#66748c}
+.doc-btn{justify-self:end;border:1px solid rgba(21,145,95,.35);color:#15915f;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer}
+.compliance-box{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
+.compliance-visual{height:134px;background:linear-gradient(180deg,#f5f5f3,#ecece7);position:relative}
+.compliance-visual:before{content:"";position:absolute;left:50%;top:22px;width:110px;height:84px;transform:translateX(-50%);background:linear-gradient(180deg,#d9ddd6,#f8f8f6);clip-path:polygon(50% 0,100% 20%,100% 30%,92% 30%,92% 82%,8% 82%,8% 30%,0 30%,0 20%)}
+.compliance-visual:after{content:"";position:absolute;right:28px;bottom:18px;width:36px;height:42px;background:#15915f;border-radius:10px 10px 14px 14px;clip-path:polygon(50% 0,100% 20%,100% 72%,50% 100%,0 72%,0 20%)}
+.compliance-copy{padding:18px}
+.footnote{padding-top:14px;color:#8a94a6;font-size:12px;text-align:right}
+@media (max-width:1024px){
+  .detail-hero,.overview-layout,.trade-layout,.docs-layout,.content-grid-3,.allocation-grid{grid-template-columns:1fr}
+  .detail-summary{flex-direction:column}
+  .mini-actions{justify-content:flex-start}
+  .product-title{font-size:48px}
+  .doc-item{grid-template-columns:36px minmax(0,1fr);gap:12px}
+  .doc-date,.doc-size,.doc-btn{justify-self:start}
+  .route-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:1024px){
+  body{overflow:auto}
+  .screen{height:auto;min-height:calc(100vh - 78px)}
+  .wrap{width:min(100vw - 36px,1400px)}
+  .hero,.products,.detail-layout,.research-grid,.create-grid,.portfolio-grid,.allocation{grid-template-columns:1fr}
+  .hero h1,.title{font-size:48px}
+  .metrics,.kpis{grid-template-columns:repeat(2,1fr)}
+  .actions{display:none}
+}
+
+/* Wide product detail pages */
+@media (min-width:1025px){
+  .wrap{width:min(1760px,calc(100vw - 64px))}
+  #detail .wrap.detail-page{width:min(1840px,calc(100vw - 56px));padding-top:24px}
+  #detail .detail-hero{display:block}
+  #detail .detail-main{width:100%}
+  #detail .detail-summary{align-items:center}
+  #detail .subnav{margin-top:26px}
+  #detail .overview-layout,
+  #detail .trade-layout,
+  #detail .docs-layout{grid-template-columns:minmax(0,1fr) 430px;gap:28px}
+  #detail .content-grid-3{grid-template-columns:420px minmax(0,1fr) 360px;gap:20px}
+  #detail .subcard{border-radius:18px}
+  #detail .chart-area{height:255px}
+  #detail .video-thumb{height:260px}
+  #detail .allocation-grid{grid-template-columns:520px minmax(0,1fr);gap:22px;margin-top:18px}
+  #detail .allocation-card{grid-template-columns:190px 1fr}
+  #detail .allocation-donut{width:170px;height:170px}
+  #detail .side-stack{gap:18px}
+  #detail .trade-main .chart-area{height:340px}
+  #detail .trade-layout{grid-template-columns:minmax(0,1fr) 440px}
+  #detail .docs-layout{grid-template-columns:minmax(0,1fr) 430px}
+  #detail .doc-item{grid-template-columns:46px minmax(0,1fr) 180px 124px}
+  #detail .product-title{font-size:60px}
+}
+@media (min-width:1500px){
+  #detail .content-grid-3{grid-template-columns:430px minmax(0,1fr) 380px}
+  #detail .overview-layout{grid-template-columns:minmax(0,1fr) 440px}
+  #detail .chart-area{height:275px}
+  #detail .video-thumb{height:276px}
+  #detail .trade-main .chart-area{height:380px}
+}
+
+
+/* Balanced whitespace override */
+@media (min-width:1025px){
+  .wrap{width:min(1480px,calc(100vw - 144px))}
+  #detail .wrap.detail-page{
+    width:min(1520px,calc(100vw - 160px));
+    padding-top:28px;
+    padding-bottom:64px;
+  }
+  #detail .overview-layout,
+  #detail .trade-layout,
+  #detail .docs-layout{
+    grid-template-columns:minmax(0,1fr) 380px;
+    gap:28px;
+  }
+  #detail .content-grid-3{
+    grid-template-columns:360px minmax(0,1fr) 330px;
+    gap:20px;
+  }
+  #detail .trade-layout{grid-template-columns:minmax(0,1fr) 400px}
+  #detail .docs-layout{grid-template-columns:minmax(0,1fr) 380px}
+  #detail .allocation-grid{grid-template-columns:460px minmax(0,1fr)}
+  #detail .product-title{font-size:58px}
+  #detail .subcard{padding:20px}
+}
+@media (min-width:1500px){
+  .wrap{width:min(1500px,calc(100vw - 180px))}
+  #detail .wrap.detail-page{width:min(1540px,calc(100vw - 190px))}
+  #detail .content-grid-3{grid-template-columns:380px minmax(0,1fr) 350px}
+  #detail .overview-layout{grid-template-columns:minmax(0,1fr) 400px}
+  #detail .trade-layout{grid-template-columns:minmax(0,1fr) 410px}
+  #detail .docs-layout{grid-template-columns:minmax(0,1fr) 400px}
+}
+@media (min-width:1800px){
+  .wrap{width:1520px}
+  #detail .wrap.detail-page{width:1560px}
+}
+
+
+/* Softer integrated detail layout: reduce card borders */
+#detail .tab-panel .subcard{
+  border-color:transparent;
+  background:transparent;
+  box-shadow:none;
+}
+#detail .content-grid-3 > .subcard{
+  border-radius:0;
+  padding-left:22px;
+  padding-right:22px;
+}
+#detail .content-grid-3 > .subcard + .subcard{
+  border-left:1px solid var(--line-soft);
+}
+#detail .side-stack > .subcard{
+  border-radius:0;
+  border-left:1px solid var(--line-soft);
+  padding-left:26px;
+}
+#detail .ai-box{
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+  margin-top:18px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+#detail .allocation-grid > .subcard{
+  border-top:1px solid var(--line-soft);
+  border-radius:0;
+}
+#detail .trade-main > .subcard{
+  border-top:1px solid var(--line-soft);
+  border-radius:0;
+}
+#detail .trade-main > .subcard:first-child{
+  border-top:0;
+}
+#detail .order-card{
+  border-color:var(--line-soft);
+  background:rgba(255,255,255,.72);
+}
+#detail .doc-group{
+  border-top:1px solid var(--line-soft);
+  padding-top:20px;
+}
+#detail .doc-group:first-child{
+  border-top:0;
+  padding-top:0;
+}
+#detail .doc-item{
+  border-left:0;
+  border-right:0;
+  border-radius:0 !important;
+  background:transparent;
+}
+#detail .docs-layout .side-stack > .subcard,
+#detail .docs-layout .compliance-box{
+  border-left:1px solid var(--line-soft);
+  border-top:0;
+  border-right:0;
+  border-bottom:0;
+  border-radius:0;
+  background:transparent;
+}
+#detail .video-thumb,
+#detail .money-box,
+#detail .select-box,
+#detail .estimate-box,
+#detail .route-box,
+#detail .ask-row input,
+#detail .chip,
+#detail .perf-box,
+#detail .risk-dot,
+#detail .support-box{
+  border-color:var(--line-soft);
+}
+
+
+/* More breathing room for bold typography */
+.hero h1,.title,.product h3,.price,.big-number,.big-price,.product-title,.side-section-title,.metric b,.stat b,.brutal-meta b,.doc-meta b,.info-item b,.perf-box b,.table strong,.outline-btn,.review-btn,.secondary-btn,.pill.black{letter-spacing:0.018em !important}
+.brand,.pill,.view-link,.badge,.table th{letter-spacing:0.03em}
+.product-title .ticker,.delta{letter-spacing:0.025em}
+
+
+/* Section title refinement */
+.section-title{
+  font-size:44px;
+  line-height:1.1;
+  letter-spacing:0.01em;
+  text-transform:none;
+  color:#000;
+  font-weight:300;
+  margin-bottom:24px;
+}
+.hero-copy .section-title{
+  margin-bottom:18px;
+}
+#themes .section:nth-of-type(3) .section-title{
+  margin-bottom:18px;
+}
+
+
+/* Home section scroll reveal */
+#themes{
+  scroll-behavior:smooth;
+}
+#themes .section{
+  min-height:72vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(54px) scale(.985);
+  filter:blur(6px);
+  transition:
+    opacity .85s cubic-bezier(.2,.8,.2,1),
+    transform .85s cubic-bezier(.2,.8,.2,1),
+    filter .85s cubic-bezier(.2,.8,.2,1);
+}
+#themes .section.reveal{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+#themes .section:first-child{
+  min-height:68vh;
+}
+#themes .section:nth-child(2){
+  min-height:78vh;
+}
+#themes .section:nth-child(3){
+  min-height:74vh;
+}
+#themes .products,
+#themes .hero-copy,
+#themes .hero-visual,
+#themes .search-row,
+#themes .table{
+  transition:transform .85s cubic-bezier(.2,.8,.2,1), opacity .85s cubic-bezier(.2,.8,.2,1);
+}
+#themes .section:not(.reveal) .products,
+#themes .section:not(.reveal) .hero-copy,
+#themes .section:not(.reveal) .search-row,
+#themes .section:not(.reveal) .table{
+  transform:translateY(24px);
+  opacity:.25;
+}
+#themes .section:not(.reveal) .hero-visual{
+  transform:translateY(24px) scale(.97);
+  opacity:.25;
+}
+#themes .section.reveal .product:nth-child(1){transition-delay:.06s}
+#themes .section.reveal .product:nth-child(2){transition-delay:.14s}
+#themes .section.reveal .product:nth-child(3){transition-delay:.22s}
+#themes .product{
+  transition:
+    opacity .75s cubic-bezier(.2,.8,.2,1),
+    transform .75s cubic-bezier(.2,.8,.2,1),
+    border-color .2s;
+}
+#themes .section:not(.reveal) .product{
+  opacity:0;
+  transform:translateY(34px);
+}
+#themes .section.reveal .product{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (max-width:1024px){
+  #themes .section{
+    min-height:auto;
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+  #themes .section:not(.reveal) .product,
+  #themes .section:not(.reveal) .products,
+  #themes .section:not(.reveal) .hero-copy,
+  #themes .section:not(.reveal) .hero-visual,
+  #themes .section:not(.reveal) .search-row,
+  #themes .section:not(.reveal) .table{
+    opacity:1;
+    transform:none;
+  }
+}
+
+
+/* Re-designed second section with whitespace */
+.hero-minimal{
+  min-height:76vh !important;
+  display:block !important;
+  padding-top:72px;
+  padding-bottom:42px;
+}
+.hero-minimal-grid{
+  display:grid;
+  grid-template-columns:minmax(520px, 640px) minmax(360px, 460px);
+  gap:140px;
+  align-items:start;
+  min-height:48vh;
+}
+.hero-copy-minimal{max-width:640px}
+.hero-copy-minimal h1{
+  font-size:86px;
+  line-height:.92;
+  letter-spacing:-.04em !important;
+  margin:0 0 24px;
+}
+.hero-copy-minimal p{
+  max-width:760px;
+  font-size:18px;
+  line-height:1.65;
+  color:#67685f;
+}
+.hero-side-panel{
+  display:grid;
+  gap:18px;
+  padding-top:8px;
+  padding-left:18px;
+}
+.hero-stat-card{
+  position:relative;
+  padding:22px 22px 20px;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.46));
+  box-shadow:0 10px 30px rgba(0,0,0,.03);
+  transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease;
+  overflow:hidden;
+}
+.hero-stat-card:before{
+  content:"";
+  position:absolute;
+  left:22px;
+  right:22px;
+  bottom:0;
+  height:2px;
+  background:linear-gradient(90deg,#111 0%,rgba(0,0,0,.12) 100%);
+  transform:scaleX(.18);
+  transform-origin:left center;
+  transition:transform .28s ease;
+}
+.hero-stat-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 38px rgba(0,0,0,.05);
+  border-color:rgba(0,0,0,.12);
+  background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.58));
+}
+.hero-stat-card:hover:before{transform:scaleX(1)}
+.hero-stat-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+}
+.hero-stat-top small{
+  display:block;
+  font-size:12px;
+  line-height:1;
+  color:#7b7c73;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.hero-stat-top span{
+  font-size:11px;
+  line-height:1;
+  color:#9a9a93;
+  letter-spacing:.14em;
+}
+.hero-stat-card b{
+  display:block;
+  font-size:44px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.01em !important;
+  color:#111;
+  margin-bottom:12px;
+}
+.hero-stat-card p{
+  margin:0;
+  font-size:14px;
+  line-height:1.55;
+  color:#7a7b72;
+  max-width:300px;
+}
+/* disable old visual sizing in redesigned hero */
+.hero-minimal .hero-visual,
+.hero-minimal .brutal-visual,
+.hero-minimal .brutal-grid,
+.hero-minimal .brutal-mark,
+.hero-minimal .brutal-meta,
+.hero-space,
+.hero-stat-row{display:none !important;}
+@media (max-width: 1024px){
+  .hero-minimal{min-height:auto !important;padding-top:24px}
+  .hero-minimal-grid{grid-template-columns:1fr;gap:28px;min-height:auto}
+  .hero-copy-minimal h1{font-size:52px}
+  .hero-side-panel{gap:12px}
+  .hero-stat-card{padding:18px 18px 16px}
+  .hero-stat-card b{font-size:34px}
+}
+
+/* Elevated asset explorer */
+.asset-explorer-section{padding-top:54px;padding-bottom:30px}
+.asset-toolbar{margin-bottom:20px}
+.asset-search-shell{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px;border:1px solid rgba(0,0,0,.08);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.52));backdrop-filter:blur(8px);box-shadow:0 10px 24px rgba(0,0,0,.03)}
+.asset-search-main{display:flex;align-items:center;gap:14px;min-width:0;flex:1}
+.asset-search-icon{font-size:28px;line-height:1;color:#111;opacity:.9}
+.asset-search-input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:18px;color:#222;padding:10px 0}
+.asset-search-input::placeholder{color:#9a9a93}
+.asset-search-actions{display:flex;align-items:center;gap:12px}
+.search-hint{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9a9a93}
+.asset-search-btn{border:1px solid rgba(0,0,0,.1);background:#fff;padding:12px 18px;border-radius:999px;color:#56564e;cursor:pointer;transition:.18s}
+.asset-search-btn:hover{background:#111;color:#fff;border-color:#111}
+.asset-filter-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;flex-wrap:wrap}
+.asset-filters{display:flex;gap:10px;flex-wrap:wrap}
+.asset-chip{border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.55);padding:10px 14px;border-radius:999px;color:#5e5f56;cursor:pointer;transition:.18s}
+.asset-chip:hover{background:#fff;color:#111}
+.asset-chip.active{background:#111;color:#fff;border-color:#111}
+.asset-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.asset-meta-pill,.asset-count{font-size:12px;color:#6e6f66;letter-spacing:.08em;text-transform:uppercase}
+.asset-meta-pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.06)}
+.asset-table-shell{border:1px solid rgba(0,0,0,.08);border-radius:26px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.52),rgba(255,255,255,.36));box-shadow:0 12px 28px rgba(0,0,0,.03)}
+.asset-table{margin:0;border-collapse:separate;border-spacing:0;width:100%}
+.asset-table thead th{padding:0;border-bottom:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.38)}
+.asset-table tbody td{padding:24px 16px;border-bottom:1px solid rgba(0,0,0,.06);vertical-align:middle;transition:background .18s ease,color .18s ease}
+.asset-table tbody tr:last-child td{border-bottom:0}
+.asset-table tbody tr{cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
+.asset-table tbody tr:hover{background:rgba(255,255,255,.56)}
+.asset-table tbody tr:hover td{background:rgba(255,255,255,.24)}
+.sort-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:18px 16px;border:0;background:transparent;font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:#7b7b73;font-weight:600;cursor:pointer}
+.sort-btn span{opacity:.55;transition:.18s}
+.sort-btn.active span{opacity:1;color:#111}
+.asset-product-cell{display:flex;align-items:center;gap:14px}
+.asset-avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:transparent;border:1px solid #111;color:#111;flex:0 0 auto}
+.asset-product-cell strong{display:block;font-size:17px;color:#181818;margin-bottom:4px;letter-spacing:.01em}
+.asset-product-cell small{display:block;font-size:12px;color:#8a8b84;letter-spacing:.04em;text-transform:uppercase}
+.asset-theme-tag{display:inline-flex;align-items:center;padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.62);border:1px solid rgba(0,0,0,.06);font-size:13px;color:#505149}
+.asset-price-cell{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.asset-price-cell strong{font-size:18px;color:#181818}
+.trend-pill{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;font-size:13px;border:1px solid rgba(0,0,0,.06);background:rgba(255,255,255,.58)}
+.trend-pill.up{color:#15915f;background:rgba(21,145,95,.08);border-color:rgba(21,145,95,.12)}
+.trend-pill.flat{color:#222;background:rgba(255,255,255,.58)}
+.view-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,0,0,.08);background:#fff;padding:11px 14px;border-radius:999px;color:#111;font-weight:600;cursor:pointer;transition:.18s}
+.view-btn:hover{background:#111;color:#fff;border-color:#111}
+.asset-row.hidden{display:none}
+.asset-empty{padding:32px 20px;text-align:center;color:#8a8b84;font-size:14px}
+@media (max-width:1024px){
+  .asset-search-shell{flex-direction:column;align-items:stretch}
+  .asset-search-actions{justify-content:space-between}
+  .asset-filter-row{align-items:flex-start}
+  .asset-table-shell{overflow:auto}
+  .asset-table{min-width:860px}
+}
+
+
+@media (min-width: 1400px){
+  .hero-minimal-grid{
+    gap:180px;
+    grid-template-columns:minmax(540px, 680px) minmax(380px, 500px);
+  }
+  .hero-side-panel{
+    padding-left:26px;
+  }
+}
+
+
+/* Deep analysis / globe section */
+.insight-section{padding-top:72px;padding-bottom:72px}
+.insight-panel{position:relative;border-radius:32px;overflow:hidden;background:radial-gradient(circle at 62% 42%, rgba(39,74,128,.20), rgba(7,21,48,.96) 42%, #06173a 74%, #041128 100%);min-height:700px;display:grid;grid-template-columns:minmax(360px, 520px) 1fr;gap:40px;align-items:center;padding:54px 56px;box-shadow:0 24px 60px rgba(0,0,0,.12)}
+.insight-panel::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(4,18,42,.90) 0%, rgba(4,18,42,.66) 32%, rgba(4,18,42,.12) 58%, rgba(4,18,42,0) 100%);pointer-events:none}
+.insight-panel>*{position:relative;z-index:1}
+.insight-copy{max-width:470px;color:#f5f7fb}
+.insight-kicker{display:inline-block;margin-bottom:18px;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.58)}
+.insight-copy h2{margin:0 0 18px;font-size:68px;line-height:.94;font-weight:500;letter-spacing:-.04em;color:#fff}
+.insight-copy p{margin:0 0 30px;font-size:18px;line-height:1.68;color:rgba(240,244,255,.82);max-width:460px}
+.insight-btn{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.12);color:#fff;padding:16px 22px;border-radius:12px;font-size:16px;cursor:pointer;backdrop-filter:blur(6px);transition:transform .18s ease, background .18s ease, border-color .18s ease}
+.insight-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.18);transform:translateY(-1px)}
+.insight-visual{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center}
+#globeCanvas{width:min(100%, 920px);height:640px;display:block}
+@media (max-width:1200px){.insight-panel{grid-template-columns:1fr;min-height:auto;padding:42px 36px}.insight-copy{max-width:none}.insight-copy h2{font-size:54px}.insight-visual{min-height:460px}#globeCanvas{height:480px;width:100%}}
+@media (max-width:720px){.insight-section{padding-top:48px;padding-bottom:48px}.insight-panel{border-radius:24px;padding:30px 22px;gap:18px}.insight-copy h2{font-size:40px}.insight-copy p{font-size:16px}.insight-visual{min-height:320px}#globeCanvas{height:340px}}
+
+
+/* Product-specific detail rendering */
+.detail-icon svg{width:74px;height:74px;display:block}
+.detail-icon svg *{vector-effect:non-scaling-stroke}
+.asset-row{cursor:pointer}
+.detail-fade{animation:detailFade .24s ease}
+@keyframes detailFade{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+
+/* ETP Launcher */
+.launcher-page{
+  padding:42px 0 72px;
+}
+.launcher-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:28px;
+}
+.launcher-header h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:62px;
+  line-height:.95;
+  letter-spacing:-.04em;
+  margin:0 0 12px;
+  font-weight:500;
+  color:#0e172a;
+}
+.launcher-header h1 em{
+  color:#067548;
+  font-style:italic;
+  font-weight:400;
+}
+.launcher-header p{
+  margin:0;
+  color:#5b6a83;
+  font-size:16px;
+}
+.launcher-header-note{
+  border:1px solid rgba(0,0,0,.08);
+  background:rgba(255,255,255,.68);
+  border-radius:18px;
+  padding:14px 18px;
+  min-width:190px;
+}
+.launcher-header-note span{
+  display:block;
+  color:#7a8394;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:6px;
+}
+.launcher-header-note b{
+  font-size:15px;
+  color:#172135;
+}
+.launcher-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(380px,.72fr);
+  gap:42px;
+  align-items:start;
+}
+.launcher-builder{
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:24px;
+  overflow:hidden;
+  background:rgba(255,255,255,.66);
+}
+.launcher-step{
+  display:grid;
+  grid-template-columns:44px 150px minmax(0,1fr);
+  gap:18px;
+  padding:22px 24px;
+  border-bottom:1px solid rgba(0,0,0,.065);
+  transition:background .18s ease;
+}
+.launcher-step:hover{
+  background:rgba(255,255,255,.62);
+}
+.step-index{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#08754e;
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  margin-top:3px;
+}
+.step-label b{
+  display:block;
+  color:#162036;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  line-height:1.2;
+  font-weight:600;
+}
+.step-label span{
+  display:block;
+  color:#758196;
+  margin-top:7px;
+  font-size:13px;
+}
+.step-field textarea,
+.step-field input,
+.step-field select{
+  width:100%;
+  border:1px solid rgba(0,0,0,.09);
+  background:#fff;
+  border-radius:12px;
+  padding:13px 15px;
+  color:#182238;
+  outline:none;
+  transition:border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.step-field textarea:focus,
+.step-field input:focus,
+.step-field select:focus{
+  border-color:rgba(8,117,78,.38);
+  box-shadow:0 0 0 4px rgba(8,117,78,.08);
+}
+.step-field textarea{
+  min-height:96px;
+  resize:vertical;
+}
+.step-field small,
+.issue-grid small{
+  display:block;
+  margin-top:9px;
+  color:#6f7b90;
+  font-size:12px;
+}
+.char-counter{
+  text-align:right;
+  color:#8b94a6;
+  font-size:12px;
+  margin-top:-24px;
+  padding-right:12px;
+  pointer-events:none;
+}
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 180px;
+  gap:18px;
+  align-items:end;
+}
+.ticker-field{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:10px;
+  align-items:center;
+}
+.ticker-field span,
+.issue-grid label span{
+  color:#41506a;
+  font-weight:600;
+  font-size:13px;
+}
+.theme-chip-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.theme-choice{
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  border-radius:10px;
+  padding:12px 18px;
+  color:#26344e;
+  cursor:pointer;
+  transition:.18s;
+}
+.theme-choice:hover{
+  transform:translateY(-1px);
+  border-color:rgba(8,117,78,.25);
+}
+.theme-choice.active{
+  border-color:rgba(8,117,78,.45);
+  background:rgba(8,117,78,.07);
+  color:#08754e;
+}
+.theme-choice.more{
+  width:54px;
+}
+.asset-builder{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(110px,1fr));
+  gap:12px;
+}
+.asset-pill{
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  border-radius:12px;
+  padding:11px 34px 11px 12px;
+  position:relative;
+  color:#172135;
+  min-height:54px;
+}
+.asset-pill span{
+  display:block;
+  font-size:11px;
+  color:#758196;
+  margin-top:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.asset-pill button{
+  position:absolute;
+  right:10px;
+  top:9px;
+  border:0;
+  background:transparent;
+  color:#8a94a6;
+  cursor:pointer;
+  font-size:18px;
+}
+.add-asset-btn{
+  min-height:54px;
+  border:1px solid rgba(8,117,78,.45);
+  color:#08754e;
+  background:#fff;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.18s;
+}
+.add-asset-btn:hover{
+  background:rgba(8,117,78,.08);
+}
+.structure-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.structure-card{
+  position:relative;
+  display:block;
+  padding:14px 36px 14px 14px;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:12px;
+  background:#fff;
+  cursor:pointer;
+  transition:.18s;
+}
+.structure-card input{
+  position:absolute;
+  right:12px;
+  top:16px;
+  width:16px;
+  height:16px;
+  accent-color:#08754e;
+}
+.structure-card b{
+  display:block;
+  color:#1d2a44;
+  font-size:14px;
+  margin-bottom:4px;
+}
+.structure-card span{
+  font-size:11px;
+  color:#748096;
+}
+.structure-card.active{
+  border-color:rgba(8,117,78,.45);
+  background:rgba(8,117,78,.06);
+}
+.issue-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.issue-grid small{
+  grid-column:1/-1;
+}
+.fee-input{
+  display:grid;
+  grid-template-columns:1fr 34px;
+  align-items:center;
+  border:1px solid rgba(0,0,0,.09);
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+}
+.fee-input input{
+  border:0;
+  border-radius:0;
+}
+.fee-input span{
+  color:#6c768c;
+  font-weight:700;
+}
+.launcher-actions{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:24px;
+}
+.generate-btn{
+  min-width:292px;
+  border:0;
+  border-radius:12px;
+  color:#fff;
+  background:linear-gradient(135deg,#08754e,#014c36);
+  padding:17px 22px;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 12px 28px rgba(1,76,54,.18);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.generate-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 36px rgba(1,76,54,.22);
+}
+.generate-btn span{
+  float:right;
+}
+.secure-draft-note{
+  color:#718098;
+  font-size:13px;
+}
+.launcher-side{
+  position:sticky;
+  top:104px;
+  display:grid;
+  gap:22px;
+}
+.preview-title h3,
+.progress-card h3{
+  margin:0 0 6px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:24px;
+  color:#0e172a;
+}
+.preview-title p,
+.progress-card p{
+  margin:0;
+  color:#6b778e;
+  font-size:14px;
+}
+.preview-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.62));
+  padding:28px;
+  box-shadow:0 18px 42px rgba(0,0,0,.06);
+}
+.preview-card:after{
+  content:"";
+  position:absolute;
+  right:-95px;
+  top:58px;
+  width:250px;
+  height:250px;
+  background:radial-gradient(circle,rgba(8,117,78,.08),transparent 62%);
+  transform:rotate(-18deg);
+}
+.preview-card > *{
+  position:relative;
+  z-index:1;
+}
+.preview-ticker{
+  display:inline-flex;
+  border:1px solid rgba(8,117,78,.25);
+  color:#08754e;
+  border-radius:999px;
+  padding:7px 13px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+.preview-card h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:32px;
+  line-height:1.05;
+  color:#0e172a;
+  margin:0 0 9px;
+  font-weight:500;
+}
+.preview-card > p{
+  margin:0 0 20px;
+  color:#5a6b84;
+  font-size:15px;
+}
+.preview-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:24px;
+}
+.preview-tags span{
+  border:1px solid rgba(8,117,78,.22);
+  color:#08754e;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:11px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.preview-section{
+  padding:20px 0;
+  border-top:1px solid rgba(0,0,0,.08);
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.preview-section b,
+.allocation-preview-head b{
+  display:block;
+  color:#1b2942;
+  margin-bottom:8px;
+}
+.preview-section p{
+  margin:0;
+  color:#40506b;
+  font-size:14px;
+  line-height:1.6;
+}
+.allocation-preview-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:22px 0 12px;
+}
+.allocation-preview-head span{
+  color:#758196;
+  font-size:12px;
+}
+.preview-allocation{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:18px;
+  align-items:center;
+}
+.preview-donut{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:conic-gradient(#006a46 0 25%,#15915f 25% 45%,#79b5ac 45% 63%,#a9d7d0 63% 78%,#c7dce5 78% 90%,#e3e7e5 90% 100%);
+  position:relative;
+}
+.preview-donut:after{
+  content:"";
+  position:absolute;
+  inset:33px;
+  background:#fff;
+  border-radius:50%;
+}
+.preview-holdings{
+  display:grid;
+  gap:9px;
+}
+.preview-holdings div{
+  display:grid;
+  grid-template-columns:45px 1fr 56px;
+  gap:8px;
+  align-items:center;
+  font-size:12px;
+}
+.preview-holdings b{
+  color:#172135;
+}
+.preview-holdings span{
+  color:#68758c;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.preview-holdings strong{
+  color:#172135;
+  text-align:right;
+}
+.investor-view{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:14px;
+  align-items:center;
+  padding:16px;
+  border:1px solid rgba(0,0,0,.08);
+  background:rgba(255,255,255,.62);
+  border-radius:16px;
+}
+.investor-view span{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#08754e;
+  background:rgba(8,117,78,.08);
+}
+.investor-view p{
+  margin:0;
+  color:#40506b;
+  font-size:13px;
+  line-height:1.55;
+}
+.progress-card{
+  padding:22px 26px;
+}
+.progress-steps{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:54px 1fr 54px 1fr 54px 1fr 54px;
+  gap:8px;
+  align-items:start;
+}
+.progress-node{
+  text-align:center;
+}
+.progress-node span{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.1);
+  color:#748096;
+  margin:0 auto 8px;
+  font-weight:700;
+}
+.progress-node.done span,
+.progress-node.active span{
+  background:#08754e;
+  color:#fff;
+  border-color:#08754e;
+}
+.progress-node b{
+  display:block;
+  color:#26344e;
+  font-size:12px;
+  margin-bottom:5px;
+}
+.progress-node small{
+  display:block;
+  color:#7b879a;
+  font-size:10px;
+  line-height:1.35;
+}
+.progress-line{
+  height:1px;
+  background:rgba(0,0,0,.1);
+  margin-top:16px;
+}
+.progress-line.active{
+  background:rgba(8,117,78,.5);
+}
+.academy-section{
+  margin-top:42px;
+  border:1px solid rgba(0,0,0,.08);
+  background:rgba(255,255,255,.58);
+  border-radius:24px;
+  padding:28px;
+}
+.academy-header h2{
+  font-family:Georgia,"Times New Roman",serif;
+  margin:0 0 8px;
+  font-size:28px;
+  color:#0e172a;
+}
+.academy-header p{
+  margin:0 0 22px;
+  color:#6b778e;
+}
+.academy-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:42px;
+}
+.academy-video{
+  position:relative;
+  min-height:280px;
+  border-radius:14px;
+  overflow:hidden;
+  padding:28px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 82% 40%,rgba(41,171,126,.24),transparent 30%),
+    linear-gradient(135deg,#003f33,#031a18 58%,#010b0a);
+}
+.academy-video:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,rgba(255,255,255,.04),transparent 25%,rgba(64,255,190,.12) 52%,transparent 76%);
+}
+.academy-video > *{
+  position:relative;
+  z-index:1;
+}
+.academy-brand{
+  font-size:13px;
+  opacity:.9;
+}
+.academy-video h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:42px;
+  line-height:1.05;
+  margin:54px 0 0;
+  font-weight:400;
+}
+.academy-play{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:0;
+  background:#fff;
+  color:#0c271f;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
+}
+.academy-controls{
+  position:absolute;
+  left:24px;
+  right:24px;
+  bottom:18px;
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  opacity:.9;
+}
+.academy-lessons{
+  display:grid;
+  gap:18px;
+}
+.lesson-card{
+  display:grid;
+  grid-template-columns:56px 1fr 80px;
+  gap:18px;
+  align-items:center;
+  padding:18px;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  border-radius:14px;
+  transition:.18s;
+}
+.lesson-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 26px rgba(0,0,0,.05);
+}
+.lesson-card > span{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:#08754e;
+  background:rgba(8,117,78,.09);
+  font-size:22px;
+}
+.lesson-card b{
+  display:block;
+  color:#172135;
+  margin-bottom:5px;
+}
+.lesson-card p{
+  margin:0;
+  color:#68758c;
+  font-size:13px;
+  line-height:1.45;
+}
+.lesson-card small{
+  text-align:right;
+  color:#758196;
+  font-size:12px;
+}
+.draft-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(244,244,241,.6);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:80;
+}
+.draft-modal.show{
+  display:flex;
+}
+.draft-modal-card{
+  width:min(440px,calc(100vw - 40px));
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:24px;
+  padding:28px;
+  position:relative;
+  box-shadow:0 40px 90px rgba(0,0,0,.14);
+}
+.draft-close{
+  position:absolute;
+  right:18px;
+  top:18px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  font-size:24px;
+}
+.draft-icon{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#08754e;
+  color:#fff;
+  margin-bottom:18px;
+}
+.draft-modal-card h3{
+  margin:0 0 10px;
+  font-size:26px;
+  color:#0e172a;
+}
+.draft-modal-card p{
+  margin:0 0 20px;
+  color:#5d6b82;
+  line-height:1.6;
+}
+.draft-modal-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+@media (max-width:1180px){
+  .launcher-grid{grid-template-columns:1fr}
+  .launcher-side{position:relative;top:auto}
+  .academy-grid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .launcher-header{display:block}
+  .launcher-header h1{font-size:42px}
+  .launcher-step{grid-template-columns:32px 1fr;gap:12px}
+  .step-field{grid-column:2}
+  .two-col,.issue-grid,.structure-row,.asset-builder{grid-template-columns:1fr}
+  .launcher-actions{display:block}
+  .generate-btn{width:100%;min-width:0}
+  .secure-draft-note{margin-top:12px}
+  .preview-allocation{grid-template-columns:1fr}
+  .progress-steps{grid-template-columns:1fr;gap:12px}
+  .progress-line{display:none}
+  .lesson-card{grid-template-columns:48px 1fr}
+  .lesson-card small{grid-column:2;text-align:left}
+}
+
+
+
+/* Restored Themes scroll transitions */
+#themes{
+  scroll-behavior:smooth;
+}
+#themes .section{
+  opacity:0;
+  transform:translateY(64px) scale(.985);
+  filter:blur(7px);
+  transition:
+    opacity .9s cubic-bezier(.2,.8,.2,1),
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    filter .9s cubic-bezier(.2,.8,.2,1);
+  will-change:opacity, transform, filter;
+}
+#themes .section.reveal{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+#themes .section .product,
+#themes .section .asset-toolbar,
+#themes .section .asset-table-shell,
+#themes .section .insight-panel,
+#themes .section .hero-copy,
+#themes .section .hero-side-panel{
+  opacity:0;
+  transform:translateY(28px);
+  transition:
+    opacity .8s cubic-bezier(.2,.8,.2,1),
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+#themes .section.reveal .product,
+#themes .section.reveal .asset-toolbar,
+#themes .section.reveal .asset-table-shell,
+#themes .section.reveal .insight-panel,
+#themes .section.reveal .hero-copy,
+#themes .section.reveal .hero-side-panel{
+  opacity:1;
+  transform:translateY(0);
+}
+#themes .section.reveal .product:nth-child(1){transition-delay:.06s}
+#themes .section.reveal .product:nth-child(2){transition-delay:.15s}
+#themes .section.reveal .product:nth-child(3){transition-delay:.24s}
+#themes .section.reveal .asset-toolbar{transition-delay:.08s}
+#themes .section.reveal .asset-table-shell{transition-delay:.18s}
+#themes .section.reveal .hero-side-panel{transition-delay:.12s}
+#themes .section.reveal .insight-panel{transition-delay:.10s}
+@media (prefers-reduced-motion: reduce){
+  #themes .section,
+  #themes .section .product,
+  #themes .section .asset-toolbar,
+  #themes .section .asset-table-shell,
+  #themes .section .insight-panel,
+  #themes .section .hero-copy,
+  #themes .section .hero-side-panel{
+    transition:none;
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+@media (max-width:1024px){
+  #themes .section{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+  #themes .section .product,
+  #themes .section .asset-toolbar,
+  #themes .section .asset-table-shell,
+  #themes .section .insight-panel,
+  #themes .section .hero-copy,
+  #themes .section .hero-side-panel{
+    opacity:1;
+    transform:none;
+  }
+}
+
+
+.risk-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  border:1px solid rgba(0,0,0,.06);
+  background:rgba(255,255,255,.58);
+  color:#20221f;
+}
+.risk-low{
+  color:#15915f;
+  background:rgba(21,145,95,.08);
+  border-color:rgba(21,145,95,.12);
+}
+.risk-middle{
+  color:#6f6530;
+  background:rgba(164,139,54,.10);
+  border-color:rgba(164,139,54,.14);
+}
+.risk-high{
+  color:#1f1f1d;
+  background:rgba(0,0,0,.055);
+  border-color:rgba(0,0,0,.10);
+}
+
+
+/* Portfolio risk preference recommender */
+.portfolio-page{padding:42px 0 72px}
+.portfolio-hero{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;margin-bottom:26px}
+.portfolio-title{font-size:64px!important;margin-bottom:8px}
+.portfolio-sub{max-width:680px}
+.portfolio-status{border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.62);border-radius:18px;padding:14px 18px;min-width:180px}
+.portfolio-status span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#7a7b73;margin-bottom:6px}
+.portfolio-status b{font-size:15px;color:#111}
+.portfolio-kpis{margin-bottom:28px}
+.portfolio-main-grid{grid-template-columns:minmax(0,1.1fr) minmax(360px,.62fr);gap:28px;margin-bottom:40px}
+.portfolio-panel{border:1px solid rgba(0,0,0,.08);border-radius:24px;background:rgba(255,255,255,.58);padding:22px;box-shadow:0 12px 28px rgba(0,0,0,.03)}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.panel-head h3{margin:0 0 6px;font-size:22px;letter-spacing:-.02em;color:#121212}
+.panel-head p{margin:0;color:#777870;font-size:14px}
+.small-ghost-btn{border:1px solid rgba(0,0,0,.1);background:#fff;border-radius:999px;padding:10px 14px;cursor:pointer;color:#222;transition:.18s}
+.small-ghost-btn:hover{background:#111;color:#fff;border-color:#111}
+.portfolio-table td,.portfolio-table th{padding:16px 8px}
+.portfolio-donut{background:conic-gradient(#111 0 31%,#555 31% 52%,#8b8b84 52% 82%,#d8d8d1 82% 100%)}
+.risk-recommender{border-top:1px solid var(--line-soft);padding-top:44px}
+.recommender-copy{display:grid;grid-template-columns:minmax(0,.7fr) minmax(360px,.58fr);gap:40px;align-items:end;margin-bottom:24px}
+.recommender-copy h2{font-size:46px;line-height:1.02;letter-spacing:-.035em;margin:0;color:#0b0b0a;font-weight:520;max-width:740px}
+.recommender-copy p{margin:0;color:#686a62;line-height:1.65;font-size:16px;max-width:560px}
+.risk-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.risk-profile-btn{border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.6);border-radius:999px;padding:11px 16px;cursor:pointer;color:#55564f;transition:.18s}
+.risk-profile-btn:hover{background:#fff;color:#111}
+.risk-profile-btn.active{background:#111;color:#fff;border-color:#111}
+.recommender-grid{display:grid;grid-template-columns:minmax(380px,.75fr) minmax(0,1fr);gap:28px}
+.preference-card,.recommendation-card{border:1px solid rgba(0,0,0,.08);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.48));padding:24px;box-shadow:0 12px 30px rgba(0,0,0,.035)}
+.preference-header,.recommendation-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+.preference-header h3,.recommendation-head h3{margin:0 0 6px;font-size:22px;color:#111;letter-spacing:-.02em}
+.preference-header span{display:inline-flex;padding:8px 12px;border-radius:999px;background:#111;color:#fff;font-size:12px}
+.recommendation-head p{margin:0;color:#6c6d66;font-size:14px;max-width:520px}
+.slider-group{padding:18px 0;border-top:1px solid rgba(0,0,0,.07)}
+.slider-group:first-of-type{border-top:0}
+.slider-group label{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.slider-group label span{color:#20211f;font-weight:560}
+.slider-group label b{color:#111;font-size:18px}
+.slider-group input[type=range]{width:100%;accent-color:#111;cursor:pointer}
+.range-labels{display:flex;justify-content:space-between;color:#8a8b84;font-size:12px;margin-top:8px}
+.constraint-row{display:grid;gap:10px;margin-top:18px}
+.toggle-line{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px;margin:0!important;padding:12px 14px;border:1px solid rgba(0,0,0,.07);border-radius:14px;background:rgba(255,255,255,.55);font-size:14px;color:#4e5049}
+.toggle-line input{accent-color:#111}
+.recommended-allocation{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;margin-bottom:22px}
+.recommended-donut{width:190px;height:190px;border-radius:50%;position:relative;background:conic-gradient(#111 0 34%,#6b6b63 34% 68%,#d7d7d0 68% 100%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.recommended-donut:after{content:"Target Mix";position:absolute;inset:48px;background:#f6f6f3;border-radius:50%;display:grid;place-items:center;text-align:center;color:#606158;font-size:13px}
+.recommended-legend{display:grid;gap:12px}
+.recommended-legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center;font-size:14px;color:#30312d}
+.legend-swatch{width:10px;height:10px;border-radius:50%}
+.recommendation-list{display:grid;gap:12px}
+.recommendation-item{display:grid;grid-template-columns:1fr auto;gap:16px;padding:16px;border:1px solid rgba(0,0,0,.07);border-radius:18px;background:rgba(255,255,255,.58);transition:.18s}
+.recommendation-item:hover{transform:translateY(-2px);background:#fff;box-shadow:0 14px 26px rgba(0,0,0,.045)}
+.recommendation-item h4{margin:0 0 6px;color:#111;font-size:17px}
+.recommendation-item p{margin:0;color:#707269;font-size:13px;line-height:1.45;max-width:620px}
+.recommendation-weight{font-size:24px;font-weight:650;color:#111}
+.recommendation-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.recommendation-meta span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:6px 8px;color:#666861;background:rgba(255,255,255,.58)}
+@media (max-width:1180px){.portfolio-main-grid,.recommender-copy,.recommender-grid{grid-template-columns:1fr}.recommended-allocation{grid-template-columns:1fr}.portfolio-hero{display:block}.portfolio-status{margin-top:18px}}
+@media (max-width:720px){.portfolio-title{font-size:44px!important}.recommender-copy h2{font-size:34px}.recommendation-item{grid-template-columns:1fr}.recommendation-weight{font-size:20px}.portfolio-panel,.preference-card,.recommendation-card{padding:18px}}
+
+
+/* ETP Launcher typography override: Inter only */
+#create,
+#create *{
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif !important;
+}
+#create .launcher-header h1,
+#create .step-label b,
+#create .preview-title h3,
+#create .progress-card h3,
+#create .preview-card h2,
+#create .academy-header h2,
+#create .academy-video h3{
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif !important;
+}
+#create .launcher-header h1{
+  letter-spacing:-0.055em;
+  font-weight:680;
+}
+#create .launcher-header h1 em{
+  font-style:normal;
+  font-weight:680;
+}
+#create .preview-card h2,
+#create .academy-header h2,
+#create .preview-title h3,
+#create .progress-card h3{
+  letter-spacing:-0.035em;
+  font-weight:620;
+}
+#create .academy-video h3{
+  letter-spacing:-0.04em;
+  font-weight:560;
+}
+#create .step-label b{
+  letter-spacing:-0.02em;
+  font-weight:620;
+}
+
+
+/* Uploaded Alloco logo in navigation */
+.brand-uploaded{
+  gap:0;
+}
+.uploaded-logo-wrap{
+  width:92px;
+  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-start;
+  flex:0 0 auto;
+  overflow:hidden;
+}
+.uploaded-logo-svg{
+  width:92px;
+  height:auto;
+  display:block;
+}
+.uploaded-logo-svg *{
+  vector-effect:non-scaling-stroke;
+}
+
+
+/* Slightly wider letter spacing for the ETP Launcher title only */
+#create .launcher-header h1{
+  letter-spacing:-0.015em !important;
+}
+#create .launcher-header h1 em{
+  letter-spacing:-0.005em !important;
+}
+
+
+/* Simplify ETP Launcher form typography */
+#create .launcher-builder{
+  background:rgba(255,255,255,.54);
+}
+#create .launcher-step{
+  grid-template-columns:40px 150px minmax(0,1fr);
+  padding:24px 24px;
+}
+#create .step-label b{
+  font-weight:500 !important;
+  letter-spacing:-0.015em !important;
+}
+#create .step-label span,
+#create .step-field small,
+#create .issue-grid small,
+#create .secure-draft-note{
+  font-weight:400 !important;
+}
+#create .theme-choice,
+#create .asset-pill,
+#create .add-asset-btn,
+#create .step-field input,
+#create .step-field textarea,
+#create .step-field select{
+  font-weight:400 !important;
+}
+#create .ticker-field span,
+#create .issue-grid label span{
+  font-weight:500 !important;
+}
+#create .step-index{
+  font-weight:600 !important;
+}
+#create .preview-card h2,
+#create .preview-section b,
+#create .allocation-preview-head b,
+#create .preview-holdings b,
+#create .preview-holdings strong,
+#create .lesson-card b{
+  font-weight:500 !important;
+}
+#create .launcher-actions{
+  border-top:1px solid rgba(0,0,0,.065);
+}
+
+
+/* Full-bleed creativity section and smaller two-line headline */
+.insight-section,
+.insight-band,
+.creativity-section{
+  border-radius:0 !important;
+  margin-left:calc(50% - 50vw) !important;
+  margin-right:calc(50% - 50vw) !important;
+  width:100vw !important;
+  max-width:100vw !important;
+  border-left:0 !important;
+  border-right:0 !important;
+}
+
+.insight-section .wrap,
+.insight-band .wrap,
+.creativity-section .wrap{
+  max-width:1400px !important;
+  margin:0 auto !important;
+  padding-left:56px !important;
+  padding-right:56px !important;
+}
+
+.insight-section h2,
+.insight-band h2,
+.creativity-section h2{
+  font-size:clamp(52px, 6.4vw, 88px) !important;
+  line-height:0.96 !important;
+  letter-spacing:-0.055em !important;
+  max-width:9.4ch !important;
+}
+
+@media (max-width: 900px){
+  .insight-section .wrap,
+  .insight-band .wrap,
+  .creativity-section .wrap{
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+  .insight-section h2,
+  .insight-band h2,
+  .creativity-section h2{
+    font-size:clamp(40px, 10vw, 60px) !important;
+    max-width:9.8ch !important;
+  }
+}
+
+
+/* Creativity section: full-page, smaller non-bold 2-line title */
+.insight-section,
+.insight-band,
+.creativity-section{
+  border-radius:0 !important;
+  margin-left:calc(50% - 50vw) !important;
+  margin-right:calc(50% - 50vw) !important;
+  width:100vw !important;
+  max-width:100vw !important;
+  border-left:0 !important;
+  border-right:0 !important;
+}
+
+.insight-section .wrap,
+.insight-band .wrap,
+.creativity-section .wrap{
+  max-width:1440px !important;
+  margin:0 auto !important;
+  padding-left:64px !important;
+  padding-right:64px !important;
+}
+
+.insight-section h2,
+.insight-band h2,
+.creativity-section h2{
+  font-size:clamp(42px, 5.1vw, 74px) !important;
+  line-height:0.98 !important;
+  letter-spacing:-0.045em !important;
+  font-weight:500 !important;
+  max-width:none !important;
+}
+
+.insight-section h2 span,
+.insight-band h2 span,
+.creativity-section h2 span{
+  display:block !important;
+  white-space:nowrap !important;
+}
+
+@media (max-width: 900px){
+  .insight-section .wrap,
+  .insight-band .wrap,
+  .creativity-section .wrap{
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+
+  .insight-section h2,
+  .insight-band h2,
+  .creativity-section h2{
+    font-size:clamp(34px, 8vw, 52px) !important;
+    line-height:1.02 !important;
+  }
+
+  .insight-section h2 span,
+  .insight-band h2 span,
+  .creativity-section h2 span{
+    white-space:normal !important;
+  }
+}
+
+
+/* Featured Themes section restyled to market-card style */
+.products-market-style{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:34px !important;
+}
+.market-card{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:18px;
+  cursor:pointer;
+  padding:24px !important;
+  border:1px solid rgba(0,0,0,.09) !important;
+  border-bottom:1px solid rgba(0,0,0,.09) !important;
+  border-radius:30px !important;
+  background:rgba(255,255,255,.68);
+  box-shadow:0 10px 34px rgba(0,0,0,.03);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  min-height:520px;
+}
+.market-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 44px rgba(0,0,0,.06);
+  border-color:rgba(0,0,0,.14) !important;
+}
+.market-card-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+}
+.market-brand{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+}
+.market-logo{
+  width:56px;
+  height:56px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  display:grid;
+  place-items:center;
+  color:#111;
+  flex:0 0 auto;
+  box-shadow:0 6px 16px rgba(0,0,0,.035);
+}
+.market-logo svg{
+  width:26px;
+  height:26px;
+}
+.market-brand-copy h3{
+  margin:0 0 6px !important;
+  font-size:28px !important;
+  line-height:1.05 !important;
+  letter-spacing:-.05em !important;
+  color:#111;
+}
+.market-brand-copy span{
+  display:block;
+  font-size:13px;
+  color:#75776f;
+  letter-spacing:.01em;
+}
+.market-card-desc{
+  margin:0 !important;
+  max-width:none !important;
+  font-size:14px !important;
+  line-height:1.6 !important;
+  color:#666860 !important;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-height:68px;
+}
+.market-panel{
+  margin-top:auto;
+  border-radius:26px;
+  padding:28px 26px 20px;
+  min-height:320px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+}
+.panel-sage{ background:#dbe4d8; }
+.panel-mint{ background:#dde6dc; }
+.panel-ivory{ background:#ecebe4; }
+.market-panel-price{
+  font-size:62px;
+  line-height:.98;
+  letter-spacing:-.06em;
+  font-weight:460;
+  color:#000;
+  margin-bottom:10px;
+}
+.market-panel-change{
+  font-size:14px;
+  letter-spacing:.01em;
+  color:#0d8758;
+}
+.market-panel-chart{
+  width:100%;
+  height:180px;
+  margin-top:22px;
+}
+@media (max-width:1100px){
+  .products-market-style{
+    grid-template-columns:1fr !important;
+  }
+  .market-card{
+    min-height:auto;
+  }
+}
+
+
+/* Featured Themes interactions */
+.market-card{
+  transform-style:preserve-3d;
+  transition:
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    box-shadow .28s cubic-bezier(.2,.8,.2,1),
+    border-color .28s cubic-bezier(.2,.8,.2,1),
+    background .28s ease;
+}
+.market-card .market-logo,
+.market-card .market-brand-copy,
+.market-card .market-panel,
+.market-card .market-panel-price,
+.market-card .market-panel-change{
+  transition:transform .28s cubic-bezier(.2,.8,.2,1), opacity .28s ease, filter .28s ease;
+}
+.market-card .market-panel{
+  position:relative;
+}
+.market-card .market-panel:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0));
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
+}
+.market-card:hover .market-logo{
+  transform:translateY(-2px) scale(1.03);
+}
+.market-card:hover .market-brand-copy{
+  transform:translateY(-1px);
+}
+.market-card:hover .market-panel{
+  transform:translateY(-2px);
+  filter:saturate(1.02);
+}
+.market-card:hover .market-panel:before{
+  opacity:1;
+}
+.market-card:hover .market-panel-price{
+  transform:translateY(-1px);
+}
+.market-card:hover .market-panel-change{
+  transform:translateY(-1px);
+}
+.market-panel-chart path:first-of-type{
+  stroke-dasharray:1200;
+  stroke-dashoffset:1200;
+  animation:marketChartDraw 3.2s cubic-bezier(.25,.8,.25,1) forwards;
+  will-change:stroke-dashoffset;
+}
+.market-panel-chart path:last-of-type{
+  opacity:0;
+  animation:marketFillReveal 1.8s ease forwards;
+  animation-delay:1.65s;
+}
+.market-card:nth-child(2) .market-panel-chart path:first-of-type{
+  animation-delay:.12s;
+}
+.market-card:nth-child(2) .market-panel-chart path:last-of-type{
+  animation-delay:1.78s;
+}
+.market-card:nth-child(3) .market-panel-chart path:first-of-type{
+  animation-delay:.24s;
+}
+.market-card:nth-child(3) .market-panel-chart path:last-of-type{
+  animation-delay:1.92s;
+}
+@keyframes marketChartDraw{
+  from{stroke-dashoffset:1200}
+  to{stroke-dashoffset:0}
+}
+@keyframes marketFillReveal{
+  from{opacity:0; transform:translateY(8px)}
+  to{opacity:1; transform:translateY(0)}
+}
+@media (prefers-reduced-motion: reduce){
+  .market-card,
+  .market-card .market-logo,
+  .market-card .market-brand-copy,
+  .market-card .market-panel,
+  .market-card .market-panel-price,
+  .market-card .market-panel-change{
+    transition:none !important;
+  }
+  .market-panel-chart path:first-of-type,
+  .market-panel-chart path:last-of-type{
+    animation:none !important;
+    stroke-dashoffset:0 !important;
+    opacity:1 !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand brand-uploaded"><span class="uploaded-logo-wrap"><svg class="uploaded-logo-svg" viewBox="0 0 782 236" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_228_189)">
+<path d="M1.72854 189.498L110 0L49.683 174.758C49.2281 176.079 50.3299 177.41 51.7249 177.24L86.9629 172.877L0 236V196.013C0 193.731 0.596398 191.49 1.72854 189.498Z" fill="black"/>
+<path d="M218.261 189.498L110 0L170.317 174.758C170.772 176.079 169.67 177.41 168.275 177.24L133.037 172.877L219.99 236V196.013C219.99 193.731 219.393 191.49 218.261 189.498Z" fill="black"/>
+</g>
+<g clip-path="url(#clip1_228_189)">
+<path d="M733.451 185.066C707.027 185.066 685.496 163.481 685.496 136.99C685.496 110.499 707.027 88.9141 733.451 88.9141C759.876 88.9141 781.407 110.499 781.407 136.99C781.407 163.481 759.876 185.066 733.451 185.066ZM733.451 107.372C717.12 107.372 703.846 120.679 703.846 137.052C703.846 153.424 717.12 166.731 733.451 166.731C749.783 166.731 763.057 153.424 763.057 137.052C763.057 120.679 749.783 107.372 733.451 107.372Z" fill="black"/>
+<path d="M546.279 185.066C519.855 185.066 498.324 163.481 498.324 136.99C498.324 110.499 519.855 88.9141 546.279 88.9141C572.703 88.9141 594.234 110.499 594.234 136.99C594.234 163.481 572.703 185.066 546.279 185.066ZM546.279 107.372C529.947 107.372 516.674 120.679 516.674 137.052C516.674 153.424 529.947 166.731 546.279 166.731C562.611 166.731 575.884 153.424 575.884 137.052C575.884 120.679 562.611 107.372 546.279 107.372Z" fill="black"/>
+<path d="M674.119 158.207C668.798 163.42 661.519 166.67 653.506 166.67C637.174 166.67 623.901 153.363 623.901 136.99C623.901 120.617 637.174 107.311 653.506 107.311C661.519 107.311 668.798 110.561 674.119 115.773L683.967 99.8906C675.71 93.0226 665.066 88.9141 653.506 88.9141C627.081 88.9141 605.55 110.499 605.55 136.99C605.55 163.481 627.081 185.066 653.506 185.066C665.066 185.066 675.71 180.958 683.967 174.09L674.119 158.207Z" fill="black"/>
+<path d="M443.823 185.065H422.048V71.559L443.823 49.7285V185.065Z" fill="black"/>
+<path d="M481.992 185.065H460.216V71.559L481.992 49.7285V185.065Z" fill="black"/>
+<path d="M356.843 100.932L393.36 185.065H415.686L356.843 49.7285L298 185.065H320.265L356.843 100.932Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_228_189">
+<rect width="220" height="236" fill="white"/>
+</clipPath>
+<clipPath id="clip1_228_189">
+<rect width="483.346" height="135.337" fill="white" transform="translate(298 49.7285)"/>
+</clipPath>
+</defs>
+</svg></span></div>
+    <nav class="nav">
+      <a class="active" data-target="themes">Themes</a>
+      <a data-target="create">ETP Launcher</a>
+      <a data-target="portfolio">Portfolio</a>
+    </nav>
+    <div class="actions">
+      <button class="pill" id="walletBtn">Connect Wallet</button>
+      <button class="pill black" id="signinBtn">Sign Up / Sign In</button>
+    </div>
+  </header>
+
+  <section class="screen active" id="themes">
+    <div class="wrap">
+      <div class="section">
+        <div class="section-title">Featured Themes</div>
+        
+<div class="products products-market-style">
+  <article class="product market-card" data-target="detail" data-product="inflation">
+    <div class="market-card-header">
+      <div class="market-brand">
+        <div class="market-logo">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M8.5 13.2 11 10.8l2.3 2 3.2-3.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="market-brand-copy">
+          <h3>AI Inflation Hedge ETP</h3>
+          <span>AI Infrastructure</span>
+        </div>
+      </div>
+    </div>
+    <p class="market-card-desc">AI infrastructure exposure across power, grids, cooling, compute supply chains, and hard assets.</p>
+    <div class="market-panel panel-sage">
+      <div class="market-panel-price">$31.84</div>
+      <div class="market-panel-change pos">▲ $0.61 (1.94%) 24H</div>
+      <svg class="market-panel-chart" viewBox="0 0 560 260" aria-hidden="true">
+        <defs>
+          <linearGradient id="fillSage" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0e8b58" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#0e8b58" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 190 C40 214,74 196,104 198 C132 202,162 208,184 206 C218 203,240 160,265 126 C292 92,330 96,358 112 C390 130,420 128,446 126 C472 123,498 115,530 84 C545 70,552 70,560 78" stroke="#0e8b58" stroke-width="3" fill="none"/>
+        <path d="M0 190 C40 214,74 196,104 198 C132 202,162 208,184 206 C218 203,240 160,265 126 C292 92,330 96,358 112 C390 130,420 128,446 126 C472 123,498 115,530 84 C545 70,552 70,560 78 L560 260 L0 260 Z" fill="url(#fillSage)"/>
+      </svg>
+    </div>
+  </article>
+
+  <article class="product market-card" data-target="detail" data-product="arb">
+    <div class="market-card-header">
+      <div class="market-brand">
+        <div class="market-logo">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="6" y="6" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.7" rx="1"/>
+            <rect x="12.5" y="12.5" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.7" rx="1"/>
+            <path d="M11.5 8.8h3M15.8 8.8v3M8.8 11.5v3M8.8 15.8h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="market-brand-copy">
+          <h3>TradFi-DeFi Arb ETP</h3>
+          <span>Cross-Market Arbitrage</span>
+        </div>
+      </div>
+    </div>
+    <p class="market-card-desc">Cross-market arbitrage between U.S. equity-linked spot exposure and crypto-native perpetuals.</p>
+    <div class="market-panel panel-mint">
+      <div class="market-panel-price">$17.42</div>
+      <div class="market-panel-change pos">▲ $0.15 (0.86%) 24H</div>
+      <svg class="market-panel-chart" viewBox="0 0 560 260" aria-hidden="true">
+        <defs>
+          <linearGradient id="fillMint" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0f8b63" stop-opacity=".20"/>
+            <stop offset="100%" stop-color="#0f8b63" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 204 C28 196,56 198,90 197 C120 197,142 198,165 188 C190 176,212 154,234 145 C264 132,292 128,320 124 C352 119,372 112,394 98 C420 82,452 76,490 72 C518 70,540 68,560 62" stroke="#0f8b63" stroke-width="3" fill="none"/>
+        <path d="M0 204 C28 196,56 198,90 197 C120 197,142 198,165 188 C190 176,212 154,234 145 C264 132,292 128,320 124 C352 119,372 112,394 98 C420 82,452 76,490 72 C518 70,540 68,560 62 L560 260 L0 260 Z" fill="url(#fillMint)"/>
+      </svg>
+    </div>
+  </article>
+
+  <article class="product market-card" data-target="detail" data-product="stable">
+    <div class="market-card-header">
+      <div class="market-brand">
+        <div class="market-logo">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M8.7 11.2c.7-1.7 2.1-2.5 3.6-2.5 1.6 0 2.8.6 3.6 2M8.7 12.8c.7 1.7 2.1 2.5 3.6 2.5 1.6 0 2.8-.6 3.6-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="market-brand-copy">
+          <h3>Stable Yield ETP</h3>
+          <span>Market Neutral Yield</span>
+        </div>
+      </div>
+    </div>
+    <p class="market-card-desc">Market-neutral crypto yield from funding, basis, and liquidity-premium opportunities.</p>
+    <div class="market-panel panel-ivory">
+      <div class="market-panel-price">$1.08</div>
+      <div class="market-panel-change pos">▲ $0.01 (0.21%) 24H</div>
+      <svg class="market-panel-chart" viewBox="0 0 560 260" aria-hidden="true">
+        <defs>
+          <linearGradient id="fillIvory" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#17925f" stop-opacity=".16"/>
+            <stop offset="100%" stop-color="#17925f" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 192 C42 191,82 190,124 189 C160 188,196 186,240 184 C284 182,332 178,378 176 C420 175,468 174,514 173 C536 173,548 172,560 168" stroke="#17925f" stroke-width="3" fill="none"/>
+        <path d="M0 192 C42 191,82 190,124 189 C160 188,196 186,240 184 C284 182,332 178,378 176 C420 175,468 174,514 173 C536 173,548 172,560 168 L560 260 L0 260 Z" fill="url(#fillIvory)"/>
+      </svg>
+    </div>
+  </article>
+</div>
+
+      </div>
+
+      <div class="section hero hero-minimal">
+        <div class="hero-minimal-grid">
+          <div class="hero-copy hero-copy-minimal">
+            <h1>Finance, Closer.</h1>
+            <p>Alloco transforms strong market narratives into transparent, tradeable onchain ETPs. Discover curated themes, inspect the research, and allocate through a cleaner financial interface.</p>
+            <div class="hero-actions">
+              <button class="pill" data-target="create">Launch an ETP</button>
+            </div>
+          </div>
+          <div class="hero-side-panel">
+            <div class="hero-stat-card">
+              <div class="hero-stat-top"><small>Theme AUM</small><span>01</span></div>
+              <b class="hero-stat-number" data-value="184" data-prefix="$" data-suffix="M" data-decimals="0">$184M</b>
+              <p>Across curated onchain theme products.</p>
+            </div>
+            <div class="hero-stat-card">
+              <div class="hero-stat-top"><small>24H Volume</small><span>02</span></div>
+              <b class="hero-stat-number" data-value="38.6" data-prefix="$" data-suffix="M" data-decimals="1">$38.6M</b>
+              <p>Live trading activity across the platform.</p>
+            </div>
+            <div class="hero-stat-card">
+              <div class="hero-stat-top"><small>Active Products</small><span>03</span></div>
+              <b class="hero-stat-number" data-value="27" data-prefix="" data-suffix="" data-decimals="0">27</b>
+              <p>Continuously monitored and research-backed assets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section asset-explorer-section">
+        <div class="section-title">Explore Assets</div>
+        <div class="asset-toolbar">
+          <div class="asset-search-shell">
+            <div class="asset-search-main">
+              <span class="asset-search-icon">⌘</span>
+              <input id="assetSearchInput" class="asset-search-input" placeholder="Search themes, tickers, market ideas, or risk profiles" />
+            </div>
+            <div class="asset-search-actions">
+              <span class="search-hint">Live search</span>
+              <button class="asset-search-btn" id="assetSearchBtn">Search</button>
+            </div>
+          </div>
+          <div class="asset-filter-row">
+            <div class="asset-filters" id="assetFilters">
+              <button class="asset-chip active" data-filter="all">All assets</button>
+              <button class="asset-chip" data-filter="healthcare">Healthcare</button>
+              <button class="asset-chip" data-filter="infrastructure">Infrastructure</button>
+              <button class="asset-chip" data-filter="yield">Yield</button>
+            </div>
+            <div class="asset-meta">
+              <span class="asset-meta-pill">Curated themes</span>
+              <span class="asset-count" id="assetCount">3 assets</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-table-shell">
+          <table class="table asset-table" id="assetTable">
+            <thead>
+              <tr>
+                <th><button class="sort-btn" data-sort="product">Product <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="theme">Theme <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="price">Market Price <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="volume">24H Volume <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="trend">7D Trend <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="risk">Risk Level <span>↕</span></button></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="asset-row" data-target="detail" data-product="inflation" data-name="AI Inflation Hedge ETP" data-theme="AI Infrastructure" data-price="31.84" data-volume="14.9" data-trend="84" data-risk="3" data-category="healthcare">
+                <td>
+                  <div class="asset-product-cell">
+                    <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.2" stroke="#111" stroke-width="1.5"/><path d="M7.8 14.4L10.4 11.8L12.4 13.6L16.1 9.8" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.9 9.8H13.8" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M16 9.8V11.9" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <div>
+                      <strong>AI Inflation Hedge ETP</strong>
+                      <small>AIH · Power, grids, cooling, and hard assets</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="asset-theme-tag">AI Infrastructure</span></td>
+                <td>
+                  <div class="asset-price-cell">
+                    <strong>$31.84</strong>
+                    <span class="pos">+1.94%</span>
+                  </div>
+                </td>
+                <td>$14.9M</td>
+                <td><span class="trend-pill up">↗ Strong</span></td>
+                <td><span class="risk-pill risk-high">High</span></td>
+                <td><button class="view-btn" data-target="detail" data-product="inflation">View <span>→</span></button></td>
+              </tr>
+              <tr class="asset-row" data-target="detail" data-product="arb" data-name="TradFi-DeFi Arb ETP" data-theme="Cross-Market Arbitrage" data-price="17.42" data-volume="9.6" data-trend="73" data-risk="2" data-category="infrastructure">
+                <td>
+                  <div class="asset-product-cell">
+                    <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4.2" y="5.2" width="6.8" height="6.8" rx="1.4" stroke="#111" stroke-width="1.5"/><rect x="13" y="12" width="6.8" height="6.8" rx="1.4" stroke="#111" stroke-width="1.5"/><path d="M11 8.5H15.8" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M14 6.8L15.8 8.5L14 10.2" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 15.5H8.2" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M10 17.2L8.2 15.5L10 13.8" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div>
+                      <strong>TradFi-DeFi Arb ETP</strong>
+                      <small>TDA · Equity spot versus perp dislocations</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="asset-theme-tag">Cross-Market Arbitrage</span></td>
+                <td>
+                  <div class="asset-price-cell">
+                    <strong>$17.42</strong>
+                    <span class="pos">+0.86%</span>
+                  </div>
+                </td>
+                <td>$9.6M</td>
+                <td><span class="trend-pill up">↗ Positive</span></td>
+                <td><span class="risk-pill risk-middle">Middle</span></td>
+                <td><button class="view-btn" data-target="detail" data-product="arb">View <span>→</span></button></td>
+              </tr>
+              <tr class="asset-row" data-target="detail" data-product="stable" data-name="Stable Yield ETP" data-theme="Market Neutral Yield" data-price="1.08" data-volume="33.4" data-trend="58" data-risk="1" data-category="yield">
+                <td>
+                  <div class="asset-product-cell">
+                    <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.2" stroke="#111" stroke-width="1.5"/><path d="M7.3 12C8.4 10.4 9.5 10.4 10.6 12C11.7 13.6 12.8 13.6 13.9 12C15 10.4 16.1 10.4 17.2 12" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3 7.8H15.7" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <div>
+                      <strong>Stable Yield ETP</strong>
+                      <small>SYD · Funding, basis, and liquidity premium</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="asset-theme-tag">Market Neutral Yield</span></td>
+                <td>
+                  <div class="asset-price-cell">
+                    <strong>$1.04</strong>
+                    <span class="pos">+0.21%</span>
+                  </div>
+                </td>
+                <td>$33.4M</td>
+                <td><span class="trend-pill flat">→ Stable</span></td>
+                <td><span class="risk-pill risk-low">Low</span></td>
+                <td><button class="view-btn" data-target="detail" data-product="stable">View <span>→</span></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section insight-section" id="insightSection">
+        <div class="insight-panel">
+          <div class="insight-copy">
+            <h2><span>Shape the future</span><span>with your creativity</span></h2>
+            <button class="insight-btn">Connect Wallet</button>
+          </div>
+          <div class="insight-visual">
+            <canvas id="globeCanvas" aria-label="Animated rotating globe with traveling photons"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="detail">
+    <div class="wrap detail-page">
+      <div class="back-link" data-target="themes">← <span>Back to Products</span></div>
+      <div class="detail-hero">
+        <div class="detail-main">
+          <div class="detail-summary">
+            <div>
+              <div class="product-head">
+                <div class="product-logo-box">
+                  <div class="detail-icon" id="detailIcon"></div>
+                </div>
+                <div>
+                  <h1 class="product-title" id="detailTitle">AI Inflation Hedge ETP <span class="ticker" id="detailTicker">(AIH)</span></h1>
+                  <div class="tag-row">
+                    <span class="badge" id="detailBadgeType">Theme ETP</span>
+                    <span class="badge" id="detailBadgeTheme">AI Infrastructure</span>
+                  </div>
+                  <div class="summary-copy" id="detailSummary">A thematic ETP that packages the physical infrastructure behind AI, including power, grid equipment, cooling, compute supply chains, energy, and hard-asset exposure.</div>
+                </div>
+              </div>
+            </div>
+            <div class="mini-actions">
+              <button class="outline-btn">☆ <span>Watchlist</span></button>
+              <button class="outline-btn">↗ <span>Share</span></button>
+            </div>
+          </div>
+          <div class="subnav" id="detailSubnav">
+            <a class="active" data-detail-tab="overview">Overview</a>
+            <a data-detail-tab="trade">Trade</a>
+            <a data-detail-tab="documents">Documents</a>
+          </div>
+
+          <div class="tab-panel active" id="detail-overview">
+            <div class="overview-layout">
+              <div>
+                <div class="content-grid-3">
+                  <div class="subcard">
+                    <h4>Overview</h4>
+                    <div class="price-line"><div class="big-number" id="overviewPrice">$31.84</div><div class="delta" id="overviewDelta">▲ $0.62 (1.94%) 1D</div></div>
+                    <div class="timestamp" id="overviewTimestamp">As of May 16, 2026 4:00 PM ET</div>
+                    <div style="display:flex;justify-content:flex-end;margin-bottom:8px"><div class="mini-select"><button class="active">1D</button><button>1W</button><button>1M</button></div></div>
+                    <svg class="chart-area" viewBox="0 0 440 230">
+                      <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#15915f" stop-opacity="0.24"/><stop offset="100%" stop-color="#15915f" stop-opacity="0"/></linearGradient></defs>
+                      <path d="M16 175 C36 134,58 156,75 118 C100 68,128 82,150 118 C170 151,186 92,210 104 C238 119,250 73,270 82 C296 94,318 40,338 60 C355 79,372 66,396 32" stroke="#15915f" stroke-width="3" fill="none"/>
+                      <path d="M16 175 C36 134,58 156,75 118 C100 68,128 82,150 118 C170 151,186 92,210 104 C238 119,250 73,270 82 C296 94,318 40,338 60 C355 79,372 66,396 32 L396 208 L16 208 Z" fill="url(#g1)"/>
+                      <path d="M18 208 H402M18 157 H402M18 106 H402M18 55 H402" stroke="rgba(0,0,0,.07)"/>
+                      <text x="18" y="226" font-size="11" fill="#6b768c">May 15</text><text x="110" y="226" font-size="11" fill="#6b768c">10:00 AM</text><text x="208" y="226" font-size="11" fill="#6b768c">12:00 PM</text><text x="304" y="226" font-size="11" fill="#6b768c">2:00 PM</text><text x="382" y="226" font-size="11" fill="#6b768c">4:00 PM</text>
+                      <text x="408" y="55" font-size="11" fill="#6b768c">25.40</text><text x="408" y="106" font-size="11" fill="#6b768c">24.60</text><text x="408" y="157" font-size="11" fill="#6b768c">23.80</text><text x="408" y="208" font-size="11" fill="#6b768c">23.00</text>
+                    </svg>
+                  </div>
+                  <div class="subcard">
+                    <h4>Story</h4>
+                    <p class="sub" id="storyP1" style="font-size:14px;line-height:1.7;color:#3e4861">AI infrastructure is becoming the physical backbone of the next economic cycle. Power generation, grid equipment, cooling, compute supply chains, energy, and hard assets are becoming critical inputs for scalable intelligence.</p>
+                    <p class="sub" id="storyP2" style="font-size:14px;line-height:1.7;color:#3e4861;margin-top:12px">The AI Inflation Hedge ETP (AIH) packages this real-world infrastructure exposure into a transparent, thematic onchain product.</p>
+                    <div class="story-list">
+                      <div class="story-item"><div class="story-icon">⌁</div><div><b>Demographic tailwinds</b><span>Aging populations driving sustained demand for better health.</span></div></div>
+                      <div class="story-item"><div class="story-icon">◈</div><div><b>Innovation breakthroughs</b><span>Biotech, genomics, and AI unlocking new treatment paradigms.</span></div></div>
+                      <div class="story-item"><div class="story-icon">◎</div><div><b>Healthspan focus</b><span>Solutions that extend quality of life, not just years.</span></div></div>
+                      <div class="story-item"><div class="story-icon">◍</div><div><b>Global opportunity</b><span>Exposure across the full longevity value chain worldwide.</span></div></div>
+                    </div>
+                  </div>
+                  <div class="subcard">
+                    <h4 id="videoTitle">Watch the AI Infrastructure Story</h4>
+                    <div class="video-thumb">
+                      <div class="play-btn"></div>
+                      <div class="video-controls"><span>▶ 0:00 / 2:46</span><span>◴ ⊡</span></div>
+                    </div>
+                    <p class="sub" style="font-size:14px;color:#4d5870"><span id="videoCaption">A 3 minute overview of the AI infrastructure cycle, capacity bottlenecks, and inflation-hedge investment thesis.</span></p>
+                  </div>
+                </div>
+
+                <div class="subcard ai-box">
+                  <div class="ai-header"><div class="spark">✦</div><div><b style="display:block;color:#162036">Explore with AI</b><span id="aiSubtitle" style="font-size:13px;color:#71809a">Ask AI to better understand the AI infrastructure theme, market drivers, portfolio construction, and risks.</span></div></div>
+                  <div class="ask-row"><input id="aiAskInput" placeholder="Ask anything about AI infrastructure investing..." /><button class="send-btn">➜</button></div>
+                  <div class="chip-row">
+                    <span class="chip">◌ Why does longevity matter?</span>
+                    <span class="chip">⌘ Which companies drive this theme?</span>
+                    <span class="chip">⌁ What risks should I know?</span>
+                    <span class="chip">☰ How is the basket constructed?</span>
+                  </div>
+                </div>
+
+                <div class="allocation-grid">
+                  <div class="subcard">
+                    <h4>Allocation Preview</h4>
+                    <div class="allocation-card">
+                      <div class="allocation-donut"></div>
+                      <div class="legend">
+                        <div class="legend-row"><span class="legend-dot" style="background:#058644"></span><span>Biotechnology</span><strong>45.0%</strong></div>
+                        <div class="legend-row"><span class="legend-dot" style="background:#2f9e60"></span><span>Pharmaceuticals</span><strong>25.0%</strong></div>
+                        <div class="legend-row"><span class="legend-dot" style="background:#85c594"></span><span>Health Tech</span><strong>15.0%</strong></div>
+                        <div class="legend-row"><span class="legend-dot" style="background:#84b5ff"></span><span>Diagnostics</span><strong>7.0%</strong></div>
+                        <div class="legend-row"><span class="legend-dot" style="background:#4f82f2"></span><span>Fixed Income</span><strong>8.0%</strong></div>
+                      </div>
+                    </div>
+                    <div style="font-size:12px;color:#7a8394;margin-top:8px">Subject to change. Data as of May 16, 2026.</div>
+                  </div>
+                  <div class="subcard">
+                    <h4>Top Holdings</h4>
+                    <table class="table holdings-table">
+                      <tr><th>Ticker</th><th>Company</th><th>Weight</th></tr>
+                      <tr><td><strong>LLY</strong></td><td>Eli Lilly & Co.</td><td>6.42%</td></tr>
+                      <tr><td><strong>REGN</strong></td><td>Regeneron Pharmaceuticals</td><td>5.28%</td></tr>
+                      <tr><td><strong>MRNA</strong></td><td>Moderna, Inc.</td><td>4.67%</td></tr>
+                      <tr><td><strong>CRSP</strong></td><td>CRISPR Therapeutics</td><td>3.91%</td></tr>
+                      <tr><td><strong>IBB</strong></td><td>iShares Biotechnology ETP</td><td>3.44%</td></tr>
+                      <tr><td><strong>IEF</strong></td><td>iShares 7-10 Year Treasury Bond ETP</td><td>2.78%</td></tr>
+                    </table>
+                    <div style="font-size:12px;color:#7a8394;margin-top:8px">Holdings subject to change.</div>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="side-stack">
+                <div class="subcard">
+                  <h3 class="side-section-title" id="sideTitle">AI Inflation Hedge ETP <span style="font-size:16px;font-weight:500;color:#31415f">(AIH)</span></h3>
+                  <div class="info-list">
+                    <div class="info-item"><span>Current Price</span><b id="sidePrice">$31.84</b></div>
+                    <div class="info-item"><span>1D Change</span><b class="pos" id="sideChange">▲ $0.62 (1.94%)</b></div>
+                    <div class="info-item"><span>Official NAV (May 16, 2026)</span><b id="sideNav">$31.76</b></div>
+                    <div class="info-item"><span>iNAV (Real-time)</span><b id="sideInav">$31.80 ●</b></div>
+                    <div class="info-item"><span>AUM</span><b id="sideAum">$318.4M</b></div>
+                    <div class="info-item"><span>24h Volume</span><b id="sideVolume">$14.9M</b></div>
+                    <div class="info-item"><span>Expense Ratio</span><b id="sideExpense">0.72%</b></div>
+                    <div class="info-item"><span>Inception Date</span><b>Jan 15, 2024</b></div>
+                    <div class="info-item"><span>Domicile</span><b id="sideDomicile">Cayman Islands</b></div>
+                    <div class="info-item"><span>Base Currency</span><b>USD</b></div>
+                  </div>
+                </div>
+                <div class="subcard">
+                  <h3 class="side-section-title">Performance (NAV)</h3>
+                  <div class="perf-tabs"><span class="perf-tab">1D</span><span class="perf-tab">1W</span><span class="perf-tab">1M</span><span class="perf-tab">3M</span><span class="perf-tab">YTD</span><span class="perf-tab">1Y</span><span class="perf-tab">ALL</span></div>
+                  <div class="perf-grid">
+                    <div class="perf-box"><small>1D</small><b class="pos">▲ 2.33%</b></div>
+                    <div class="perf-box"><small>YTD</small><b class="pos">▲ 12.84%</b></div>
+                    <div class="perf-box"><small>1Y</small><b class="pos">▲ 28.67%</b></div>
+                  </div>
+                </div>
+                <div class="subcard">
+                  <h3 class="side-section-title">Risk Indicator</h3>
+                  <div class="risk-row"><div class="risk-dot">1</div><div class="risk-dot">2</div><div class="risk-dot">3</div><div class="risk-dot">4</div><div class="risk-dot active">5</div><div class="risk-dot">6</div><div class="risk-dot">7</div></div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;color:#7a8394"><span>Lower Risk</span><span>Higher Risk</span></div>
+                </div>
+                <div class="subcard help-card">
+                  <h3 class="side-section-title">Need help?</h3>
+                  <p>Our team is here to help with any questions about Longevity ETP (LONG).</p>
+                  <div class="support-box"><div class="support-icon">⌂</div><div><b style="display:block;color:#172135;margin-bottom:6px">Contact Support</b><span style="display:block;color:#627089;font-size:14px">support@alloco.io</span><span style="display:block;color:#627089;font-size:14px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
+                  <button class="secondary-btn">Contact Support →</button>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="detail-trade">
+            <div class="trade-layout">
+              <div class="trade-main">
+                <div class="subcard">
+                  <div class="overview-tab-wrap">
+                    <div>
+                      <div class="price-line"><div class="big-number">$24.57</div><div class="delta">▲ $0.56 (2.33%) 1D</div></div>
+                      <div class="timestamp">As of May 16, 2026 4:00 PM ET</div>
+                    </div>
+                    <div class="chart-type"><button class="active">Line Chart</button><button>Candles</button></div>
+                  </div>
+                  <div class="segmented" style="margin-bottom:14px"><button class="active">1D</button><button>1W</button><button>1M</button><button>3M</button><button>YTD</button><button>1Y</button><button>ALL</button></div>
+                  <svg class="chart-area" viewBox="0 0 760 250" style="height:250px">
+                    <defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#15915f" stop-opacity="0.2"/><stop offset="100%" stop-color="#15915f" stop-opacity="0"/></linearGradient></defs>
+                    <path d="M26 188 C56 160,72 180,108 150 C160 106,182 92,225 105 C260 116,292 92,322 104 C365 122,410 172,438 138 C473 94,502 123,536 82 C578 32,602 76,645 42 C677 18,698 72,730 45" stroke="#15915f" stroke-width="3" fill="none"/>
+                    <path d="M26 188 C56 160,72 180,108 150 C160 106,182 92,225 105 C260 116,292 92,322 104 C365 122,410 172,438 138 C473 94,502 123,536 82 C578 32,602 76,645 42 C677 18,698 72,730 45 L730 228 L26 228 Z" fill="url(#g2)"/>
+                    <path d="M28 228 H734M28 194 H734M28 160 H734M28 126 H734M28 92 H734M28 58 H734" stroke="rgba(0,0,0,.08)" stroke-dasharray="2 4"/>
+                    <text x="28" y="246" font-size="11" fill="#6b768c">May 15</text><text x="188" y="246" font-size="11" fill="#6b768c">10:00 AM</text><text x="346" y="246" font-size="11" fill="#6b768c">12:00 PM</text><text x="500" y="246" font-size="11" fill="#6b768c">2:00 PM</text><text x="676" y="246" font-size="11" fill="#6b768c">4:00 PM</text>
+                    <text x="740" y="58" font-size="11" fill="#6b768c">25.40</text><text x="740" y="92" font-size="11" fill="#6b768c">25.00</text><text x="740" y="126" font-size="11" fill="#6b768c">24.60</text><text x="740" y="160" font-size="11" fill="#6b768c">24.20</text><text x="740" y="194" font-size="11" fill="#6b768c">23.80</text><text x="740" y="228" font-size="11" fill="#6b768c">23.40</text>
+                  </svg>
+                </div>
+                <div class="subcard" style="margin-top:16px">
+                  <div class="info-row" style="grid-template-columns:repeat(5,1fr)">
+                    <div class="metric"><span>Official NAV</span><b>$24.38</b><small style="color:#6c7790">As of May 16, 2026</small></div>
+                    <div class="metric"><span>iNAV</span><b>$24.44</b><small style="color:#6c7790">Real-time ●</small></div>
+                    <div class="metric"><span>Premium / Discount</span><b class="pos">+0.53%</b><small style="color:#6c7790">At Market Price</small></div>
+                    <div class="metric"><span>AUM</span><b>$245.7M</b><small style="color:#6c7790">As of May 16, 2026</small></div>
+                    <div class="metric"><span>24h Volume</span><b>$9.82M</b><small style="color:#6c7790">As of May 16, 2026</small></div>
+                  </div>
+                </div>
+                <div class="subcard" style="margin-top:16px">
+                  <h3 class="side-section-title" style="margin-bottom:18px">Route Explanation</h3>
+                  <div class="route-grid">
+                    <div class="route-step"><div class="route-icon">•••</div><div><b>Small Orders</b><span>Onchain Liquidity</span><span>Orders up to $50K are routed to onchain liquidity pools for best execution.</span></div></div>
+                    <div class="route-step"><div class="route-icon">◔</div><div><b>Mid-size Orders</b><span>RFQ</span><span>Orders between $50K–$2M are routed to market makers via RFQ.</span></div></div>
+                    <div class="route-step"><div class="route-icon">⌂</div><div><b>Large Orders</b><span>Primary Market</span><span>Orders above $2M are routed to the Primary Market for creation or redemption.</span></div></div>
+                  </div>
+                  <div style="text-align:right;margin-top:16px"><span class="view-link">Learn more →</span></div>
+                </div>
+                <div class="footnote">Not FDIC Insured ・ No Bank Guarantee ・ May Lose Value</div>
+              </div>
+              <aside>
+                <div class="order-card">
+                  <div class="buy-sell"><button class="active">Buy</button><button>Sell</button></div>
+                  <div class="field">
+                    <label>You pay</label>
+                    <div class="money-input">
+                      <div class="money-box"><strong>$ 10,000</strong></div>
+                      <div class="select-box">🇺🇸 USD ⌄</div>
+                    </div>
+                  </div>
+                  <div class="swap-icon">⇅</div>
+                  <div class="field">
+                    <label>Estimated shares</label>
+                    <div class="estimate-box"><b>≈ 407.17 LONG</b><div style="margin-top:8px;color:#627089;font-size:14px">1 LONG ≈ $24.57 ⓘ</div></div>
+                  </div>
+                  <div class="field">
+                    <label>Route (best execution)</label>
+                    <div class="route-box">🟢 Onchain Liquidity ⌄</div>
+                  </div>
+                  <div class="field">
+                    <label>Expected slippage</label>
+                    <div style="font-size:15px;color:#162036">0.08% – 0.15% ⓘ</div>
+                  </div>
+                  <button class="review-btn">Review Order</button>
+                  <button class="secondary-btn">Go to Primary Market</button>
+                  <div class="secure-note">🛡 <span>All trades are executed securely via Alloco.</span></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="detail-documents">
+            <div class="docs-layout">
+              <div>
+                <div class="doc-group">
+                  <h3>Legal Documents</h3>
+                  <div class="doc-list">
+                    <div class="doc-item"><div class="doc-ico">📄</div><div class="doc-meta"><b>Prospectus</b><span>Detailed offering information and risk factors.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 2.4 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico">🛡</div><div class="doc-meta"><b>Key Information Document (KID)</b><span>Essential information for investors.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.1 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico">⚠</div><div class="doc-meta"><b>Risk Disclosures</b><span>Important risk considerations.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.6 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico">⚖</div><div class="doc-meta"><b>Terms & Conditions</b><span>Terms governing access and use.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.3 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                  </div>
+                </div>
+                <div class="doc-group">
+                  <h3>Product Materials</h3>
+                  <div class="doc-list">
+                    <div class="doc-item"><div class="doc-ico">📑</div><div class="doc-meta"><b>Fact Sheet</b><span>Key product highlights and performance.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.2 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico">🧮</div><div class="doc-meta"><b>NAV Methodology</b><span>Description of NAV calculation and inputs.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 890 KB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico">☰</div><div class="doc-meta"><b>Basket Composition Report</b><span>Current holdings and weighting details.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.4 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                  </div>
+                </div>
+                <div class="doc-group">
+                  <h3>Operational Resources</h3>
+                  <div class="doc-list">
+                    <div class="doc-item"><div class="doc-ico">⚙</div><div class="doc-meta"><b>Custody Overview</b><span>Information on custody and asset safekeeping.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.1 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico">?</div><div class="doc-meta"><b>FAQs</b><span>Answers to common investor questions.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 950 KB</div></div><button class="doc-btn">↓ Download</button></div>
+                  </div>
+                </div>
+              </div>
+              <aside class="side-stack">
+                <div class="subcard help-card">
+                  <h3 class="side-section-title">Need help?</h3>
+                  <p>Our team is here to help with any questions about Longevity ETP (LONG).</p>
+                  <div class="support-box"><div class="support-icon">◌</div><div><b style="display:block;color:#172135;margin-bottom:6px">Institutional Support</b><span style="display:block;color:#627089;font-size:14px">institutional@alloco.io</span><span style="display:block;color:#627089;font-size:14px">+1 (212) 555-0188</span><span style="display:block;color:#627089;font-size:13px;margin-top:10px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
+                  <button class="secondary-btn" style="color:#15915f;border-color:rgba(21,145,95,.35)">Contact Us →</button>
+                </div>
+                <div class="compliance-box">
+                  <div class="compliance-visual"></div>
+                  <div class="compliance-copy">
+                    <h3 class="side-section-title" style="margin-top:0">Compliance & Important Information</h3>
+                    <p>These materials are provided for informational purposes only and are intended solely for eligible investors and institutional clients.</p>
+                    <p>Availability of documents may vary by jurisdiction. In the event of any inconsistency, local offering documents will prevail.</p>
+                    <div class="secure-note" style="margin-top:18px">🛡 <span>Secure. Compliant. Transparent.</span></div>
+                  </div>
+                </div>
+                <div class="footnote">Not FDIC Insured ・ No Bank Guarantee ・ May Lose Value</div>
+              </aside>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="research">
+    <div class="wrap research-grid">
+      <div>
+        <div class="eyebrow">Transparent Product Research</div>
+        <h1 class="title" style="font-size:58px">Research & DYOR</h1>
+        <p class="sub">A transparent memo that explains why this ETP exists, how assets are selected, and what risks users should understand before making an allocation decision.</p>
+        <div class="content-block" style="margin-top:26px">
+          <h3 style="margin:0 0 8px;font-size:22px">Theme thesis</h3>
+          <p class="sub">Aging populations, AI assisted diagnostics, and next generation treatment infrastructure create a durable long term investment narrative.</p>
+        </div>
+        <div class="content-block">
+          <h3 style="margin:0 0 8px;font-size:22px">Rebalance rule</h3>
+          <p class="sub">Monthly rebalance with liquidity floors, volatility screens, and issuer concentration caps to maintain product quality.</p>
+        </div>
+        <div class="content-block">
+          <h3 style="margin:0 0 8px;font-size:22px">Risk constitution</h3>
+          <p class="sub">No single issuer above 15 percent. Cash floor above 8 percent. Warning mode when realized volatility moves above the preset governance threshold.</p>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Holdings & Signals</div>
+        <table class="table">
+          <tr><th>Asset bucket</th><th>Weight</th><th>Signal</th></tr>
+          <tr><td>Healthcare AI</td><td>28%</td><td class="pos">Strong</td></tr>
+          <tr><td>Biotech leaders</td><td>35%</td><td>Neutral</td></tr>
+          <tr><td>Medical devices</td><td>22%</td><td class="pos">Strong</td></tr>
+          <tr><td>Cash buffer</td><td>15%</td><td>Risk control</td></tr>
+        </table>
+        <div style="margin-top:24px">
+          <button class="pill black" data-target="detail">Back to ETP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+<section class="screen" id="create">
+  <div class="wrap launcher-page">
+    <div class="launcher-header">
+      <div>
+        <h1>Start Creating <em>My</em> ETP</h1>
+        <p>Turn your theme into a transparent, NAV-based ETP built for the future.</p>
+      </div>
+      <div class="launcher-header-note">
+        <span>Draft mode</span>
+        <b>Private until publish</b>
+      </div>
+    </div>
+
+    <div class="launcher-grid">
+      <div class="launcher-builder">
+        <div class="launcher-step" data-step="1">
+          <div class="step-index">1</div>
+          <div class="step-label">
+            <b>Mission</b>
+            <span>Required</span>
+          </div>
+          <div class="step-field">
+            <textarea id="missionInput" maxlength="250" placeholder="Describe the problem your ETP is solving..."></textarea>
+            <div class="char-counter"><span id="missionCount">0</span>/250</div>
+          </div>
+        </div>
+
+        <div class="launcher-step" data-step="2">
+          <div class="step-index">2</div>
+          <div class="step-label">
+            <b>ETP Name</b>
+            <span>Required</span>
+          </div>
+          <div class="step-field two-col">
+            <input id="etpNameInput" value="AI Inflation Hedge ETP" />
+            <label class="ticker-field">
+              <span>Ticker</span>
+              <input id="tickerInput" value="AIH" maxlength="8" />
+            </label>
+          </div>
+        </div>
+
+        <div class="launcher-step" data-step="3">
+          <div class="step-index">3</div>
+          <div class="step-label">
+            <b>Category / Theme</b>
+            <span>Optional</span>
+          </div>
+          <div class="step-field">
+            <div class="theme-chip-row" id="themeChipRow">
+              <button class="theme-choice active" data-theme="AI Infrastructure">AI Infrastructure</button>
+              <button class="theme-choice" data-theme="Energy">Energy</button>
+              <button class="theme-choice" data-theme="Hard Assets">Hard Assets</button>
+              <button class="theme-choice" data-theme="Crypto Yield">Crypto Yield</button>
+              <button class="theme-choice more">⌄</button>
+            </div>
+            <small>Choose a category or define your own theme.</small>
+          </div>
+        </div>
+
+        <div class="launcher-step" data-step="4">
+          <div class="step-index">4</div>
+          <div class="step-label">
+            <b>Underlying<br>Asset Basket</b>
+            <span>Optional</span>
+          </div>
+          <div class="step-field">
+            <div class="asset-builder" id="assetBuilder">
+              <div class="asset-pill" data-ticker="NVDA" data-name="NVIDIA">NVDA <span>NVIDIA</span><button>×</button></div>
+              <div class="asset-pill" data-ticker="VST" data-name="Vistra">VST <span>Vistra</span><button>×</button></div>
+              <div class="asset-pill" data-ticker="ETN" data-name="Eaton">ETN <span>Eaton</span><button>×</button></div>
+              <div class="asset-pill" data-ticker="CEG" data-name="Constellation">CEG <span>Constellation</span><button>×</button></div>
+              <div class="asset-pill" data-ticker="PWR" data-name="Quanta">PWR <span>Quanta</span><button>×</button></div>
+              <button class="add-asset-btn" id="addAssetBtn">＋ Add Asset</button>
+            </div>
+            <small>Select the assets that best represent your theme.</small>
+          </div>
+        </div>
+
+        <div class="launcher-actions">
+          <button class="generate-btn" id="generateDraftBtn">Generate ETP Draft <span>→</span></button>
+          <div class="secure-draft-note">◇ Your draft is secure and private until you publish.</div>
+        </div>
+      </div>
+
+      <aside class="launcher-side">
+        <div class="preview-title">
+          <h3>Live ETP Preview</h3>
+          <p>See how your ETP will look to investors.</p>
+        </div>
+
+        <div class="preview-card" id="previewCard">
+          <div class="preview-ticker" id="previewTicker">AIH</div>
+          <h2 id="previewName">AI Inflation Hedge ETP</h2>
+          <p id="previewSubtitle">Helping investors access the physical infrastructure behind AI.</p>
+
+          <div class="preview-tags">
+            <span>Theme</span>
+            <span>NAV-Based</span>
+            <span id="previewStructureTag">Theme Basket</span>
+          </div>
+
+          <div class="preview-section">
+            <b>Mission</b>
+            <p id="previewMission">A transparent, NAV-based ETP offering diversified exposure to AI infrastructure, energy, grid equipment, cooling, compute supply chains and hard assets.</p>
+          </div>
+
+          <div class="allocation-preview-head">
+            <b>Allocation Preview</b>
+            <span>As of draft</span>
+          </div>
+          <div class="preview-allocation">
+            <div class="preview-donut"></div>
+            <div class="preview-holdings" id="previewHoldings">
+              <div><b>NVDA</b><span>NVIDIA</span><strong>25.0%</strong></div>
+              <div><b>VST</b><span>Vistra</span><strong>20.0%</strong></div>
+              <div><b>ETN</b><span>Eaton</span><strong>18.0%</strong></div>
+              <div><b>CEG</b><span>Constellation</span><strong>15.0%</strong></div>
+              <div><b>PWR</b><span>Quanta</span><strong>12.0%</strong></div>
+              <div><b>Cash</b><span>Buffer</span><strong>10.0%</strong></div>
+            </div>
+          </div>
+
+          <div class="investor-view">
+            <span>◎</span>
+            <p id="investorViewText">A transparent, NAV-based ETP offering diversified exposure to the AI infrastructure value chain, built with institutional-grade standards.</p>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <h3>Creation Progress</h3>
+          <p>Track your progress to launch.</p>
+          <div class="progress-steps" id="progressSteps">
+            <div class="progress-node done"><span>✓</span><b>Idea</b><small>Define your mission</small></div>
+            <div class="progress-line active"></div>
+            <div class="progress-node active"><span>2</span><b>Basket</b><small>Select your assets</small></div>
+            <div class="progress-line"></div>
+            <div class="progress-node"><span>3</span><b>Structure</b><small>Configure details</small></div>
+            <div class="progress-line"></div>
+            <div class="progress-node"><span>4</span><b>Review</b><small>Finalize & publish</small></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="academy-section">
+      <div class="academy-header">
+        <h2>Learn How to Build an ETP</h2>
+        <p>A step-by-step guide to turning your idea into a transparent, NAV-based ETP.</p>
+      </div>
+      <div class="academy-grid">
+        <div class="academy-video">
+          <div class="academy-brand">◇ Alloco Academy</div>
+          <h3>How to Build<br>an ETP</h3>
+          <button class="academy-play" id="academyPlayBtn">▶</button>
+          <div class="academy-controls"><span>▶ 0:00 / 4:32</span><span>◉ ⚙ □ ⛶</span></div>
+        </div>
+        <div class="academy-lessons">
+          <div class="lesson-card"><span>◎</span><div><b>1. Define the mission</b><p>Clarify the problem, your investment thesis, and the outcomes your ETP aims to achieve.</p></div><small>4 min read</small></div>
+          <div class="lesson-card"><span>▦</span><div><b>2. Build the basket</b><p>Select high-conviction assets that align with your theme and investment goals.</p></div><small>6 min read</small></div>
+          <div class="lesson-card"><span>☷</span><div><b>3. Choose the structure</b><p>Pick the right structure, set parameters, and prepare for launch.</p></div><small>5 min read</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="draft-modal" id="draftModal">
+      <div class="draft-modal-card">
+        <button class="draft-close" id="draftCloseBtn">×</button>
+        <div class="draft-icon">✓</div>
+        <h3>ETP draft generated</h3>
+        <p>Your product draft has been created in private mode. You can keep editing, run AI review, or prepare the product for publication.</p>
+        <div class="draft-modal-actions">
+          <button class="pill black" id="continueEditingBtn">Continue Editing</button>
+          <button class="pill">Run AI Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+<section class="screen" id="portfolio">
+  <div class="wrap portfolio-page">
+    <div class="portfolio-hero">
+      <div>
+        <div class="eyebrow">Portfolio</div>
+        <h1 class="title portfolio-title">Your Portfolio</h1>
+        <p class="sub portfolio-sub">Management view of your investments across multiple onchain themes.</p>
+      </div>
+      <div class="portfolio-status">
+        <span>Risk Engine</span>
+        <b id="riskEngineStatus">Balanced mode</b>
+      </div>
+    </div>
+
+    <div class="kpis portfolio-kpis">
+      <div class="metric"><span>Total Value</span><b>$1,248,290</b></div>
+      <div class="metric"><span>Daily Change</span><b class="pos">+$34,510</b></div>
+      <div class="metric"><span>ETP Exposure</span><b>24.8%</b></div>
+      <div class="metric"><span>Cash Balance</span><b>18.2%</b></div>
+    </div>
+
+    <div class="portfolio-grid portfolio-main-grid">
+      <div class="portfolio-panel">
+        <div class="panel-head">
+          <div>
+            <h3>Current Holdings</h3>
+            <p>Your active ETP positions and realized portfolio mix.</p>
+          </div>
+          <button class="small-ghost-btn">Export Report</button>
+        </div>
+        <table class="table portfolio-table">
+          <tr><th>Strategy</th><th>Units</th><th>Value</th><th>Risk</th><th>PNL</th></tr>
+          <tr><td>AI Inflation Hedge ETP</td><td>3,850</td><td>$122,584</td><td><span class="risk-pill risk-high">High</span></td><td class="pos">+12.8%</td></tr>
+          <tr><td>TradFi-DeFi Arb ETP</td><td>4,200</td><td>$73,164</td><td><span class="risk-pill risk-middle">Middle</span></td><td class="pos">+7.4%</td></tr>
+          <tr><td>Stable Yield ETP</td><td>8,900</td><td>$96,120</td><td><span class="risk-pill risk-low">Low</span></td><td class="pos">+2.1%</td></tr>
+        </table>
+      </div>
+
+      <div class="portfolio-panel allocation-panel">
+        <div class="panel-head">
+          <div>
+            <h3>Allocation</h3>
+            <p>Current distribution by theme.</p>
+          </div>
+        </div>
+        <div class="allocation">
+          <div class="donut portfolio-donut"></div>
+          <table class="table">
+            <tr><td>AI Infrastructure</td><td>31%</td></tr>
+            <tr><td>Cross-Market Arb</td><td>21%</td></tr>
+            <tr><td>Stable Yield</td><td>30%</td></tr>
+            <tr><td>Cash</td><td>18%</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-recommender">
+      <div class="recommender-copy">
+        <div class="eyebrow">Personalized Allocation</div>
+        <h2>Define your risk preference. Let Alloco suggest the right ETP mix.</h2>
+        <p>Adjust the controls below. The engine maps your risk tolerance, liquidity needs, time horizon, and return objective into a recommended allocation across available ETPs.</p>
+      </div>
+
+      <div class="risk-tabs" id="riskProfileTabs">
+        <button class="risk-profile-btn" data-profile="conservative">Conservative</button>
+        <button class="risk-profile-btn active" data-profile="balanced">Balanced</button>
+        <button class="risk-profile-btn" data-profile="growth">Growth</button>
+      </div>
+
+      <div class="recommender-grid">
+        <div class="preference-card">
+          <div class="preference-header">
+            <h3>Risk Preference Builder</h3>
+            <span id="riskScoreBadge">Score 54 / 100</span>
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span>Risk Tolerance</span>
+              <b id="riskToleranceValue">55</b>
+            </label>
+            <input id="riskTolerance" type="range" min="0" max="100" value="55" />
+            <div class="range-labels"><span>Capital preservation</span><span>Aggressive</span></div>
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span>Return Objective</span>
+              <b id="returnObjectiveValue">60</b>
+            </label>
+            <input id="returnObjective" type="range" min="0" max="100" value="60" />
+            <div class="range-labels"><span>Stable yield</span><span>High growth</span></div>
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span>Liquidity Need</span>
+              <b id="liquidityNeedValue">45</b>
+            </label>
+            <input id="liquidityNeed" type="range" min="0" max="100" value="45" />
+            <div class="range-labels"><span>Flexible lockup</span><span>High liquidity</span></div>
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span>Time Horizon</span>
+              <b id="timeHorizonValue">65</b>
+            </label>
+            <input id="timeHorizon" type="range" min="0" max="100" value="65" />
+            <div class="range-labels"><span>Short term</span><span>Long term</span></div>
+          </div>
+
+          <div class="constraint-row">
+            <label class="toggle-line">
+              <input id="minimizeBtcEth" type="checkbox" checked />
+              <span>Minimize BTC / ETH directional exposure</span>
+            </label>
+            <label class="toggle-line">
+              <input id="preferRealAssets" type="checkbox" />
+              <span>Prefer real asset and infrastructure exposure</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="recommendation-card">
+          <div class="recommendation-head">
+            <div>
+              <h3>Recommended Target Mix</h3>
+              <p id="recommendationSummary">Balanced allocation with moderate growth and controlled drawdown.</p>
+            </div>
+            <button class="small-ghost-btn" id="rebalanceBtn">Apply Mix</button>
+          </div>
+
+          <div class="recommended-allocation">
+            <div class="recommended-donut" id="recommendedDonut"></div>
+            <div class="recommended-legend" id="recommendedLegend"></div>
+          </div>
+
+          <div class="recommendation-list" id="recommendationList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <div class="overlay" id="login">
+    <div class="modal">
+      <h2>Sign up or Sign in</h2>
+      <p>Enter your email to sync your wallet, save ideas, and manage your onchain portfolio.</p>
+      <input class="input" style="margin-bottom:12px" placeholder="Email address" />
+      <button class="pill black" id="continueBtn" style="width:100%">Continue</button>
+      <div style="text-align:center;margin:14px 0;color:#999;font-size:12px">or</div>
+      <button class="pill soft" style="width:100%">Continue with Google</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+
+const productData = {
+  inflation: {
+    title: "AI Inflation Hedge ETP",
+    ticker: "AIH",
+    badge: "AI Infrastructure",
+    summary: "A thematic ETP that packages the physical infrastructure behind AI, including power, grid equipment, cooling, compute supply chains, energy, and hard-asset exposure.",
+    price: "$31.84",
+    delta: "▲ $0.62 (1.94%) 1D",
+    sideChange: "▲ $0.62 (1.94%)",
+    nav: "$31.76",
+    inav: "$31.80 ●",
+    aum: "$318.4M",
+    volume: "$14.9M",
+    expense: "0.72%",
+    story1: "AI infrastructure is becoming the physical backbone of the next economic cycle. Power generation, grid equipment, cooling, compute supply chains, energy, and hard assets are becoming critical inputs for scalable intelligence.",
+    story2: "The AI Inflation Hedge ETP (AIH) packages this real-world infrastructure exposure into a transparent, thematic onchain product.",
+    videoTitle: "Watch the AI Infrastructure Story",
+    videoCaption: "A 3 minute overview of the AI infrastructure cycle, capacity bottlenecks, and inflation-hedge investment thesis.",
+    aiSubtitle: "Ask AI to better understand AI infrastructure, hard-asset exposure, energy constraints, portfolio construction, and risks.",
+    ask: "Ask anything about AI infrastructure investing...",
+    icon: `<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='23' stroke='#5577ff' stroke-width='3'/><path d='M21 38L29 30L34 35L45 23' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><path d='M45 23H38' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/><path d='M45 23V30' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/></svg>`,
+    allocations: [["Power & Grid Equipment","32.0%"],["Cooling Infrastructure","24.0%"],["Compute Supply Chain","20.0%"],["Energy & Hard Assets","16.0%"],["Cash Buffer","8.0%"]],
+    holdings: [["VST","Vistra Corp.","6.80%"],["ETN","Eaton Corp.","6.12%"],["NVDA","NVIDIA Corp.","5.70%"],["CEG","Constellation Energy","5.24%"],["PWR","Quanta Services","4.76%"],["COP","ConocoPhillips","3.42%"]]
+  },
+  arb: {
+    title: "TradFi-DeFi Arb ETP",
+    ticker: "TDA",
+    badge: "Cross-Market Arbitrage",
+    summary: "A cross-market arbitrage product designed to capture pricing dislocations between U.S. equity-linked spot exposure and crypto-native perpetual markets.",
+    price: "$17.42",
+    delta: "▲ $0.15 (0.86%) 1D",
+    sideChange: "▲ $0.15 (0.86%)",
+    nav: "$17.39",
+    inav: "$17.41 ●",
+    aum: "$96.8M",
+    volume: "$9.6M",
+    expense: "0.80%",
+    story1: "Tokenized equities, U.S. index exposure, and crypto-native perpetual venues increasingly trade around the same macro risk factors, but liquidity, funding, and trading hours create recurring pricing dislocations.",
+    story2: "The TradFi-DeFi Arb ETP (TDA) is designed to capture cross-market basis between equity-linked spot exposure and crypto perpetual markets while managing venue, liquidity, and funding risks.",
+    videoTitle: "Watch the Cross-Market Arb Story",
+    videoCaption: "A 3 minute overview of TradFi-DeFi pricing gaps, funding dynamics, execution routes, and market-neutral arbitrage construction.",
+    aiSubtitle: "Ask AI to understand cross-market dislocations, RFQ execution, funding rates, hedge ratios, and venue risks.",
+    ask: "Ask anything about TradFi-DeFi arbitrage...",
+    icon: `<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='12' y='14' width='17' height='17' rx='4' stroke='#5577ff' stroke-width='3'/><rect x='35' y='33' width='17' height='17' rx='4' stroke='#5577ff' stroke-width='3'/><path d='M30 22H43' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/><path d='M39 17L44 22L39 27' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><path d='M34 42H21' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/><path d='M25 37L20 42L25 47' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>`,
+    allocations: [["U.S. Equity-Linked Spot","35.0%"],["Crypto Perp Hedges","30.0%"],["Basis & Funding Capture","18.0%"],["RFQ Liquidity","9.0%"],["Cash Buffer","8.0%"]],
+    holdings: [["SPY","S&P 500 Spot Basket","8.30%"],["QQQ","Nasdaq 100 Spot Basket","7.60%"],["BTC-PERP","BTC Perp Hedge","6.20%"],["ETH-PERP","ETH Perp Hedge","5.70%"],["COIN","Coinbase Global","4.10%"],["USDC","Execution Buffer","3.80%"]]
+  },
+  stable: {
+    title: "Stable Yield ETP",
+    ticker: "SYD",
+    badge: "Market Neutral Yield",
+    summary: "A market-neutral crypto yield product designed to capture funding, basis, and liquidity-premium opportunities while minimizing directional exposure to BTC and ETH.",
+    price: "$1.08",
+    delta: "▲ $0.002 (0.21%) 1D",
+    sideChange: "▲ $0.002 (0.21%)",
+    nav: "$1.079",
+    inav: "$1.080 ●",
+    aum: "$224.6M",
+    volume: "$33.4M",
+    expense: "0.48%",
+    story1: "Crypto markets contain persistent yield sources from funding, basis, lending spreads, and liquidity premiums. These opportunities can be harvested without taking large directional exposure to BTC or ETH.",
+    story2: "The Stable Yield ETP (SYD) combines market-neutral positioning with risk controls around venue concentration, depeg risk, margin buffers, and liquidity conditions.",
+    videoTitle: "Watch the Stable Yield Story",
+    videoCaption: "A 3 minute overview of funding capture, basis opportunities, liquidity premiums, and market-neutral crypto yield construction.",
+    aiSubtitle: "Ask AI to understand funding, basis, liquidity premiums, depeg risk, margin buffers, and market-neutral execution.",
+    ask: "Ask anything about stable yield strategies...",
+    icon: `<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='23' stroke='#5577ff' stroke-width='3'/><path d='M19 32C23 26 27 26 31 32C35 38 39 38 45 32' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><path d='M22 21H42' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/></svg>`,
+    allocations: [["Funding Capture","34.0%"],["Basis Strategies","28.0%"],["Liquidity Premium","18.0%"],["Lending & Cash","12.0%"],["Risk Buffer","8.0%"]],
+    holdings: [["USDC","Stablecoin Reserve","19.0%"],["T-Bill","Tokenized Treasury","12.0%"],["BTC-HEDGE","BTC Delta Hedge","9.4%"],["ETH-HEDGE","ETH Delta Hedge","8.7%"],["PERP-FUND","Funding Basket","7.9%"],["CASH","Liquidity Buffer","5.4%"]]
+  }
+};
+let currentProduct = 'inflation';
+function setText(id, value) { const el = document.getElementById(id); if(el) el.textContent = value; }
+function renderProduct(productKey) {
+  currentProduct = productKey || 'inflation';
+  const p = productData[currentProduct] || productData.inflation;
+  const title = document.getElementById('detailTitle');
+  if(title) title.innerHTML = `${p.title} <span class="ticker" id="detailTicker">(${p.ticker})</span>`;
+  const icon = document.getElementById('detailIcon'); if(icon) icon.innerHTML = p.icon;
+  setText('detailBadgeTheme', p.badge);
+  setText('detailSummary', p.summary);
+  setText('overviewPrice', p.price);
+  setText('overviewDelta', p.delta);
+  setText('storyP1', p.story1);
+  setText('storyP2', p.story2);
+  setText('videoTitle', p.videoTitle);
+  setText('aiSubtitle', p.aiSubtitle);
+  setText('sidePrice', p.price);
+  setText('sideChange', p.sideChange);
+  setText('sideNav', p.nav);
+  setText('sideInav', p.inav);
+  setText('sideAum', p.aum);
+  setText('sideVolume', p.volume);
+  setText('sideExpense', p.expense);
+  const sideTitle = document.getElementById('sideTitle');
+  if(sideTitle) sideTitle.innerHTML = `${p.title} <span style="font-size:16px;font-weight:500;color:#31415f">(${p.ticker})</span>`;
+  const aiAsk = document.getElementById('aiAskInput'); if(aiAsk) aiAsk.placeholder = p.ask;
+  const caption = document.getElementById('videoCaption'); if(caption) caption.textContent = p.videoCaption;
+  const allocationRows = document.querySelectorAll('.allocation-card .legend-row');
+  p.allocations.forEach((row, i)=>{
+    const target = allocationRows[i];
+    if(target) {
+      const spans = target.querySelectorAll('span');
+      const strong = target.querySelector('strong');
+      if(spans[1]) spans[1].textContent = row[0];
+      if(strong) strong.textContent = row[1];
+    }
+  });
+  const holdingRows = document.querySelectorAll('.holdings-table tr');
+  p.holdings.forEach((row, i)=>{
+    const target = holdingRows[i+1];
+    if(target) {
+      const tds = target.querySelectorAll('td');
+      if(tds[0]) tds[0].innerHTML = `<strong>${row[0]}</strong>`;
+      if(tds[1]) tds[1].textContent = row[1];
+      if(tds[2]) tds[2].textContent = row[2];
+    }
+  });
+  const detail = document.querySelector('#detail .detail-main');
+  if(detail) { detail.classList.remove('detail-fade'); void detail.offsetWidth; detail.classList.add('detail-fade'); }
+}
+
+const screens=[...document.querySelectorAll('.screen')];
+const navs=[...document.querySelectorAll('.nav a')];
+const toast=document.getElementById('toast');
+function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id)); if(id==='detail'){setDetailTab('overview');}}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-target]'); if(t){const p=t.dataset.product || t.closest('[data-product]')?.dataset.product; if(t.dataset.target==='detail' && p) renderProduct(p); go(t.dataset.target);}});
+function note(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+const login=document.getElementById('login');
+document.getElementById('signinBtn').onclick=()=>login.classList.add('show');
+document.getElementById('walletBtn').onclick=()=>note('Wallet connected in demo mode');
+document.getElementById('continueBtn').onclick=()=>{login.classList.remove('show');note('Signed in');};
+login.onclick=e=>{if(e.target===login)login.classList.remove('show')};
+const legacyPublishBtn=document.getElementById('publishBtn'); if(legacyPublishBtn){legacyPublishBtn.onclick=()=>note('ETP draft published');}
+const detailTabs=[...document.querySelectorAll('[data-detail-tab]')];
+const detailPanels={overview:document.getElementById('detail-overview'),trade:document.getElementById('detail-trade'),documents:document.getElementById('detail-documents')};
+function setDetailTab(tab){detailTabs.forEach(el=>el.classList.toggle('active',el.dataset.detailTab===tab)); Object.entries(detailPanels).forEach(([k,p])=>p.classList.toggle('active',k===tab));}
+detailTabs.forEach(el=>el.addEventListener('click',()=>setDetailTab(el.dataset.detailTab)));
+[...document.querySelectorAll('.product[data-target="detail"], .view-link[data-target="detail"], .pill[data-target="detail"]')].forEach(el=>el.addEventListener('click',()=>setDetailTab('overview')));
+[...document.querySelectorAll('.outline-btn'), ...document.querySelectorAll('.doc-btn')].forEach(el=>el.addEventListener('click',()=>note('Demo action')));
+[...document.querySelectorAll('.secondary-btn')].forEach(el=>el.addEventListener('click',()=>note('Support flow opened')));
+const reviewBtn=document.querySelector('.review-btn'); if(reviewBtn){reviewBtn.onclick=()=>note('Order review opened');}
+
+
+
+const heroStats=[...document.querySelectorAll('.hero-stat-number')];
+function animateHeroStat(el){
+  if(el.dataset.done==='1') return;
+  el.dataset.done='1';
+  const end=parseFloat(el.dataset.value || '0');
+  const prefix=el.dataset.prefix || '';
+  const suffix=el.dataset.suffix || '';
+  const decimals=parseInt(el.dataset.decimals || '0',10);
+  const duration=1200;
+  const start=performance.now();
+  function frame(now){
+    const t=Math.min((now-start)/duration,1);
+    const eased=1-Math.pow(1-t,3);
+    const val=end*eased;
+    el.textContent = prefix + val.toFixed(decimals) + suffix;
+    if(t<1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const heroStatObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting) animateHeroStat(entry.target); });
+},{threshold:.45});
+heroStats.forEach(el=>heroStatObserver.observe(el));
+
+const assetTable=document.getElementById('assetTable');
+const assetRows=assetTable ? [...assetTable.querySelectorAll('tbody .asset-row')] : [];
+const assetSearchInput=document.getElementById('assetSearchInput');
+const assetSearchBtn=document.getElementById('assetSearchBtn');
+const assetCount=document.getElementById('assetCount');
+const assetFilterBtns=[...document.querySelectorAll('.asset-chip')];
+const sortBtns=[...document.querySelectorAll('.sort-btn')];
+let activeFilter='all';
+let sortState={key:null,dir:1};
+function trendLabel(score){ if(score>=70) return 'Strong'; if(score>=60) return 'Positive'; return 'Stable'; }
+function updateAssetCount(){
+  const visible=assetRows.filter(r=>!r.classList.contains('hidden')).length;
+  if(assetCount) assetCount.textContent = `${visible} asset${visible===1?'':'s'}`;
+  let empty=document.getElementById('assetEmptyState');
+  if(visible===0){
+    if(!empty){
+      empty=document.createElement('div');
+      empty.id='assetEmptyState';
+      empty.className='asset-empty';
+      empty.textContent='No assets match your current search or filter.';
+      assetTable.parentElement.appendChild(empty);
+    }
+  }else if(empty){ empty.remove(); }
+}
+function applyAssetFilters(){
+  const q=(assetSearchInput?.value || '').trim().toLowerCase();
+  assetRows.forEach(row=>{
+    const hay=(row.dataset.name+' '+row.dataset.theme+' '+row.dataset.category).toLowerCase();
+    const matchText=!q || hay.includes(q);
+    const matchFilter=activeFilter==='all' || row.dataset.category===activeFilter;
+    row.classList.toggle('hidden', !(matchText && matchFilter));
+  });
+  updateAssetCount();
+}
+function sortAssetRows(key){
+  if(!assetTable) return;
+  sortState.dir = sortState.key===key ? sortState.dir * -1 : 1;
+  sortState.key = key;
+  sortBtns.forEach(btn=>btn.classList.toggle('active', btn.dataset.sort===key));
+  const tbody=assetTable.querySelector('tbody');
+  const rows=[...assetRows];
+  rows.sort((a,b)=>{
+    let av,bv;
+    if(key==='product'){ av=a.dataset.name.toLowerCase(); bv=b.dataset.name.toLowerCase(); }
+    else if(key==='theme'){ av=a.dataset.theme.toLowerCase(); bv=b.dataset.theme.toLowerCase(); }
+    else if(key==='price'){ av=parseFloat(a.dataset.price); bv=parseFloat(b.dataset.price); }
+    else if(key==='volume'){ av=parseFloat(a.dataset.volume); bv=parseFloat(b.dataset.volume); }
+    else if(key==='trend'){ av=parseFloat(a.dataset.trend); bv=parseFloat(b.dataset.trend); }
+    else if(key==='risk'){ av=parseFloat(a.dataset.risk); bv=parseFloat(b.dataset.risk); }
+    else { av=0; bv=0; }
+    if(typeof av === 'string') return av.localeCompare(bv) * sortState.dir;
+    return (av - bv) * sortState.dir;
+  });
+  rows.forEach(r=>tbody.appendChild(r));
+  applyAssetFilters();
+}
+if(assetSearchInput){
+  assetSearchInput.addEventListener('input', applyAssetFilters);
+  assetSearchInput.addEventListener('keydown', e=>{ if(e.key==='Enter') applyAssetFilters(); });
+}
+if(assetSearchBtn){ assetSearchBtn.addEventListener('click', ()=>{ assetSearchInput?.focus(); applyAssetFilters(); }); }
+assetFilterBtns.forEach(btn=>btn.addEventListener('click', ()=>{
+  assetFilterBtns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter=btn.dataset.filter;
+  applyAssetFilters();
+}));
+sortBtns.forEach(btn=>btn.addEventListener('click', ()=>sortAssetRows(btn.dataset.sort)));
+assetRows.forEach(row=>row.addEventListener('click', e=>{ if(!e.target.closest('button')){ renderProduct(row.dataset.product || 'inflation'); go('detail'); }}));
+applyAssetFilters();
+
+
+const themeSections=[...document.querySelectorAll('#themes .section')];
+function setupThemeReveal(){
+  const root = document.querySelector('#themes');
+  if(!themeSections.length) return;
+  themeSections[0].classList.add('reveal');
+
+  if(!('IntersectionObserver' in window)){
+    themeSections.forEach(section=>section.classList.add('reveal'));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('reveal');
+      }else if(entry.boundingClientRect.top > 40){
+        entry.target.classList.remove('reveal');
+      }
+    });
+  },{
+    root: root || null,
+    threshold: .24,
+    rootMargin: '-6% 0px -10% 0px'
+  });
+
+  themeSections.forEach(section=>revealObserver.observe(section));
+}
+setupThemeReveal();
+
+
+
+function initInsightGlobe(){
+  const canvas = document.getElementById('globeCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width=0,height=0,dpr=window.devicePixelRatio||1;
+  let globeRadius=0,centerX=0,centerY=0,rotation=0;
+  let dots=[],photons=[];
+  let pointer={x:.5,y:.5,active:false};
+  function buildDots(){
+    dots=[];
+    for(let lat=-78;lat<=78;lat+=5){
+      const latR=lat*Math.PI/180;
+      const count=Math.max(18, Math.floor(48*Math.cos(latR)*Math.cos(latR)+18));
+      for(let i=0;i<count;i++) dots.push({lat:latR, lon:(i/count)*Math.PI*2, size:1.2+Math.random()*1.8});
+    }
+  }
+  function buildPhotons(){
+    photons=Array.from({length:18},()=>({
+      lon:Math.random()*Math.PI*2,
+      latBase:(-58+Math.random()*116)*Math.PI/180,
+      latAmp:(5+Math.random()*11)*Math.PI/180,
+      speed:0.0018+Math.random()*0.0022,
+      phase:Math.random()*Math.PI*2,
+      size:1.5+Math.random()*2.4,
+      glow:10+Math.random()*16,
+      trail:[]
+    }));
+  }
+  function resize(){
+    const rect=canvas.getBoundingClientRect();
+    width=rect.width; height=rect.height; dpr=window.devicePixelRatio||1;
+    canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    globeRadius=Math.min(width*0.34,height*0.45);
+    centerX=width*0.62; centerY=height*0.5;
+    buildDots(); buildPhotons();
+  }
+  function project(lat,lon){
+    return {x:Math.cos(lat)*Math.cos(lon), y:Math.sin(lat), z:Math.cos(lat)*Math.sin(lon)};
+  }
+  function drawBackground(){
+    const grad=ctx.createRadialGradient(centerX,centerY,globeRadius*0.14,centerX,centerY,globeRadius*1.55);
+    grad.addColorStop(0,'rgba(63,96,156,0.18)');
+    grad.addColorStop(0.42,'rgba(28,54,102,0.12)');
+    grad.addColorStop(1,'rgba(9,28,69,0)');
+    ctx.fillStyle=grad; ctx.fillRect(0,0,width,height);
+  }
+  function drawFrame(t){
+    ctx.clearRect(0,0,width,height); drawBackground(); rotation+=0.0019;
+    const tiltX=pointer.active ? (pointer.y-.5)*0.35 : 0.06;
+    const tiltY=pointer.active ? (pointer.x-.5)*0.45 : -0.14;
+    const halo=ctx.createRadialGradient(centerX,centerY,globeRadius*0.1,centerX,centerY,globeRadius*1.25);
+    halo.addColorStop(0,'rgba(70,112,186,0.10)'); halo.addColorStop(0.7,'rgba(24,44,88,0.06)'); halo.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=halo; ctx.beginPath(); ctx.arc(centerX,centerY,globeRadius*1.28,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='rgba(78,118,186,0.12)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(centerX,centerY,globeRadius,0,Math.PI*2); ctx.stroke();
+
+    const transformed=[];
+    for(const dot of dots){
+      const p=project(dot.lat, dot.lon+rotation);
+      const y1=p.y*Math.cos(tiltX)-p.z*Math.sin(tiltX);
+      const z1=p.y*Math.sin(tiltX)+p.z*Math.cos(tiltX);
+      const x2=p.x*Math.cos(tiltY)+z1*Math.sin(tiltY);
+      const z2=-p.x*Math.sin(tiltY)+z1*Math.cos(tiltY);
+      if(z2<-0.2) continue;
+      transformed.push({x:x2,y:y1,z:z2,size:dot.size});
+    }
+    transformed.sort((a,b)=>a.z-b.z);
+    for(const d of transformed){
+      const sx=centerX+d.x*globeRadius, sy=centerY+d.y*globeRadius;
+      const alpha=0.10+(d.z+1)*0.18;
+      const s=d.size*(0.68+(d.z+1)*0.22);
+      ctx.fillStyle=`rgba(82,122,186,${alpha})`;
+      if(ctx.roundRect){ ctx.beginPath(); ctx.roundRect(sx-s*.65, sy-s*.65, s*1.3, s*1.3, 1.4); ctx.fill(); }
+      else { ctx.fillRect(sx-s*.65, sy-s*.65, s*1.3, s*1.3); }
+    }
+    for(const ph of photons){
+      ph.lon += ph.speed;
+      const lat=ph.latBase + Math.sin(t*0.00115 + ph.phase) * ph.latAmp;
+      const p=project(lat, ph.lon+rotation);
+      const y1=p.y*Math.cos(tiltX)-p.z*Math.sin(tiltX);
+      const z1=p.y*Math.sin(tiltX)+p.z*Math.cos(tiltX);
+      const x2=p.x*Math.cos(tiltY)+z1*Math.sin(tiltY);
+      const z2=-p.x*Math.sin(tiltY)+z1*Math.cos(tiltY);
+      const sx=centerX+x2*globeRadius, sy=centerY+y1*globeRadius;
+      ph.trail.unshift({x:sx,y:sy,z:z2}); if(ph.trail.length>12) ph.trail.pop();
+      for(let i=ph.trail.length-1;i>=0;i--){
+        const tr=ph.trail[i]; if(tr.z<-0.06) continue;
+        const a=(1-i/ph.trail.length)*(0.10+(tr.z+1)*0.16); const size=ph.size*(1-i/ph.trail.length*0.74);
+        ctx.fillStyle=`rgba(176,202,232,${a})`; ctx.beginPath(); ctx.arc(tr.x,tr.y,size,0,Math.PI*2); ctx.fill();
+      }
+      if(z2>-0.08){
+        const grd=ctx.createRadialGradient(sx,sy,0,sx,sy,ph.glow);
+        grd.addColorStop(0,'rgba(219,232,245,.78)'); grd.addColorStop(.22,'rgba(122,164,210,.34)'); grd.addColorStop(1,'rgba(122,164,210,0)');
+        ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(sx,sy,ph.glow,0,Math.PI*2); ctx.fill();
+      }
+    }
+    requestAnimationFrame(drawFrame);
+  }
+  canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect(); pointer.x=(e.clientX-r.left)/r.width; pointer.y=(e.clientY-r.top)/r.height; pointer.active=true;});
+  canvas.addEventListener('mouseleave',()=>{pointer.active=false;});
+  window.addEventListener('resize',resize);
+  resize(); requestAnimationFrame(drawFrame);
+}
+initInsightGlobe();
+
+
+function initLauncher(){
+  const missionInput = document.getElementById('missionInput');
+  const missionCount = document.getElementById('missionCount');
+  const etpNameInput = document.getElementById('etpNameInput');
+  const tickerInput = document.getElementById('tickerInput');
+  const themeChoices = [...document.querySelectorAll('.theme-choice[data-theme]')];
+  const structureCards = [...document.querySelectorAll('.structure-card')];
+  const assetBuilder = document.getElementById('assetBuilder');
+  const addAssetBtn = document.getElementById('addAssetBtn');
+  const feeInput = document.getElementById('feeInput');
+  const rebalanceInput = document.getElementById('rebalanceInput');
+  const navMethodInput = document.getElementById('navMethodInput');
+  const domicileInput = document.getElementById('domicileInput');
+  const launcherDefaults = {structure:'Theme Basket', domicile:'Cayman Islands', fee:'0.60', rebalance:'Quarterly', nav:'Daily'};
+  const modal = document.getElementById('draftModal');
+
+  const preview = {
+    ticker: document.getElementById('previewTicker'),
+    name: document.getElementById('previewName'),
+    subtitle: document.getElementById('previewSubtitle'),
+    mission: document.getElementById('previewMission'),
+    structure: document.getElementById('previewStructureTag'),
+    holdings: document.getElementById('previewHoldings'),
+    investor: document.getElementById('investorViewText')
+  };
+
+  const assetPool = [
+    ['AAPL','Apple'],
+    ['MSFT','Microsoft'],
+    ['TSLA','Tesla'],
+    ['NEE','NextEra Energy'],
+    ['SMR','NuScale Power'],
+    ['AMZN','Amazon'],
+    ['GOOGL','Alphabet'],
+    ['COP','ConocoPhillips']
+  ];
+  let poolIndex = 0;
+
+  function getTheme(){
+    return document.querySelector('.theme-choice.active[data-theme]')?.dataset.theme || 'AI Infrastructure';
+  }
+
+  function getStructure(){
+    return document.querySelector('.structure-card.active input')?.value || launcherDefaults.structure;
+  }
+
+  function getAssets(){
+    return [...document.querySelectorAll('#assetBuilder .asset-pill')].map(el=>[
+      el.dataset.ticker || el.childNodes[0]?.textContent?.trim() || 'ASSET',
+      el.dataset.name || el.querySelector('span')?.textContent || 'Asset'
+    ]);
+  }
+
+  function updateProgress(){
+    const missionDone = missionInput.value.trim().length > 8;
+    const nameDone = etpNameInput.value.trim().length > 2 && tickerInput.value.trim().length > 1;
+    const basketDone = getAssets().length >= 3;
+    const structureDone = !!getStructure();
+    const nodes = [...document.querySelectorAll('.progress-node')];
+    const lines = [...document.querySelectorAll('.progress-line')];
+    const states = [missionDone || nameDone, basketDone, structureDone, missionDone && nameDone && basketDone && structureDone];
+    nodes.forEach((node,i)=>{
+      node.classList.toggle('done', states[i] && i < 3);
+      node.classList.toggle('active', !states[i] && (i===0 || states[i-1]));
+    });
+    lines.forEach((line,i)=>line.classList.toggle('active', states[i]));
+  }
+
+  function updatePreview(){
+    const name = etpNameInput.value.trim() || 'Untitled Future ETP';
+    const ticker = tickerInput.value.trim().toUpperCase() || 'DRAFT';
+    const theme = getTheme();
+    const structure = getStructure();
+    const mission = missionInput.value.trim() || `A transparent, NAV-based ETP offering diversified exposure to ${theme.toLowerCase()}, built with institutional-grade standards and a long-term view.`;
+    const assets = getAssets();
+    const weights = ['25.0%','20.0%','18.0%','15.0%','12.0%','10.0%'];
+
+    preview.ticker.textContent = ticker;
+    preview.name.textContent = name;
+    preview.subtitle.textContent = `Helping investors access ${theme.toLowerCase()} through a transparent ETP.`;
+    preview.mission.textContent = mission;
+    preview.structure.textContent = structure.toUpperCase();
+    preview.investor.textContent = `${name} packages ${theme.toLowerCase()} into a NAV-based product with ${domicileInput?.value || launcherDefaults.domicile} domicile, ${feeInput?.value || launcherDefaults.fee}% management fee, ${(rebalanceInput?.value || launcherDefaults.rebalance).toLowerCase()} rebalance, and ${(navMethodInput?.value || launcherDefaults.nav).toLowerCase()} NAV methodology.`;
+    preview.holdings.innerHTML = assets.slice(0,6).map((asset,i)=>`<div><b>${asset[0]}</b><span>${asset[1]}</span><strong>${weights[i] || '8.0%'}</strong></div>`).join('');
+    if(missionCount) missionCount.textContent = missionInput.value.length;
+    updateProgress();
+  }
+
+  [missionInput, etpNameInput, tickerInput, feeInput, rebalanceInput, navMethodInput, domicileInput].forEach(el=>{
+    if(!el) return;
+    el.addEventListener('input', updatePreview);
+    el.addEventListener('change', updatePreview);
+  });
+
+  themeChoices.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      themeChoices.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      updatePreview();
+    });
+  });
+
+  structureCards.forEach(card=>{
+    card.addEventListener('click', ()=>{
+      structureCards.forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      const radio = card.querySelector('input');
+      if(radio) radio.checked = true;
+      updatePreview();
+    });
+  });
+
+  assetBuilder?.addEventListener('click', e=>{
+    const remove = e.target.closest('.asset-pill button');
+    if(remove){
+      remove.closest('.asset-pill')?.remove();
+      updatePreview();
+      return;
+    }
+  });
+
+  addAssetBtn?.addEventListener('click', ()=>{
+    const asset = assetPool[poolIndex % assetPool.length];
+    poolIndex++;
+    const pill = document.createElement('div');
+    pill.className = 'asset-pill';
+    pill.dataset.ticker = asset[0];
+    pill.dataset.name = asset[1];
+    pill.innerHTML = `${asset[0]} <span>${asset[1]}</span><button>×</button>`;
+    assetBuilder.insertBefore(pill, addAssetBtn);
+    updatePreview();
+  });
+
+  document.getElementById('generateDraftBtn')?.addEventListener('click', ()=>{
+    updatePreview();
+    modal?.classList.add('show');
+    note('ETP draft generated');
+  });
+  document.getElementById('draftCloseBtn')?.addEventListener('click', ()=>modal?.classList.remove('show'));
+  document.getElementById('continueEditingBtn')?.addEventListener('click', ()=>modal?.classList.remove('show'));
+  modal?.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('show'); });
+  document.getElementById('academyPlayBtn')?.addEventListener('click', ()=>note('Academy video opened'));
+
+  updatePreview();
+}
+initLauncher();
+
+
+function initPortfolioRecommender(){
+  const riskTolerance=document.getElementById('riskTolerance');
+  const returnObjective=document.getElementById('returnObjective');
+  const liquidityNeed=document.getElementById('liquidityNeed');
+  const timeHorizon=document.getElementById('timeHorizon');
+  const minimizeBtcEth=document.getElementById('minimizeBtcEth');
+  const preferRealAssets=document.getElementById('preferRealAssets');
+  const profileBtns=[...document.querySelectorAll('.risk-profile-btn')];
+  const scoreBadge=document.getElementById('riskScoreBadge');
+  const status=document.getElementById('riskEngineStatus');
+  const summary=document.getElementById('recommendationSummary');
+  const donut=document.getElementById('recommendedDonut');
+  const legend=document.getElementById('recommendedLegend');
+  const list=document.getElementById('recommendationList');
+
+  if(!riskTolerance || !list) return;
+
+  const products=[
+    {key:'inflation',name:'AI Inflation Hedge ETP',risk:'High',color:'#111',desc:'Best fit for investors who want real asset and AI infrastructure upside with higher volatility tolerance.'},
+    {key:'arb',name:'TradFi-DeFi Arb ETP',risk:'Middle',color:'#6b6b63',desc:'Best fit for investors seeking cross-market dislocation capture with market-neutral execution discipline.'},
+    {key:'stable',name:'Stable Yield ETP',risk:'Low',color:'#d7d7d0',desc:'Best fit for investors prioritizing funding, basis, and liquidity-premium yield with lower directional exposure.'}
+  ];
+
+  function setProfile(profile){
+    const presets={
+      conservative:[25,30,82,32,true,false],
+      balanced:[55,60,45,65,true,false],
+      growth:[82,86,28,84,false,true]
+    }[profile] || [55,60,45,65,true,false];
+    [riskTolerance.value,returnObjective.value,liquidityNeed.value,timeHorizon.value]=presets;
+    minimizeBtcEth.checked=presets[4];
+    preferRealAssets.checked=presets[5];
+    profileBtns.forEach(btn=>btn.classList.toggle('active',btn.dataset.profile===profile));
+    updateRecommendation();
+  }
+
+  function computeWeights(){
+    const r=+riskTolerance.value;
+    const ret=+returnObjective.value;
+    const liq=+liquidityNeed.value;
+    const hor=+timeHorizon.value;
+    let inflation=18 + r*.32 + ret*.22 + hor*.16 - liq*.10 + (preferRealAssets.checked?14:0);
+    let arb=30 + r*.10 + ret*.14 + liq*.08 + (minimizeBtcEth.checked?6:0);
+    let stable=52 - r*.26 - ret*.20 + liq*.18 - hor*.06 + (minimizeBtcEth.checked?8:0);
+    inflation=Math.max(5,inflation);
+    arb=Math.max(8,arb);
+    stable=Math.max(5,stable);
+    const total=inflation+arb+stable;
+    return [inflation/total*100,arb/total*100,stable/total*100];
+  }
+
+  function updateRecommendation(){
+    const vals=[
+      ['riskToleranceValue',riskTolerance.value],
+      ['returnObjectiveValue',returnObjective.value],
+      ['liquidityNeedValue',liquidityNeed.value],
+      ['timeHorizonValue',timeHorizon.value]
+    ];
+    vals.forEach(([id,val])=>{const el=document.getElementById(id); if(el) el.textContent=val;});
+
+    const score=Math.round((+riskTolerance.value*.36)+(+returnObjective.value*.28)+(+timeHorizon.value*.22)-(+liquidityNeed.value*.10)+(preferRealAssets.checked?6:0)+(minimizeBtcEth.checked?-4:0));
+    const clamped=Math.max(0,Math.min(100,score));
+    scoreBadge.textContent=`Score ${clamped} / 100`;
+
+    let mode='Balanced mode';
+    if(clamped<38) mode='Conservative mode';
+    if(clamped>68) mode='Growth mode';
+    status.textContent=mode;
+
+    const weights=computeWeights();
+    const rounded=weights.map(v=>Math.round(v));
+    const diff=100-rounded.reduce((a,b)=>a+b,0);
+    rounded[rounded.indexOf(Math.max(...rounded))]+=diff;
+
+    summary.textContent = clamped < 38
+      ? 'Conservative allocation prioritizing liquidity, stable yield, and lower directional exposure.'
+      : clamped > 68
+        ? 'Growth allocation emphasizing AI infrastructure upside and longer-term thematic exposure.'
+        : 'Balanced allocation with moderate growth, arbitrage exposure, and controlled drawdown.';
+
+    donut.style.background=`conic-gradient(${products[0].color} 0 ${rounded[0]}%, ${products[1].color} ${rounded[0]}% ${rounded[0]+rounded[1]}%, ${products[2].color} ${rounded[0]+rounded[1]}% 100%)`;
+
+    legend.innerHTML=products.map((p,i)=>`
+      <div class="recommended-legend-row">
+        <span class="legend-swatch" style="background:${p.color}"></span>
+        <span>${p.name}</span>
+        <b>${rounded[i]}%</b>
+      </div>
+    `).join('');
+
+    list.innerHTML=products.map((p,i)=>`
+      <div class="recommendation-item" data-target="detail" data-product="${p.key}">
+        <div>
+          <h4>${p.name}</h4>
+          <p>${p.desc}</p>
+          <div class="recommendation-meta">
+            <span>${p.risk} risk</span>
+            <span>${i===0?'Theme growth':i===1?'Arbitrage': 'Stable yield'}</span>
+          </div>
+        </div>
+        <div class="recommendation-weight">${rounded[i]}%</div>
+      </div>
+    `).join('');
+  }
+
+  profileBtns.forEach(btn=>btn.addEventListener('click',()=>setProfile(btn.dataset.profile)));
+  [riskTolerance,returnObjective,liquidityNeed,timeHorizon,minimizeBtcEth,preferRealAssets].forEach(el=>{
+    el.addEventListener('input',()=>{
+      profileBtns.forEach(btn=>btn.classList.remove('active'));
+      updateRecommendation();
+    });
+    el.addEventListener('change',updateRecommendation);
+  });
+  document.getElementById('rebalanceBtn')?.addEventListener('click',()=>note('Recommended mix applied in demo mode'));
+  list.addEventListener('click',e=>{
+    const item=e.target.closest('[data-product]');
+    if(item){ renderProduct(item.dataset.product); go('detail'); }
+  });
+  updateRecommendation();
+}
+initPortfolioRecommender();
+
+
+function initFeaturedThemeInteractions(){
+  const cards = [...document.querySelectorAll('.products-market-style .market-card')];
+  if(!cards.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const resetCard = (card) => {
+    card.style.transform = '';
+    const panel = card.querySelector('.market-panel');
+    const logo = card.querySelector('.market-logo');
+    if(panel) panel.style.transform = '';
+    if(logo) logo.style.transform = '';
+  };
+
+  cards.forEach((card) => {
+    if(!reduceMotion){
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        const rotY = (px - 0.5) * 5.5;
+        const rotX = (0.5 - py) * 4.2;
+        card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+        const panel = card.querySelector('.market-panel');
+        const logo = card.querySelector('.market-logo');
+        if(panel){
+          panel.style.transform = `translateY(-2px) translateX(${(px - 0.5) * 6}px)`;
+        }
+        if(logo){
+          logo.style.transform = `translate3d(${(px - 0.5) * 3}px, ${(py - 0.5) * 2}px, 0) scale(1.03)`;
+        }
+      });
+      card.addEventListener('mouseleave', () => resetCard(card));
+      card.addEventListener('blur', () => resetCard(card), true);
+    }
+  });
+
+  const replayCharts = () => {
+    const paths = document.querySelectorAll('.products-market-style .market-panel-chart path');
+    paths.forEach((path) => {
+      path.style.animation = 'none';
+      path.getBoundingClientRect();
+      path.style.animation = '';
+    });
+  };
+
+  // Initial replay after layout paint so lines draw when the page opens.
+  requestAnimationFrame(() => {
+    setTimeout(replayCharts, 80);
+  });
+}
+initFeaturedThemeInteractions();
+
+</script>
+</body>
+</html>
