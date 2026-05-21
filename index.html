@@ -4,6 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Alloco — Flat Full Page Demo</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2216%22%20fill=%22#F5F5F2%22/%3E%0A%20%20%3Cpath%20d=%22M12%2054L32%208L24.6%2049.2L32%2045.5L12%2060V54Z%22%20fill=%22#0B0B0A%22/%3E%0A%20%20%3Cpath%20d=%22M52%2054L32%208L39.4%2049.2L32%2045.5L52%2060V54Z%22%20fill=%22#0B0B0A%22/%3E%0A%3C/svg%3E" />
+<link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2216%22%20fill=%22#F5F5F2%22/%3E%0A%20%20%3Cpath%20d=%22M12%2054L32%208L24.6%2049.2L32%2045.5L12%2060V54Z%22%20fill=%22#0B0B0A%22/%3E%0A%20%20%3Cpath%20d=%22M52%2054L32%208L39.4%2049.2L32%2045.5L52%2060V54Z%22%20fill=%22#0B0B0A%22/%3E%0A%3C/svg%3E" />
+<link rel="mask-icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%0A%20%20%3Cpath%20d=%22M12%2054L32%208L24.6%2049.2L32%2045.5L12%2060V54Z%22%20fill=%22black%22/%3E%0A%20%20%3Cpath%20d=%22M52%2054L32%208L39.4%2049.2L32%2045.5L52%2060V54Z%22%20fill=%22black%22/%3E%0A%3C/svg%3E" color="#0B0B0A" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20180%20180%22%3E%0A%20%20%3Crect%20width=%22180%22%20height=%22180%22%20rx=%2242%22%20fill=%22#F5F5F2%22/%3E%0A%20%20%3Cpath%20d=%22M34%20151L90%2022L69.5%20138L90%20127.5L34%20166V151Z%22%20fill=%22#0B0B0A%22/%3E%0A%20%20%3Cpath%20d=%22M146%20151L90%2022L110.5%20138L90%20127.5L146%20166V151Z%22%20fill=%22#0B0B0A%22/%3E%0A%3C/svg%3E" />
+<meta name="theme-color" content="#F5F5F2" />
 <style>
 :root{
   --bg:#f5f5f2;
@@ -2010,6 +2015,67 @@ button,input,textarea,select{font:inherit}
 }
 
 
+/* Cleaner Featured Themes cards + adaptive viewport fit */
+.products-market-style{
+  gap:clamp(18px, 2.1vw, 30px) !important;
+  align-items:stretch !important;
+}
+.market-card{
+  min-height:clamp(420px, calc(100vh - 310px), 500px) !important;
+  padding:clamp(18px, 1.6vw, 24px) !important;
+  gap:clamp(12px, 1.35vw, 18px) !important;
+}
+.market-brand-copy h3{
+  font-size:clamp(22px, 2.15vw, 28px) !important;
+  font-weight:480 !important;
+  letter-spacing:-.035em !important;
+}
+.market-brand-copy span,
+.market-card-desc{
+  font-weight:400 !important;
+}
+.market-logo{
+  width:clamp(48px, 4.4vw, 56px) !important;
+  height:clamp(48px, 4.4vw, 56px) !important;
+  border-radius:clamp(16px, 1.6vw, 20px) !important;
+}
+.market-card-desc{
+  font-size:clamp(13px, 1.05vw, 14px) !important;
+  line-height:1.52 !important;
+  min-height:auto !important;
+}
+.market-panel{
+  min-height:clamp(210px, 31vh, 300px) !important;
+  padding:clamp(20px, 2vw, 28px) clamp(18px, 1.8vw, 26px) clamp(16px, 1.5vw, 20px) !important;
+}
+.market-panel-price{
+  font-size:clamp(42px, 4.7vw, 62px) !important;
+  font-weight:430 !important;
+}
+.market-panel-change{
+  font-weight:400 !important;
+}
+.market-panel-chart{
+  height:clamp(110px, 17vh, 180px) !important;
+  margin-top:clamp(12px, 1.5vw, 22px) !important;
+}
+#themes .section:has(.products-market-style){
+  min-height:calc(100vh - 78px) !important;
+  justify-content:center !important;
+  padding-top:clamp(28px, 4vh, 54px) !important;
+  padding-bottom:clamp(24px, 3.5vh, 42px) !important;
+}
+#themes .section:has(.products-market-style) .section-title{
+  margin-bottom:clamp(14px, 2vh, 24px) !important;
+}
+@media (max-height:760px) and (min-width:1025px){
+  .market-card{min-height:390px !important;}
+  .market-card-desc{-webkit-line-clamp:2 !important;}
+  .market-panel{min-height:190px !important;}
+  .market-panel-chart{height:92px !important;}
+}
+
+
 /* Featured Themes interactions */
 .market-card{
   transform-style:preserve-3d;
@@ -2104,6 +2170,57 @@ button,input,textarea,select{font:inherit}
     stroke-dashoffset:0 !important;
     opacity:1 !important;
   }
+}
+
+
+/* Cleaner asset table typography */
+.asset-table .sort-btn{
+  text-transform:none;
+  letter-spacing:.045em;
+  font-size:13px;
+  font-weight:420;
+  color:#777a72;
+}
+
+.asset-table th{
+  font-weight:420;
+}
+
+.asset-product-cell strong{
+  font-weight:560;
+  letter-spacing:-.01em;
+}
+
+.asset-product-cell small{
+  text-transform:none;
+  letter-spacing:.035em;
+  font-weight:400;
+  color:#8a8d84;
+}
+
+.asset-theme-tag,
+.trend-pill,
+.risk-pill{
+  font-weight:400;
+  letter-spacing:0;
+}
+
+.asset-price-cell strong{
+  font-weight:560;
+  letter-spacing:-.01em;
+}
+
+.asset-price-cell .pos{
+  font-weight:430;
+}
+
+.asset-table td{
+  font-weight:400;
+}
+
+.view-btn{
+  font-weight:520;
+  letter-spacing:0;
 }
 
 </style>
@@ -2313,8 +2430,8 @@ button,input,textarea,select{font:inherit}
                 <th><button class="sort-btn" data-sort="product">Product <span>↕</span></button></th>
                 <th><button class="sort-btn" data-sort="theme">Theme <span>↕</span></button></th>
                 <th><button class="sort-btn" data-sort="price">Market Price <span>↕</span></button></th>
-                <th><button class="sort-btn" data-sort="volume">24H Volume <span>↕</span></button></th>
-                <th><button class="sort-btn" data-sort="trend">7D Trend <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="volume">24h Volume <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="trend">7d Trend <span>↕</span></button></th>
                 <th><button class="sort-btn" data-sort="risk">Risk Level <span>↕</span></button></th>
                 <th></th>
               </tr>
@@ -2326,7 +2443,7 @@ button,input,textarea,select{font:inherit}
                     <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.2" stroke="#111" stroke-width="1.5"/><path d="M7.8 14.4L10.4 11.8L12.4 13.6L16.1 9.8" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.9 9.8H13.8" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M16 9.8V11.9" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg></div>
                     <div>
                       <strong>AI Inflation Hedge ETP</strong>
-                      <small>AIH · Power, grids, cooling, and hard assets</small>
+                      <small>AIH · Power, Grids, Cooling, and Hard Assets</small>
                     </div>
                   </div>
                 </td>
@@ -2348,7 +2465,7 @@ button,input,textarea,select{font:inherit}
                     <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4.2" y="5.2" width="6.8" height="6.8" rx="1.4" stroke="#111" stroke-width="1.5"/><rect x="13" y="12" width="6.8" height="6.8" rx="1.4" stroke="#111" stroke-width="1.5"/><path d="M11 8.5H15.8" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M14 6.8L15.8 8.5L14 10.2" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 15.5H8.2" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M10 17.2L8.2 15.5L10 13.8" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                     <div>
                       <strong>TradFi-DeFi Arb ETP</strong>
-                      <small>TDA · Equity spot versus perp dislocations</small>
+                      <small>TDA · Equity Spot Versus Perp Dislocations</small>
                     </div>
                   </div>
                 </td>
@@ -2370,7 +2487,7 @@ button,input,textarea,select{font:inherit}
                     <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.2" stroke="#111" stroke-width="1.5"/><path d="M7.3 12C8.4 10.4 9.5 10.4 10.6 12C11.7 13.6 12.8 13.6 13.9 12C15 10.4 16.1 10.4 17.2 12" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3 7.8H15.7" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg></div>
                     <div>
                       <strong>Stable Yield ETP</strong>
-                      <small>SYD · Funding, basis, and liquidity premium</small>
+                      <small>SYD · Funding, Basis, and Liquidity Premium</small>
                     </div>
                   </div>
                 </td>
