@@ -2223,9 +2223,270 @@ button,input,textarea,select{font:inherit}
   letter-spacing:0;
 }
 
+
+/* Alloco icon library integration */
+.al-icon{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;color:currentColor;fill:none}
+.al-icon *{vector-effect:non-scaling-stroke}
+.market-logo .al-icon,.asset-avatar .al-icon{width:23px;height:23px}
+.detail-icon .al-icon{width:74px;height:74px}
+.story-icon .al-icon{width:15px;height:15px}
+.ai-header .spark .al-icon{width:16px;height:16px}
+.route-icon .al-icon{width:28px;height:28px}
+.doc-ico .al-icon{width:18px;height:18px}
+.support-icon .al-icon{width:20px;height:20px}
+.asset-search-icon .al-icon{width:26px;height:26px}
+.swap-icon .al-icon{width:20px;height:20px}
+.outline-btn .al-icon,.view-btn .al-icon{width:16px;height:16px}
+
 </style>
 </head>
 <body>
+<svg class="al-icon-sprite" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden">
+<defs>
+<symbol id="alloco-brand" viewBox="0 0 24 24">
+<g transform="translate(-0.00 -415.44)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.25 437.25V416.27H10.75V423.09L15.47 427.81V437.25H21.24H21.25Z" />
+  <path d="M0.259766 416.27V437.25H11.2798V429.91L6.55977 425.19V416.27H0.259766Z" />
+  </g>
+</symbol>
+<symbol id="icon-ai-infra" viewBox="0 0 24 24">
+<g transform="translate(-230.80 -230.80)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M241.57 234.24L250.2 249.19H232.94L241.57 234.24Z" />
+  <path d="M241.57 234.24L250.2 249.19H232.94L241.57 234.24Z" />
+  <path d="M231.08 241.059L239.21 238.439" />
+  <path d="M243.67 237.91L252.06 236.34" />
+  <path d="M244.72 239.74L252.06 240.53" />
+  <path d="M246.13 242.109L252.06 244.729" />
+  </g>
+</symbol>
+<symbol id="icon-arb" viewBox="0 0 24 24">
+<g transform="translate(-0.00 -276.96)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M7.07977 296.66L0.259766 292.99V284.6L7.07977 280.93L13.8998 284.6V290.89" />
+  <path d="M13.9001 279.879L20.7201 283.549V291.939L13.9001 295.609L7.08008 291.939V285.649" />
+  </g>
+</symbol>
+<symbol id="icon-stable" viewBox="0 0 24 24">
+<g transform="translate(-323.12 -0.00)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M344.39 3.94004C344.39 5.68004 339.69 7.09004 333.9 7.09004C328.11 7.09004 323.41 5.68004 323.41 3.94004C323.41 2.20004 328.11 0.790039 333.9 0.790039C339.69 0.790039 344.39 2.20004 344.39 3.94004Z" />
+  <path d="M344.39 18.6305C344.39 20.3705 339.69 21.7805 333.9 21.7805C328.11 21.7805 323.41 20.3705 323.41 18.6305C323.41 16.8905 328.11 15.4805 333.9 15.4805C339.69 15.4805 344.39 16.8905 344.39 18.6305Z" />
+  <path d="M344.391 3.94043V18.6304" />
+  <path d="M323.41 3.94043V18.6304" />
+  </g>
+</symbol>
+<symbol id="icon-search" viewBox="0 0 24 24">
+<g transform="translate(-184.64 -369.28)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M202.75 379.55V388.99H187.01V373.25H196.45" />
+  <path d="M202.749 375.35C203.909 375.35 204.849 374.41 204.849 373.25C204.849 372.09 203.909 371.15 202.749 371.15C201.589 371.15 200.649 372.09 200.649 373.25C200.649 374.41 201.589 375.35 202.749 375.35Z" />
+  </g>
+</symbol>
+<symbol id="icon-watch" viewBox="0 0 24 24">
+<g transform="translate(-230.80 -461.60)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M240.94 462.54L231.3 472.18C230.89 472.59 230.89 473.25 231.3 473.66L240.94 483.3C241.35 483.71 242.01 483.71 242.42 483.3L252.06 473.66C252.47 473.25 252.47 472.59 252.06 472.18L242.42 462.54C242.01 462.13 241.35 462.13 240.94 462.54Z" />
+  <path d="M241.59 468.48V477.37" />
+  <path d="M237.149 472.92H246.039" />
+  </g>
+</symbol>
+<symbol id="icon-share" viewBox="0 0 24 24">
+<g transform="translate(-0.00 -461.60)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20.2003 474.498C20.2003 477.648 18.1003 482.888 10.7603 482.888C3.42031 482.888 1.32031 477.638 1.32031 474.498" />
+  <path d="M10.7607 463.01V477.65" />
+  <path d="M4.45996 469.249L10.75 462.959L17.04 469.249" />
+  </g>
+</symbol>
+<symbol id="icon-story-macro" viewBox="0 0 24 24">
+<g transform="translate(-46.16 -92.32)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M56.9197 107.81C62.7097 107.81 67.4097 105.93 67.4097 103.61C67.4097 101.29 62.7097 99.4102 56.9197 99.4102C51.1297 99.4102 46.4297 101.29 46.4297 103.61C46.4297 105.93 51.1297 107.81 56.9197 107.81Z" />
+  <path d="M61.11 103.62C61.11 109.41 59.23 114.11 56.91 114.11C54.59 114.11 52.71 109.41 52.71 103.62C52.71 97.8299 54.59 93.1299 56.91 93.1299C59.23 93.1299 61.11 97.8299 61.11 103.62Z" />
+  <path d="M56.9197 114.11C62.7097 114.11 67.4097 109.41 67.4097 103.62C67.4097 97.8299 62.7097 93.1299 56.9197 93.1299C51.1297 93.1299 46.4297 97.8299 46.4297 103.62C46.4297 109.41 51.1297 114.11 56.9197 114.11Z" />
+  </g>
+</symbol>
+<symbol id="icon-story-mechanism" viewBox="0 0 24 24">
+<g transform="translate(-230.80 -0.00)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M241.57 22.2998C243.26 22.2998 246.15 20.0998 246.15 11.2798C246.15 2.45977 243.26 0.259766 241.57 0.259766C239.88 0.259766 236.99 2.60977 236.99 11.2798C236.99 19.9498 239.88 22.2998 241.57 22.2998Z" />
+  <path d="M231.661 17.0597C232.501 18.5397 235.931 19.8997 243.861 15.2897C251.791 10.6697 252.331 6.99969 251.481 5.51969C250.641 4.03969 247.081 2.74969 239.281 7.28969C231.481 11.8297 230.811 15.5797 231.661 17.0597Z" />
+  <path d="M231.66 5.51969C230.82 6.99969 231.35 10.6697 239.28 15.2897C247.21 19.9097 250.64 18.5397 251.48 17.0597C252.33 15.5797 251.65 11.8297 243.86 7.28969C236.06 2.74969 232.5 4.03969 231.66 5.51969Z" />
+  </g>
+</symbol>
+<symbol id="icon-story-allocation" viewBox="0 0 24 24">
+<g transform="translate(-276.96 -276.96)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M283.27 280.399L278.81 283.019V293.509L283.27 296.129L287.73 298.749L292.19 296.129L296.65 293.509V283.019L292.19 280.399L287.73 277.779L283.27 280.399Z" />
+  <path d="M296.649 283.02L287.729 288.27" />
+  <path d="M278.819 283.02L287.739 288.27" />
+  <path d="M287.729 298.76V288.27" />
+  <path d="M291.93 285.648V296.138" />
+  <path d="M296.649 288.27L287.729 293.52" />
+  <path d="M287.73 293.51L278.81 288.26" />
+  <path d="M283.54 296.138V285.648" />
+  <path d="M291.93 280.398L283.54 285.648" />
+  <path d="M291.93 285.648L283.54 280.398" />
+  </g>
+</symbol>
+<symbol id="icon-story-risk" viewBox="0 0 24 24">
+<g transform="translate(-138.48 -369.28)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M148.61 370.21L138.97 379.85C138.56 380.26 138.56 380.92 138.97 381.33L148.61 390.97C149.02 391.38 149.68 391.38 150.09 390.97L159.73 381.33C160.14 380.92 160.14 380.26 159.73 379.85L150.09 370.21C149.68 369.8 149.02 369.8 148.61 370.21Z" />
+  <path d="M149.27 376.15V385.04" />
+  <path d="M144.82 380.6H153.71" />
+  <path d="M152.41 377.459L146.12 383.749" />
+  <path d="M146.12 377.459L152.41 383.749" />
+  </g>
+</symbol>
+<symbol id="icon-ai-spark" viewBox="0 0 24 24">
+<g transform="translate(-138.48 -415.44)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M152.39 419.41C152.39 417.67 150.98 416.26 149.24 416.26C147.5 416.26 146.09 417.67 146.09 419.41V426.75C146.09 428.49 147.5 429.9 149.24 429.9C150.98 429.9 152.39 428.49 152.39 426.75V419.41Z" />
+  <path d="M156.66 423.79C157.89 422.56 157.89 420.57 156.66 419.34C155.43 418.11 153.44 418.11 152.21 419.34L147.02 424.53C145.79 425.76 145.79 427.75 147.02 428.98C148.25 430.21 150.24 430.21 151.47 428.98L156.66 423.79Z" />
+  <path d="M156.59 429.909C158.33 429.909 159.74 428.499 159.74 426.759C159.74 425.019 158.33 423.609 156.59 423.609H149.25C147.51 423.609 146.1 425.019 146.1 426.759C146.1 428.499 147.51 429.909 149.25 429.909H156.59Z" />
+  <path d="M152.21 434.18C153.44 435.41 155.43 435.41 156.66 434.18C157.89 432.95 157.89 430.96 156.66 429.73L151.47 424.54C150.24 423.31 148.25 423.31 147.02 424.54C145.79 425.77 145.79 427.76 147.02 428.99L152.21 434.18Z" />
+  <path d="M146.1 434.099C146.1 435.839 147.51 437.249 149.25 437.249C150.99 437.249 152.4 435.839 152.4 434.099V426.759C152.4 425.019 150.99 423.609 149.25 423.609C147.51 423.609 146.1 425.019 146.1 426.759V434.099Z" />
+  <path d="M141.83 429.73C140.6 430.96 140.6 432.95 141.83 434.18C143.06 435.41 145.05 435.41 146.28 434.18L151.47 428.99C152.7 427.76 152.7 425.77 151.47 424.54C150.24 423.31 148.25 423.31 147.02 424.54L141.83 429.73Z" />
+  <path d="M141.9 423.609C140.16 423.609 138.75 425.019 138.75 426.759C138.75 428.499 140.16 429.909 141.9 429.909H149.24C150.98 429.909 152.39 428.499 152.39 426.759C152.39 425.019 150.98 423.609 149.24 423.609H141.9Z" />
+  <path d="M146.28 419.34C145.05 418.11 143.06 418.11 141.83 419.34C140.6 420.57 140.6 422.56 141.83 423.79L147.02 428.98C148.25 430.21 150.24 430.21 151.47 428.98C152.7 427.75 152.7 425.76 151.47 424.53L146.28 419.34Z" />
+  </g>
+</symbol>
+<symbol id="icon-route-source" viewBox="0 0 24 24">
+<g transform="translate(-46.16 -276.96)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M60.0599 284.599V277.779H46.4199V291.419H53.2399" />
+  <path d="M66.8802 298.24V284.6H53.2402V298.24H66.8802Z" />
+  <path d="M61.64 291.419H53.25M59.02 294.039L61.64 291.419L59.02 288.799" />
+  <path d="M53.25 284.6V298.24" />
+  </g>
+</symbol>
+<symbol id="icon-route-execute" viewBox="0 0 24 24">
+<g transform="translate(-369.28 -230.80)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M385.31 242.109H376.92" />
+  <path d="M380.06 238.959L376.91 242.109L380.06 245.259" />
+  <path d="M387.401 244.2C388.561 244.2 389.501 243.26 389.501 242.1C389.501 240.94 388.561 240 387.401 240C386.241 240 385.301 240.94 385.301 242.1C385.301 243.26 386.241 244.2 387.401 244.2Z" />
+  <path d="M388.82 236.329C388.41 235.709 387.93 235.129 387.4 234.609C385.51 232.759 382.92 231.609 380.06 231.609C374.27 231.609 369.57 236.309 369.57 242.099C369.57 247.889 374.27 252.589 380.06 252.589C382.92 252.589 385.51 251.449 387.4 249.589C387.93 249.069 388.41 248.489 388.82 247.869" />
+  </g>
+</symbol>
+<symbol id="icon-route-settle" viewBox="0 0 24 24">
+<g transform="translate(-369.28 -461.60)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M389.5 462.43H370.62C370.04 462.43 369.57 462.9 369.57 463.48V482.36C369.57 482.94 370.04 483.41 370.62 483.41H389.5C390.08 483.41 390.55 482.94 390.55 482.36V463.48C390.55 462.9 390.08 462.43 389.5 462.43Z" />
+  <path d="M369.57 472.92H376.39" />
+  <path d="M383.73 472.92H390.55" />
+  <path d="M380.061 476.59C382.091 476.59 383.731 474.95 383.731 472.92C383.731 470.89 382.091 469.25 380.061 469.25C378.031 469.25 376.391 470.89 376.391 472.92C376.391 474.95 378.031 476.59 380.061 476.59Z" />
+  </g>
+</symbol>
+<symbol id="icon-doc-file" viewBox="0 0 24 24">
+<g transform="translate(-323.12 -461.60)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M323.93 464C323.93 463.13 324.63 462.43 325.5 462.43H338.09C338.96 462.43 339.66 463.13 339.66 464V483.41H325.5C324.63 483.41 323.93 482.71 323.93 481.84V464Z" />
+  <path d="M339.67 472.919C339.67 472.339 340.14 471.869 340.72 471.869H342.82C343.4 471.869 343.87 472.339 343.87 472.919V481.839C343.87 482.709 343.17 483.409 342.3 483.409H339.68V472.919H339.67Z" />
+  <path d="M327.08 466.629H331.28" />
+  <path d="M327.08 470.299H333.37" />
+  </g>
+</symbol>
+<symbol id="icon-doc-shield" viewBox="0 0 24 24">
+<g transform="translate(-369.28 -323.12)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M370.62 326.04V342.83C370.62 343.41 371.09 343.88 371.67 343.88H388.46C389.04 343.88 389.51 343.41 389.51 342.83V326.04C389.51 325.46 389.04 324.99 388.46 324.99H371.67C371.09 324.99 370.62 325.46 370.62 326.04Z" />
+  <path d="M381.63 324.99L378.48 328.14L381.63 331.29L378.48 334.44L381.63 337.59L378.48 340.74L381.63 343.89" />
+  <path d="M376.91 324.99H385.3" />
+  <path d="M376.91 343.871H385.3" />
+  </g>
+</symbol>
+<symbol id="icon-doc-warning" viewBox="0 0 24 24">
+<g transform="translate(-369.28 -369.28)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M369.57 385.84H390.55" />
+  <path d="M389.5 388.459L378.48 370.619" />
+  <path d="M370.62 388.459L381.64 370.619" />
+  </g>
+</symbol>
+<symbol id="icon-doc-scale" viewBox="0 0 24 24">
+<g transform="translate(-230.80 -461.60)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M240.94 462.54L231.3 472.18C230.89 472.59 230.89 473.25 231.3 473.66L240.94 483.3C241.35 483.71 242.01 483.71 242.42 483.3L252.06 473.66C252.47 473.25 252.47 472.59 252.06 472.18L242.42 462.54C242.01 462.13 241.35 462.13 240.94 462.54Z" />
+  <path d="M241.59 468.48V477.37" />
+  <path d="M237.149 472.92H246.039" />
+  </g>
+</symbol>
+<symbol id="icon-doc-report" viewBox="0 0 24 24">
+<g transform="translate(-276.96 -138.48)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M296.13 139.289H279.34C278.18 139.289 277.24 140.229 277.24 141.389V158.179C277.24 159.339 278.18 160.279 279.34 160.279H296.13C297.29 160.279 298.23 159.339 298.23 158.179V141.389C298.23 140.229 297.29 139.289 296.13 139.289Z" />
+  <path d="M281.44 143.479V147.679" />
+  <path d="M289.83 151.879V156.079" />
+  <path d="M285.641 143.479V147.679" />
+  <path d="M289.83 143.479H294.03" />
+  <path d="M281.44 151.879H285.64" />
+  <path d="M289.83 147.68H294.03" />
+  <path d="M281.44 156.068H285.64" />
+  <path d="M294.03 151.879V156.079" />
+  <path d="M291.411 192.27C291.411 192.27 293.871 194.19 296.131 192.79C299.171 190.91 298.231 185.45 298.231 185.45C298.231 185.45 292.771 184.51 290.891 187.55C289.491 189.81 291.411 192.27 291.411 192.27ZM298.231 185.45L291.411 192.27M291.411 192.27L289.841 193.84" />
+  </g>
+</symbol>
+<symbol id="icon-doc-calc" viewBox="0 0 24 24">
+<g transform="translate(-184.64 -276.96)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M185.96 285.12V280.4C185.96 279.53 186.66 278.83 187.53 278.83H203.27C204.14 278.83 204.84 279.53 204.84 280.4V285.12" />
+  <path d="M199.6 288.27V291.94" />
+  <path d="M195.41 283.551V291.941" />
+  <path d="M191.21 285.65V291.94" />
+  <path d="M185.96 291.42V296.14C185.96 297.01 186.66 297.71 187.53 297.71H203.27C204.14 297.71 204.84 297.01 204.84 296.14V291.42" />
+  </g>
+</symbol>
+<symbol id="icon-doc-menu" viewBox="0 0 24 24">
+<g transform="translate(-184.64 -138.48)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M184.92 158.17H190.17" />
+  <path d="M184.92 153.98H195.41" />
+  <path d="M194.36 158.17H196.98" />
+  <path d="M202.229 158.17H205.899" />
+  <path d="M201.18 153.98H205.9" />
+  <path d="M199.6 149.781H205.89" />
+  <path d="M191.21 149.781H194.36" />
+  <path d="M184.92 149.781H185.97" />
+  <path d="M184.92 145.58H187.02" />
+  <path d="M184.92 141.391H188.59L192.79 145.591H205.9" />
+  <path d="M194.36 141.391H205.9" />
+  </g>
+</symbol>
+<symbol id="icon-doc-settings" viewBox="0 0 24 24">
+<g transform="translate(-415.44 -0.00)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M426.221 6.0398C427.671 6.0398 428.841 4.8698 428.841 3.4198C428.841 1.9698 427.671 0.799805 426.221 0.799805C424.771 0.799805 423.601 1.9698 423.601 3.4198C423.601 4.8698 424.771 6.0398 426.221 6.0398Z" />
+  <path d="M426.221 21.78C427.671 21.78 428.841 20.61 428.841 19.16C428.841 17.71 427.671 16.54 426.221 16.54C424.771 16.54 423.601 17.71 423.601 19.16C423.601 20.61 424.771 21.78 426.221 21.78Z" />
+  <path d="M420.98 8.66992H415.73V13.9199H420.98V8.66992Z" />
+  <path d="M436.721 8.66992H431.471V13.9199H436.721V8.66992Z" />
+  <path d="M423.601 3.41992H418.351V8.66992" />
+  <path d="M423.601 19.1602H418.351V13.9102" />
+  <path d="M428.851 3.41992H434.621V8.66992" />
+  <path d="M428.851 19.1602H434.101V13.9102" />
+  </g>
+</symbol>
+<symbol id="icon-doc-help" viewBox="0 0 24 24">
+<g transform="translate(-415.44 -461.60)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M425.59 462.54L415.95 472.18C415.54 472.59 415.54 473.25 415.95 473.66L425.59 483.3C426 483.71 426.66 483.71 427.07 483.3L436.71 473.66C437.12 473.25 437.12 472.59 436.71 472.18L427.07 462.54C426.66 462.13 426 462.13 425.59 462.54Z" />
+  <path d="M426.221 477.121C428.541 477.121 430.421 475.241 430.421 472.921C430.421 470.601 428.541 468.721 426.221 468.721C423.901 468.721 422.021 470.601 422.021 472.921C422.021 475.241 423.901 477.121 426.221 477.121Z" />
+  </g>
+</symbol>
+<symbol id="icon-support-home" viewBox="0 0 24 24">
+<g transform="translate(-138.48 -46.16)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M143.74 65.5098C145.26 66.6998 147.17 67.4098 149.25 67.4098C151.33 67.4098 153.24 66.6998 154.76 65.5098" />
+  <path d="M146.62 49.9795C142.97 51.0995 140.33 54.4895 140.33 58.5095C140.33 59.5195 140.5 60.4895 140.81 61.3995" />
+  <path d="M151.87 49.9795C155.52 51.0995 158.16 54.4895 158.16 58.5095C158.16 59.5195 157.99 60.4895 157.68 61.3995" />
+  <path d="M159.211 63.7499C159.211 64.4499 158.931 65.0899 158.481 65.5599C158.001 66.0599 157.331 66.3699 156.591 66.3699C155.141 66.3699 153.971 65.1999 153.971 63.7499C153.971 62.6999 154.591 61.7899 155.491 61.3699C155.831 61.2099 156.201 61.1299 156.591 61.1299C158.041 61.1299 159.211 62.2999 159.211 63.7499Z" />
+  <path d="M144.52 63.7499C144.52 64.4499 144.24 65.0899 143.79 65.5599C143.31 66.0599 142.64 66.3699 141.9 66.3699C140.45 66.3699 139.28 65.1999 139.28 63.7499C139.28 62.6999 139.9 61.7899 140.8 61.3699C141.14 61.2099 141.51 61.1299 141.9 61.1299C143.35 61.1299 144.52 62.2999 144.52 63.7499Z" />
+  <path d="M151.87 49.58C151.87 50.28 151.59 50.92 151.14 51.39C150.66 51.89 149.99 52.2 149.25 52.2C147.8 52.2 146.63 51.03 146.63 49.58C146.63 48.53 147.25 47.62 148.15 47.2C148.49 47.04 148.86 46.96 149.25 46.96C150.7 46.96 151.87 48.13 151.87 49.58Z" />
+  </g>
+</symbol>
+<symbol id="icon-support-cycle" viewBox="0 0 24 24">
+<g transform="translate(-461.60 -369.28)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M472.39 391.089C478.18 391.089 482.88 386.389 482.88 380.599C482.88 374.809 478.18 370.109 472.39 370.109C466.6 370.109 461.9 374.809 461.9 380.599C461.9 386.389 466.6 391.089 472.39 391.089Z" />
+  <path d="M477.39 382.17C476.72 384.3 474.73 385.84 472.38 385.84C470.03 385.84 468.04 384.3 467.37 382.17V385.32" />
+  <path d="M477.39 375.87V379.02C476.72 376.89 474.73 375.35 472.38 375.35C470.03 375.35 468.04 376.89 467.37 379.02" />
+  </g>
+</symbol>
+<symbol id="icon-swap" viewBox="0 0 24 24">
+<g transform="translate(-230.80 -92.32)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M237.9 99.4189H235.8C233.19 99.4189 231.08 101.529 231.08 104.139C231.08 106.749 233.19 108.859 235.8 108.859C237.1 108.859 238.27 108.339 239.13 107.489C239.99 106.629 241.57 104.139 241.57 104.139C241.57 104.139 243.15 101.659 244 100.799C244.85 99.9389 246.04 99.4189 247.34 99.4189C249.95 99.4189 252.06 101.529 252.06 104.139C252.06 106.749 249.95 108.859 247.34 108.859H245.24" />
+  <path d="M247.34 106.76L245.24 108.86L247.34 110.96" />
+  <path d="M235.8 97.3193L237.9 99.4193L235.8 101.519" />
+  </g>
+</symbol>
+<symbol id="icon-arrow-right" viewBox="0 0 24 24">
+<g transform="translate(-46.16 -276.96)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M60.0599 284.599V277.779H46.4199V291.419H53.2399" />
+  <path d="M66.8802 298.24V284.6H53.2402V298.24H66.8802Z" />
+  <path d="M61.64 291.419H53.25M59.02 294.039L61.64 291.419L59.02 288.799" />
+  <path d="M53.25 284.6V298.24" />
+  </g>
+</symbol>
+</defs>
+</svg>
+
 <div class="app">
   <header class="topbar">
     <div class="brand brand-uploaded"><span class="uploaded-logo-wrap"><svg class="uploaded-logo-svg" viewBox="0 0 782 236" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2271,10 +2532,7 @@ button,input,textarea,select{font:inherit}
     <div class="market-card-header">
       <div class="market-brand">
         <div class="market-logo">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M8.5 13.2 11 10.8l2.3 2 3.2-3.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai-infra"></use></svg>
         </div>
         <div class="market-brand-copy">
           <h3>AI Inflation Hedge ETP</h3>
@@ -2303,11 +2561,7 @@ button,input,textarea,select{font:inherit}
     <div class="market-card-header">
       <div class="market-brand">
         <div class="market-logo">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="6" y="6" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.7" rx="1"/>
-            <rect x="12.5" y="12.5" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.7" rx="1"/>
-            <path d="M11.5 8.8h3M15.8 8.8v3M8.8 11.5v3M8.8 15.8h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
+          <svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arb"></use></svg>
         </div>
         <div class="market-brand-copy">
           <h3>TradFi-DeFi Arb ETP</h3>
@@ -2336,10 +2590,7 @@ button,input,textarea,select{font:inherit}
     <div class="market-card-header">
       <div class="market-brand">
         <div class="market-logo">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.7"/>
-            <path d="M8.7 11.2c.7-1.7 2.1-2.5 3.6-2.5 1.6 0 2.8.6 3.6 2M8.7 12.8c.7 1.7 2.1 2.5 3.6 2.5 1.6 0 2.8-.6 3.6-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
+          <svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-stable"></use></svg>
         </div>
         <div class="market-brand-copy">
           <h3>Stable Yield ETP</h3>
@@ -2401,7 +2652,7 @@ button,input,textarea,select{font:inherit}
         <div class="asset-toolbar">
           <div class="asset-search-shell">
             <div class="asset-search-main">
-              <span class="asset-search-icon">⌘</span>
+              <span class="asset-search-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg></span>
               <input id="assetSearchInput" class="asset-search-input" placeholder="Search themes, tickers, market ideas, or risk profiles" />
             </div>
             <div class="asset-search-actions">
@@ -2440,7 +2691,7 @@ button,input,textarea,select{font:inherit}
               <tr class="asset-row" data-target="detail" data-product="inflation" data-name="AI Inflation Hedge ETP" data-theme="AI Infrastructure" data-price="31.84" data-volume="14.9" data-trend="84" data-risk="3" data-category="healthcare">
                 <td>
                   <div class="asset-product-cell">
-                    <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.2" stroke="#111" stroke-width="1.5"/><path d="M7.8 14.4L10.4 11.8L12.4 13.6L16.1 9.8" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.9 9.8H13.8" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M16 9.8V11.9" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai-infra"></use></svg></div>
                     <div>
                       <strong>AI Inflation Hedge ETP</strong>
                       <small>AIH · Power, Grids, Cooling, and Hard Assets</small>
@@ -2457,12 +2708,12 @@ button,input,textarea,select{font:inherit}
                 <td>$14.9M</td>
                 <td><span class="trend-pill up">↗ Strong</span></td>
                 <td><span class="risk-pill risk-high">High</span></td>
-                <td><button class="view-btn" data-target="detail" data-product="inflation">View <span>→</span></button></td>
+                <td><button class="view-btn" data-target="detail" data-product="inflation">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
               </tr>
               <tr class="asset-row" data-target="detail" data-product="arb" data-name="TradFi-DeFi Arb ETP" data-theme="Cross-Market Arbitrage" data-price="17.42" data-volume="9.6" data-trend="73" data-risk="2" data-category="infrastructure">
                 <td>
                   <div class="asset-product-cell">
-                    <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4.2" y="5.2" width="6.8" height="6.8" rx="1.4" stroke="#111" stroke-width="1.5"/><rect x="13" y="12" width="6.8" height="6.8" rx="1.4" stroke="#111" stroke-width="1.5"/><path d="M11 8.5H15.8" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M14 6.8L15.8 8.5L14 10.2" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 15.5H8.2" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M10 17.2L8.2 15.5L10 13.8" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arb"></use></svg></div>
                     <div>
                       <strong>TradFi-DeFi Arb ETP</strong>
                       <small>TDA · Equity Spot Versus Perp Dislocations</small>
@@ -2479,12 +2730,12 @@ button,input,textarea,select{font:inherit}
                 <td>$9.6M</td>
                 <td><span class="trend-pill up">↗ Positive</span></td>
                 <td><span class="risk-pill risk-middle">Middle</span></td>
-                <td><button class="view-btn" data-target="detail" data-product="arb">View <span>→</span></button></td>
+                <td><button class="view-btn" data-target="detail" data-product="arb">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
               </tr>
               <tr class="asset-row" data-target="detail" data-product="stable" data-name="Stable Yield ETP" data-theme="Market Neutral Yield" data-price="1.08" data-volume="33.4" data-trend="58" data-risk="1" data-category="yield">
                 <td>
                   <div class="asset-product-cell">
-                    <div class="asset-avatar"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.2" stroke="#111" stroke-width="1.5"/><path d="M7.3 12C8.4 10.4 9.5 10.4 10.6 12C11.7 13.6 12.8 13.6 13.9 12C15 10.4 16.1 10.4 17.2 12" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3 7.8H15.7" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-stable"></use></svg></div>
                     <div>
                       <strong>Stable Yield ETP</strong>
                       <small>SYD · Funding, Basis, and Liquidity Premium</small>
@@ -2501,7 +2752,7 @@ button,input,textarea,select{font:inherit}
                 <td>$33.4M</td>
                 <td><span class="trend-pill flat">→ Stable</span></td>
                 <td><span class="risk-pill risk-low">Low</span></td>
-                <td><button class="view-btn" data-target="detail" data-product="stable">View <span>→</span></button></td>
+                <td><button class="view-btn" data-target="detail" data-product="stable">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
               </tr>
             </tbody>
           </table>
@@ -2544,8 +2795,8 @@ button,input,textarea,select{font:inherit}
               </div>
             </div>
             <div class="mini-actions">
-              <button class="outline-btn">☆ <span>Watchlist</span></button>
-              <button class="outline-btn">↗ <span>Share</span></button>
+              <button class="outline-btn"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-watch"></use></svg> <span>Watchlist</span></button>
+              <button class="outline-btn"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-share"></use></svg> <span>Share</span></button>
             </div>
           </div>
           <div class="subnav" id="detailSubnav">
@@ -2577,10 +2828,10 @@ button,input,textarea,select{font:inherit}
                     <p class="sub" id="storyP1" style="font-size:14px;line-height:1.7;color:#3e4861">AI infrastructure is becoming the physical backbone of the next economic cycle. Power generation, grid equipment, cooling, compute supply chains, energy, and hard assets are becoming critical inputs for scalable intelligence.</p>
                     <p class="sub" id="storyP2" style="font-size:14px;line-height:1.7;color:#3e4861;margin-top:12px">The AI Inflation Hedge ETP (AIH) packages this real-world infrastructure exposure into a transparent, thematic onchain product.</p>
                     <div class="story-list">
-                      <div class="story-item"><div class="story-icon">⌁</div><div><b>Demographic tailwinds</b><span>Aging populations driving sustained demand for better health.</span></div></div>
-                      <div class="story-item"><div class="story-icon">◈</div><div><b>Innovation breakthroughs</b><span>Biotech, genomics, and AI unlocking new treatment paradigms.</span></div></div>
-                      <div class="story-item"><div class="story-icon">◎</div><div><b>Healthspan focus</b><span>Solutions that extend quality of life, not just years.</span></div></div>
-                      <div class="story-item"><div class="story-icon">◍</div><div><b>Global opportunity</b><span>Exposure across the full longevity value chain worldwide.</span></div></div>
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-macro"></use></svg></div><div><b>Demographic tailwinds</b><span>Aging populations driving sustained demand for better health.</span></div></div>
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-mechanism"></use></svg></div><div><b>Innovation breakthroughs</b><span>Biotech, genomics, and AI unlocking new treatment paradigms.</span></div></div>
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-allocation"></use></svg></div><div><b>Healthspan focus</b><span>Solutions that extend quality of life, not just years.</span></div></div>
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-risk"></use></svg></div><div><b>Global opportunity</b><span>Exposure across the full longevity value chain worldwide.</span></div></div>
                     </div>
                   </div>
                   <div class="subcard">
@@ -2594,7 +2845,7 @@ button,input,textarea,select{font:inherit}
                 </div>
 
                 <div class="subcard ai-box">
-                  <div class="ai-header"><div class="spark">✦</div><div><b style="display:block;color:#162036">Explore with AI</b><span id="aiSubtitle" style="font-size:13px;color:#71809a">Ask AI to better understand the AI infrastructure theme, market drivers, portfolio construction, and risks.</span></div></div>
+                  <div class="ai-header"><div class="spark"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai-spark"></use></svg></div><div><b style="display:block;color:#162036">Explore with AI</b><span id="aiSubtitle" style="font-size:13px;color:#71809a">Ask AI to better understand the AI infrastructure theme, market drivers, portfolio construction, and risks.</span></div></div>
                   <div class="ask-row"><input id="aiAskInput" placeholder="Ask anything about AI infrastructure investing..." /><button class="send-btn">➜</button></div>
                   <div class="chip-row">
                     <span class="chip">◌ Why does longevity matter?</span>
@@ -2668,7 +2919,7 @@ button,input,textarea,select{font:inherit}
                 <div class="subcard help-card">
                   <h3 class="side-section-title">Need help?</h3>
                   <p>Our team is here to help with any questions about Longevity ETP (LONG).</p>
-                  <div class="support-box"><div class="support-icon">⌂</div><div><b style="display:block;color:#172135;margin-bottom:6px">Contact Support</b><span style="display:block;color:#627089;font-size:14px">support@alloco.io</span><span style="display:block;color:#627089;font-size:14px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
+                  <div class="support-box"><div class="support-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-support-home"></use></svg></div><div><b style="display:block;color:#172135;margin-bottom:6px">Contact Support</b><span style="display:block;color:#627089;font-size:14px">support@alloco.io</span><span style="display:block;color:#627089;font-size:14px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
                   <button class="secondary-btn">Contact Support →</button>
                 </div>
               </aside>
@@ -2708,9 +2959,9 @@ button,input,textarea,select{font:inherit}
                 <div class="subcard" style="margin-top:16px">
                   <h3 class="side-section-title" style="margin-bottom:18px">Route Explanation</h3>
                   <div class="route-grid">
-                    <div class="route-step"><div class="route-icon">•••</div><div><b>Small Orders</b><span>Onchain Liquidity</span><span>Orders up to $50K are routed to onchain liquidity pools for best execution.</span></div></div>
-                    <div class="route-step"><div class="route-icon">◔</div><div><b>Mid-size Orders</b><span>RFQ</span><span>Orders between $50K–$2M are routed to market makers via RFQ.</span></div></div>
-                    <div class="route-step"><div class="route-icon">⌂</div><div><b>Large Orders</b><span>Primary Market</span><span>Orders above $2M are routed to the Primary Market for creation or redemption.</span></div></div>
+                    <div class="route-step"><div class="route-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-route-source"></use></svg></div><div><b>Small Orders</b><span>Onchain Liquidity</span><span>Orders up to $50K are routed to onchain liquidity pools for best execution.</span></div></div>
+                    <div class="route-step"><div class="route-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-route-execute"></use></svg></div><div><b>Mid-size Orders</b><span>RFQ</span><span>Orders between $50K–$2M are routed to market makers via RFQ.</span></div></div>
+                    <div class="route-step"><div class="route-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-route-settle"></use></svg></div><div><b>Large Orders</b><span>Primary Market</span><span>Orders above $2M are routed to the Primary Market for creation or redemption.</span></div></div>
                   </div>
                   <div style="text-align:right;margin-top:16px"><span class="view-link">Learn more →</span></div>
                 </div>
@@ -2726,7 +2977,7 @@ button,input,textarea,select{font:inherit}
                       <div class="select-box">🇺🇸 USD ⌄</div>
                     </div>
                   </div>
-                  <div class="swap-icon">⇅</div>
+                  <div class="swap-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-swap"></use></svg></div>
                   <div class="field">
                     <label>Estimated shares</label>
                     <div class="estimate-box"><b>≈ 407.17 LONG</b><div style="margin-top:8px;color:#627089;font-size:14px">1 LONG ≈ $24.57 ⓘ</div></div>
@@ -2753,25 +3004,25 @@ button,input,textarea,select{font:inherit}
                 <div class="doc-group">
                   <h3>Legal Documents</h3>
                   <div class="doc-list">
-                    <div class="doc-item"><div class="doc-ico">📄</div><div class="doc-meta"><b>Prospectus</b><span>Detailed offering information and risk factors.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 2.4 MB</div></div><button class="doc-btn">↓ Download</button></div>
-                    <div class="doc-item"><div class="doc-ico">🛡</div><div class="doc-meta"><b>Key Information Document (KID)</b><span>Essential information for investors.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.1 MB</div></div><button class="doc-btn">↓ Download</button></div>
-                    <div class="doc-item"><div class="doc-ico">⚠</div><div class="doc-meta"><b>Risk Disclosures</b><span>Important risk considerations.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.6 MB</div></div><button class="doc-btn">↓ Download</button></div>
-                    <div class="doc-item"><div class="doc-ico">⚖</div><div class="doc-meta"><b>Terms & Conditions</b><span>Terms governing access and use.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.3 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-file"></use></svg></div><div class="doc-meta"><b>Prospectus</b><span>Detailed offering information and risk factors.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 2.4 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-shield"></use></svg></div><div class="doc-meta"><b>Key Information Document (KID)</b><span>Essential information for investors.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.1 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-warning"></use></svg></div><div class="doc-meta"><b>Risk Disclosures</b><span>Important risk considerations.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.6 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-scale"></use></svg></div><div class="doc-meta"><b>Terms & Conditions</b><span>Terms governing access and use.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.3 MB</div></div><button class="doc-btn">↓ Download</button></div>
                   </div>
                 </div>
                 <div class="doc-group">
                   <h3>Product Materials</h3>
                   <div class="doc-list">
-                    <div class="doc-item"><div class="doc-ico">📑</div><div class="doc-meta"><b>Fact Sheet</b><span>Key product highlights and performance.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.2 MB</div></div><button class="doc-btn">↓ Download</button></div>
-                    <div class="doc-item"><div class="doc-ico">🧮</div><div class="doc-meta"><b>NAV Methodology</b><span>Description of NAV calculation and inputs.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 890 KB</div></div><button class="doc-btn">↓ Download</button></div>
-                    <div class="doc-item"><div class="doc-ico">☰</div><div class="doc-meta"><b>Basket Composition Report</b><span>Current holdings and weighting details.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.4 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-report"></use></svg></div><div class="doc-meta"><b>Fact Sheet</b><span>Key product highlights and performance.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.2 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-calc"></use></svg></div><div class="doc-meta"><b>NAV Methodology</b><span>Description of NAV calculation and inputs.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 890 KB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-menu"></use></svg></div><div class="doc-meta"><b>Basket Composition Report</b><span>Current holdings and weighting details.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.4 MB</div></div><button class="doc-btn">↓ Download</button></div>
                   </div>
                 </div>
                 <div class="doc-group">
                   <h3>Operational Resources</h3>
                   <div class="doc-list">
-                    <div class="doc-item"><div class="doc-ico">⚙</div><div class="doc-meta"><b>Custody Overview</b><span>Information on custody and asset safekeeping.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.1 MB</div></div><button class="doc-btn">↓ Download</button></div>
-                    <div class="doc-item"><div class="doc-ico">?</div><div class="doc-meta"><b>FAQs</b><span>Answers to common investor questions.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 950 KB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-settings"></use></svg></div><div class="doc-meta"><b>Custody Overview</b><span>Information on custody and asset safekeeping.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 1.1 MB</div></div><button class="doc-btn">↓ Download</button></div>
+                    <div class="doc-item"><div class="doc-ico"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-doc-help"></use></svg></div><div class="doc-meta"><b>FAQs</b><span>Answers to common investor questions.</span></div><div><div class="doc-date">Updated May 16, 2026</div><div class="doc-size">PDF ・ 950 KB</div></div><button class="doc-btn">↓ Download</button></div>
                   </div>
                 </div>
               </div>
@@ -2779,7 +3030,7 @@ button,input,textarea,select{font:inherit}
                 <div class="subcard help-card">
                   <h3 class="side-section-title">Need help?</h3>
                   <p>Our team is here to help with any questions about Longevity ETP (LONG).</p>
-                  <div class="support-box"><div class="support-icon">◌</div><div><b style="display:block;color:#172135;margin-bottom:6px">Institutional Support</b><span style="display:block;color:#627089;font-size:14px">institutional@alloco.io</span><span style="display:block;color:#627089;font-size:14px">+1 (212) 555-0188</span><span style="display:block;color:#627089;font-size:13px;margin-top:10px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
+                  <div class="support-box"><div class="support-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-support-cycle"></use></svg></div><div><b style="display:block;color:#172135;margin-bottom:6px">Institutional Support</b><span style="display:block;color:#627089;font-size:14px">institutional@alloco.io</span><span style="display:block;color:#627089;font-size:14px">+1 (212) 555-0188</span><span style="display:block;color:#627089;font-size:13px;margin-top:10px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
                   <button class="secondary-btn" style="color:#15915f;border-color:rgba(21,145,95,.35)">Contact Us →</button>
                 </div>
                 <div class="compliance-box">
@@ -3200,7 +3451,7 @@ const productData = {
     videoCaption: "A 3 minute overview of the AI infrastructure cycle, capacity bottlenecks, and inflation-hedge investment thesis.",
     aiSubtitle: "Ask AI to better understand AI infrastructure, hard-asset exposure, energy constraints, portfolio construction, and risks.",
     ask: "Ask anything about AI infrastructure investing...",
-    icon: `<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='23' stroke='#5577ff' stroke-width='3'/><path d='M21 38L29 30L34 35L45 23' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><path d='M45 23H38' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/><path d='M45 23V30' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/></svg>`,
+    icon: `<svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai-infra"></use></svg>`,
     allocations: [["Power & Grid Equipment","32.0%"],["Cooling Infrastructure","24.0%"],["Compute Supply Chain","20.0%"],["Energy & Hard Assets","16.0%"],["Cash Buffer","8.0%"]],
     holdings: [["VST","Vistra Corp.","6.80%"],["ETN","Eaton Corp.","6.12%"],["NVDA","NVIDIA Corp.","5.70%"],["CEG","Constellation Energy","5.24%"],["PWR","Quanta Services","4.76%"],["COP","ConocoPhillips","3.42%"]]
   },
@@ -3223,7 +3474,7 @@ const productData = {
     videoCaption: "A 3 minute overview of TradFi-DeFi pricing gaps, funding dynamics, execution routes, and market-neutral arbitrage construction.",
     aiSubtitle: "Ask AI to understand cross-market dislocations, RFQ execution, funding rates, hedge ratios, and venue risks.",
     ask: "Ask anything about TradFi-DeFi arbitrage...",
-    icon: `<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='12' y='14' width='17' height='17' rx='4' stroke='#5577ff' stroke-width='3'/><rect x='35' y='33' width='17' height='17' rx='4' stroke='#5577ff' stroke-width='3'/><path d='M30 22H43' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/><path d='M39 17L44 22L39 27' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><path d='M34 42H21' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/><path d='M25 37L20 42L25 47' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>`,
+    icon: `<svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arb"></use></svg>`,
     allocations: [["U.S. Equity-Linked Spot","35.0%"],["Crypto Perp Hedges","30.0%"],["Basis & Funding Capture","18.0%"],["RFQ Liquidity","9.0%"],["Cash Buffer","8.0%"]],
     holdings: [["SPY","S&P 500 Spot Basket","8.30%"],["QQQ","Nasdaq 100 Spot Basket","7.60%"],["BTC-PERP","BTC Perp Hedge","6.20%"],["ETH-PERP","ETH Perp Hedge","5.70%"],["COIN","Coinbase Global","4.10%"],["USDC","Execution Buffer","3.80%"]]
   },
@@ -3246,7 +3497,7 @@ const productData = {
     videoCaption: "A 3 minute overview of funding capture, basis opportunities, liquidity premiums, and market-neutral crypto yield construction.",
     aiSubtitle: "Ask AI to understand funding, basis, liquidity premiums, depeg risk, margin buffers, and market-neutral execution.",
     ask: "Ask anything about stable yield strategies...",
-    icon: `<svg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='23' stroke='#5577ff' stroke-width='3'/><path d='M19 32C23 26 27 26 31 32C35 38 39 38 45 32' stroke='#5577ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><path d='M22 21H42' stroke='#5577ff' stroke-width='3' stroke-linecap='round'/></svg>`,
+    icon: `<svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-stable"></use></svg>`,
     allocations: [["Funding Capture","34.0%"],["Basis Strategies","28.0%"],["Liquidity Premium","18.0%"],["Lending & Cash","12.0%"],["Risk Buffer","8.0%"]],
     holdings: [["USDC","Stablecoin Reserve","19.0%"],["T-Bill","Tokenized Treasury","12.0%"],["BTC-HEDGE","BTC Delta Hedge","9.4%"],["ETH-HEDGE","ETH Delta Hedge","8.7%"],["PERP-FUND","Funding Basket","7.9%"],["CASH","Liquidity Buffer","5.4%"]]
   }
