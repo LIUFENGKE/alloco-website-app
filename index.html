@@ -2761,6 +2761,1131 @@ button,input,textarea,select{font:inherit}
   .wallet-name{font-size:15px}
   .wallet-pill{height:24px;font-size:11px;padding:0 8px}
 }
+
+
+/* Combined ETP Trade page */
+#detail .detail-page{padding-top:22px;}
+#detail .detail-summary{margin-bottom:4px;}
+#detail .product-logo-box{width:100px;height:100px;border-radius:22px;background:rgba(255,255,255,.62);}
+#detail .product-title{font-size:54px;line-height:1.02;letter-spacing:-.03em !important;}
+#detail .summary-copy{font-size:15px;line-height:1.55;color:#566176;max-width:760px;}
+#detail .subnav{margin-top:18px;}
+.etp-trade-shell{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:26px;align-items:start;padding-top:18px;}
+.etp-trade-left{display:grid;gap:22px;min-width:0;}
+.etp-row{display:grid;gap:22px;}
+.etp-row-top{grid-template-columns:minmax(0,1fr) 310px;align-items:stretch;}
+.etp-story-row{grid-template-columns:1fr 1fr;}
+.etp-panel,.etp-side-card{background:rgba(255,255,255,.60);border:1px solid rgba(0,0,0,.075);border-radius:22px;box-shadow:0 14px 34px rgba(0,0,0,.035);}
+.etp-panel{padding:22px;}
+.etp-panel h3,.etp-side-card h3{margin:0 0 16px;font-size:19px;line-height:1.15;color:#121a2e;font-weight:650;letter-spacing:.01em!important;}
+.etp-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;}
+.etp-chart-panel{min-height:386px;}
+.etp-main-chart{width:100%;height:278px;margin-top:12px;display:block;}
+.chart-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.chart-type button,.mini-select button{font-size:12px;padding:8px 10px;}
+#detail .big-number{font-size:44px;letter-spacing:-.02em!important;}
+#detail .delta{font-size:14px;white-space:nowrap;}
+#detail .timestamp{font-size:12px;color:#758096;margin-top:4px;}
+.mint-card{padding:18px;display:flex;flex-direction:column;}
+.mint-tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(0,0,0,.085);border-radius:14px;overflow:hidden;margin-bottom:18px;background:#f6f6f3;}
+.mint-tabs button{border:0;background:transparent;padding:12px 0;cursor:pointer;color:#566176;}
+.mint-tabs button.active{background:#fff;color:#111;font-weight:650;box-shadow:0 1px 6px rgba(0,0,0,.04);}
+.mint-input{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(0,0,0,.08);border-radius:15px;background:#fff;padding:15px 14px;}
+.mint-input strong{font-size:20px;font-weight:650;color:#101827;}
+.mint-input span{font-size:13px;color:#34415e;background:#f2f5f2;border-radius:999px;padding:6px 9px;}
+.mint-switch{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin:2px auto 14px;background:#f3f8f4;border:1px solid rgba(0,0,0,.075);color:#15915f;}
+.mint-meta{display:grid;gap:0;margin:2px 0 16px;border-top:1px solid rgba(0,0,0,.06);}
+.mint-meta div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(0,0,0,.055);}
+.mint-meta span,.mint-note{font-size:12px;color:#738096;}
+.mint-meta b{font-size:13px;color:#172135;}
+.mint-btn{padding:14px 18px;}
+.mint-note{line-height:1.5;margin:12px 0 0;}
+.panel-title-icon{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.panel-title-icon h3{margin:0;}
+.story-panel .sub,.video-panel .sub{font-size:14px;line-height:1.68;color:#46526b;margin:0 0 12px;}
+.compact-story-list{margin-top:16px;grid-template-columns:1fr;gap:10px;}
+.compact-story-list .story-icon{width:30px;height:30px;}
+.video-panel .video-thumb{height:245px;border-radius:17px;}
+.allocation-panel{padding:22px;}
+.allocation-panel .allocation-grid{grid-template-columns:400px minmax(0,1fr);gap:28px;margin-top:8px;align-items:center;}
+.allocation-panel .allocation-card{grid-template-columns:170px minmax(0,1fr);}
+.allocation-panel .table th{padding-top:8px;}
+.allocation-panel .table td{padding:12px 8px;}
+.allocation-footnote{font-size:12px;color:#7a8394;margin-top:10px;text-align:right;}
+.etp-sidebar{position:sticky;top:104px;display:grid;gap:16px;align-self:start;}
+.etp-side-card{padding:20px;}
+.etp-side-card h3 span{font-size:13px;font-weight:500;color:#6d778b;}
+.side-price-line{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px;padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,.06);}
+.side-price-line b{font-size:28px;letter-spacing:-.02em;color:#101827;}
+.side-price-line span{font-size:13px;color:#15915f;font-weight:650;white-space:nowrap;}
+.etp-sidebar .info-item{padding:12px 0;}
+.etp-sidebar .info-item span{font-size:12px;color:#6b758a;}
+.etp-sidebar .info-item b{font-size:13px;color:#19243a;}
+.performance-card .perf-tab{padding:7px 9px;font-size:11px;background:#fff;}
+.performance-card .perf-tab.active{color:#15915f;background:#f0f8f4;border-color:rgba(21,145,95,.18);}
+.performance-card .perf-grid{gap:10px;}
+.performance-card .perf-box{padding:11px 10px;background:#fff;border-color:rgba(0,0,0,.055);}
+.performance-card .perf-box b{font-size:18px;letter-spacing:.01em!important;}
+.risk-card .risk-row{grid-template-columns:repeat(7,1fr);gap:6px;}
+.risk-card .risk-dot{width:31px;height:31px;font-size:12px;}
+.risk-labels{display:flex;justify-content:space-between;font-size:11px;color:#7a8394;margin-top:6px;}
+.risk-copy{margin-top:14px;padding-top:14px;border-top:1px solid rgba(0,0,0,.06);font-size:12px;line-height:1.55;color:#68758d;}
+@media (min-width:1025px){
+  #detail .wrap.detail-page{width:min(1480px,calc(100vw - 92px));}
+  #detail .tab-panel{padding-top:0;}
+}
+@media (max-width:1180px){
+  .etp-trade-shell{grid-template-columns:1fr;}
+  .etp-sidebar{position:relative;top:auto;grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:900px){
+  .etp-row-top,.etp-story-row,.allocation-panel .allocation-grid,.etp-sidebar{grid-template-columns:1fr;}
+  #detail .product-title{font-size:40px;}
+  .chart-controls{justify-content:flex-start;}
+}
+
+
+/* Spacious combined Trade layout: info / performance / risk below story */
+#detail .detail-page{
+  padding-top:26px;
+  padding-bottom:78px;
+}
+#detail .wrap.detail-page{
+  width:min(1540px,calc(100vw - 128px));
+}
+#detail .detail-summary{
+  margin-bottom:12px;
+}
+#detail .subnav{
+  margin-top:26px;
+  margin-bottom:10px;
+}
+.etp-trade-shell{
+  display:block;
+  padding-top:24px;
+}
+.etp-trade-left{
+  display:grid;
+  gap:34px;
+  min-width:0;
+}
+.etp-row{
+  display:grid;
+  gap:28px;
+}
+.etp-row-top{
+  grid-template-columns:minmax(0,1fr) 380px;
+  gap:30px;
+  align-items:stretch;
+}
+.etp-story-row{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:30px;
+}
+.etp-panel,.etp-side-card{
+  background:rgba(255,255,255,.64);
+  border:1px solid rgba(0,0,0,.065);
+  border-radius:28px;
+  box-shadow:0 18px 42px rgba(0,0,0,.028);
+}
+.etp-panel{
+  padding:30px;
+}
+.etp-chart-panel{
+  min-height:430px;
+}
+.etp-main-chart{
+  height:312px;
+  margin-top:20px;
+}
+.mint-card{
+  padding:26px;
+}
+.video-panel .video-thumb{
+  height:285px;
+  border-radius:22px;
+}
+.story-panel .sub,.video-panel .sub{
+  font-size:15px;
+  line-height:1.72;
+}
+.compact-story-list{
+  margin-top:22px;
+  gap:14px;
+}
+.etp-sidebar{
+  position:relative;
+  top:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.24fr) minmax(0,.96fr) minmax(0,.8fr);
+  gap:28px;
+  align-self:auto;
+  margin:2px 0 2px;
+}
+.etp-side-card{
+  padding:28px;
+  min-width:0;
+}
+.etp-side-card h3{
+  font-size:24px;
+  margin-bottom:20px;
+}
+.side-price-line{
+  padding-bottom:18px;
+  margin-bottom:8px;
+}
+.side-price-line b{
+  font-size:36px;
+}
+.etp-sidebar .info-card .info-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:30px;
+}
+.etp-sidebar .info-item{
+  padding:14px 0;
+}
+.etp-sidebar .info-item span{
+  font-size:13px;
+}
+.etp-sidebar .info-item b{
+  font-size:14px;
+}
+.performance-card .perf-tabs{
+  gap:10px;
+  margin-bottom:20px;
+}
+.performance-card .perf-tab{
+  padding:10px 14px;
+  border-radius:14px;
+  font-size:13px;
+}
+.performance-card .perf-grid{
+  gap:14px;
+}
+.performance-card .perf-box{
+  padding:18px 16px;
+  border-radius:18px;
+}
+.performance-card .perf-box small{
+  font-size:13px;
+}
+.performance-card .perf-box b{
+  font-size:26px;
+}
+.risk-card .risk-row{
+  gap:10px;
+  margin-top:18px;
+}
+.risk-card .risk-dot{
+  width:40px;
+  height:40px;
+  font-size:14px;
+}
+.risk-copy{
+  margin-top:18px;
+  padding-top:18px;
+  font-size:13px;
+}
+.allocation-panel{
+  padding:30px;
+}
+.allocation-panel .allocation-grid{
+  grid-template-columns:470px minmax(0,1fr);
+  gap:34px;
+}
+@media (max-width:1280px){
+  #detail .wrap.detail-page{width:min(100vw - 64px,1400px);}
+  .etp-row-top{grid-template-columns:minmax(0,1fr) 350px;}
+  .etp-sidebar{grid-template-columns:1fr 1fr;}
+  .etp-sidebar .info-card{grid-column:1/-1;}
+}
+@media (max-width:900px){
+  #detail .wrap.detail-page{width:min(100vw - 32px,100%);}
+  .etp-row-top,.etp-story-row,.etp-sidebar,.allocation-panel .allocation-grid{
+    grid-template-columns:1fr;
+  }
+  .etp-sidebar .info-card{grid-column:auto;}
+  .etp-sidebar .info-card .info-list{grid-template-columns:1fr;}
+  .etp-panel,.etp-side-card{padding:22px;border-radius:22px;}
+  .etp-main-chart{height:260px;}
+  .video-panel .video-thumb{height:220px;}
+}
+
+
+
+/* Market-style trade header + swap panel */
+.market-style-row{
+  grid-template-columns:minmax(0,1fr) 520px !important;
+  gap:34px !important;
+  align-items:stretch;
+}
+.market-chart-card,.market-mint-card{
+  background:#f1f1ef;
+  border:1px solid rgba(0,0,0,.055);
+  border-radius:34px;
+  box-shadow:0 18px 44px rgba(0,0,0,.035);
+}
+.market-chart-card{
+  padding:28px 32px 30px;
+  min-height:560px;
+  overflow:hidden;
+}
+.market-chart-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:28px;
+}
+.market-product-id{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0;
+}
+.market-product-icon{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background:rgba(255,255,255,.74);
+  border:1px solid rgba(0,0,0,.07);
+  display:grid;
+  place-items:center;
+  color:#172135;
+  flex:0 0 auto;
+}
+.market-product-icon svg{width:25px;height:25px;display:block;}
+.market-title-line{
+  font-size:24px;
+  line-height:1.1;
+  font-weight:650;
+  color:#0f1728;
+  letter-spacing:.02em;
+}
+.market-title-line em{
+  color:#747772;
+  font-style:normal;
+  font-weight:500;
+}
+.market-status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.58);
+  color:#595b58;
+  font-size:13px;
+  white-space:nowrap;
+}
+.market-status-pill span{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,.12);
+  display:inline-block;
+  position:relative;
+}
+.market-status-pill button{
+  border:0;
+  background:rgba(255,255,255,.72);
+  border-radius:999px;
+  padding:3px 8px;
+  color:#8b8d89;
+  cursor:pointer;
+}
+.market-status-mobile{display:none;color:#868983;font-size:12px;margin-top:5px;}
+.market-big-price{
+  font-size:70px;
+  line-height:1;
+  font-weight:500;
+  color:#000;
+  letter-spacing:-.025em !important;
+}
+.market-delta{
+  margin-top:14px;
+  color:#0d7c4f;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:16px;
+  letter-spacing:.03em;
+}
+.market-range-tabs{
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+  margin-top:26px;
+  overflow:hidden;
+  background:#e5e5e3;
+  border-radius:7px;
+}
+.market-range-tabs button{
+  min-width:54px;
+  border:0;
+  background:transparent;
+  padding:10px 14px;
+  color:#555854;
+  cursor:pointer;
+  font-size:14px;
+}
+.market-range-tabs button.active{
+  background:#fff;
+  color:#111;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);
+}
+.market-chart-canvas{
+  height:350px;
+  margin-top:18px;
+  overflow:hidden;
+}
+.market-main-chart{width:100%;height:100%;display:block;}
+.market-mint-card{
+  padding:24px 26px 28px;
+  display:flex;
+  flex-direction:column;
+  min-height:560px;
+}
+.swap-top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:26px;
+}
+.swap-tabs{
+  display:inline-flex;
+  background:#e2e2e0;
+  border-radius:8px;
+  overflow:hidden;
+}
+.swap-tabs button{
+  border:0;
+  background:transparent;
+  padding:10px 18px;
+  color:#595b58;
+  cursor:pointer;
+  font-size:15px;
+}
+.swap-tabs button.active{background:#fff;color:#111;}
+.chain-select{
+  border:0;
+  background:#e2e2e0;
+  border-radius:9px;
+  padding:12px 16px;
+  min-width:190px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  cursor:pointer;
+  color:#111;
+  font-size:15px;
+}
+.chain-dot{color:#6687ff;font-size:15px;}
+.swap-box{
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.04);
+}
+.swap-field{padding:24px 22px 28px;}
+.swap-field label{
+  display:block;
+  color:#666a67;
+  font-size:15px;
+  margin-bottom:18px;
+}
+.swap-value-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.swap-value-row strong{
+  font-size:34px;
+  color:#81847f;
+  font-weight:420;
+}
+.asset-select{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:#f0f0ee;
+  border-radius:999px;
+  padding:8px 11px;
+  color:#111;
+  font-weight:550;
+  white-space:nowrap;
+}
+.coin-dot{color:#2777d5;}
+.mini-product-dot{
+  width:20px;
+  height:20px;
+  display:grid;
+  place-items:center;
+  border-radius:7px;
+  background:#dfe4df;
+}
+.mini-product-dot svg{width:13px;height:13px;display:block;}
+.swap-divider{
+  height:1px;
+  background:#ececea;
+  position:relative;
+}
+.swap-divider button{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,.06);
+  background:#f8f8f7;
+  color:#111;
+  font-size:24px;
+  cursor:pointer;
+}
+.signup-btn{
+  margin-top:26px;
+  background:#191919;
+  border-radius:9px;
+  padding:18px;
+  font-size:19px;
+  font-weight:450;
+}
+.market-disclaimer{
+  margin:18px 0 0;
+  color:#5d605c;
+  line-height:1.45;
+  font-size:14px;
+}
+.available-strip{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:20px 0 0;
+  color:#111;
+  font-size:15px;
+}
+.available-strip b{font-weight:500;}
+@media (max-width:1180px){
+  .market-style-row{grid-template-columns:1fr !important;}
+  .market-mint-card{min-height:auto;}
+}
+@media (max-width:720px){
+  .market-chart-card{padding:22px 18px;min-height:auto;}
+  .market-chart-head{align-items:flex-start;}
+  .market-status-pill{display:none;}
+  .market-status-mobile{display:block;}
+  .market-title-line{font-size:20px;}
+  .market-big-price{font-size:52px;}
+  .market-chart-canvas{height:280px;}
+  .market-mint-card{padding:20px;}
+  .chain-select{min-width:auto;}
+}
+
+
+/* Premium compact trade chart + mint block */
+#detail .wrap.detail-page{
+  width:min(1480px,calc(100vw - 150px));
+}
+.etp-trade-left{
+  gap:30px;
+}
+.market-style-row{
+  grid-template-columns:minmax(0,1.08fr) 430px !important;
+  gap:24px !important;
+  align-items:stretch;
+}
+.market-chart-card,.market-mint-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(245,245,242,.88));
+  border:1px solid rgba(13,18,28,.075);
+  border-radius:30px;
+  box-shadow:0 22px 60px rgba(14,18,28,.06), inset 0 1px 0 rgba(255,255,255,.72);
+}
+.market-chart-card{
+  min-height:468px;
+  padding:24px 28px 22px;
+  position:relative;
+}
+.market-chart-card:before,.market-mint-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:radial-gradient(circle at 20% 0%,rgba(255,255,255,.84),transparent 34%);
+  opacity:.85;
+}
+.market-chart-card > *, .market-mint-card > *{
+  position:relative;
+  z-index:1;
+}
+.market-chart-head{
+  margin-bottom:18px;
+}
+.market-product-icon{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:rgba(255,255,255,.80);
+  box-shadow:0 8px 22px rgba(13,18,28,.045);
+}
+.market-product-icon svg{width:23px;height:23px;}
+.market-title-line{
+  font-size:22px;
+  letter-spacing:.01em!important;
+}
+.market-status-pill{
+  padding:6px 10px;
+  font-size:12px;
+  background:rgba(255,255,255,.68);
+  border:1px solid rgba(0,0,0,.045);
+}
+.market-status-pill button{
+  padding:3px 7px;
+  background:rgba(0,0,0,.045);
+}
+.market-big-price{
+  font-size:58px;
+  font-weight:520;
+  letter-spacing:-.018em!important;
+}
+.market-delta{
+  margin-top:10px;
+  font-size:14px;
+  color:#0d7c4f;
+}
+.market-range-tabs{
+  margin-top:20px;
+  background:rgba(0,0,0,.045);
+  border:1px solid rgba(0,0,0,.035);
+  border-radius:10px;
+}
+.market-range-tabs button{
+  min-width:46px;
+  padding:8px 12px;
+  font-size:13px;
+}
+.market-range-tabs button.active{
+  border-radius:8px;
+}
+.market-chart-canvas{
+  height:246px;
+  margin-top:14px;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.06));
+}
+.market-main-chart path[stroke="#6f716f"]{
+  stroke:#262a2d;
+  stroke-width:2.7;
+}
+.market-mint-card{
+  min-height:468px;
+  padding:20px 22px 22px;
+  position:relative;
+  background:linear-gradient(180deg,rgba(241,241,239,.92),rgba(232,232,229,.82));
+}
+.swap-top-row{
+  margin-bottom:18px;
+}
+.swap-tabs{
+  background:rgba(0,0,0,.055);
+  border:1px solid rgba(0,0,0,.035);
+  border-radius:10px;
+}
+.swap-tabs button{
+  padding:8px 16px;
+  font-size:14px;
+}
+.swap-tabs button.active{
+  border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.055);
+}
+.chain-select{
+  min-width:166px;
+  padding:10px 13px;
+  border-radius:12px;
+  font-size:14px;
+  background:rgba(255,255,255,.56);
+  border:1px solid rgba(0,0,0,.045);
+}
+.swap-box{
+  border-radius:20px;
+  border:1px solid rgba(0,0,0,.055);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72), 0 12px 30px rgba(0,0,0,.025);
+}
+.swap-field{
+  padding:18px 20px 22px;
+}
+.swap-field label{
+  font-size:14px;
+  margin-bottom:12px;
+  color:#626760;
+}
+.swap-value-row strong{
+  font-size:30px;
+  font-weight:430;
+}
+.asset-select{
+  padding:7px 10px;
+  font-size:14px;
+  background:#f1f2ef;
+  border:1px solid rgba(0,0,0,.04);
+}
+.swap-divider button{
+  width:38px;
+  height:38px;
+  font-size:21px;
+  background:#fbfbfa;
+  box-shadow:0 6px 16px rgba(0,0,0,.055);
+}
+.signup-btn{
+  margin-top:18px;
+  padding:15px 18px;
+  border-radius:13px;
+  font-size:17px;
+  background:linear-gradient(180deg,#191919,#0f0f0f);
+  box-shadow:0 14px 26px rgba(0,0,0,.12);
+}
+.market-disclaimer{
+  margin-top:14px;
+  font-size:12.5px;
+  line-height:1.45;
+  color:#656961;
+}
+.available-strip{
+  margin-top:auto;
+  padding-top:14px;
+  font-size:14px;
+  border-top:1px solid rgba(0,0,0,.055);
+}
+@media (min-width:1500px){
+  #detail .wrap.detail-page{width:min(1500px,calc(100vw - 170px));}
+  .market-style-row{grid-template-columns:minmax(0,1.1fr) 440px !important;}
+}
+@media (max-width:1180px){
+  #detail .wrap.detail-page{width:min(100vw - 56px,1480px);}
+  .market-style-row{grid-template-columns:1fr !important;}
+  .market-chart-card,.market-mint-card{min-height:auto;}
+}
+@media (max-width:720px){
+  #detail .wrap.detail-page{width:min(100vw - 28px,1480px);}
+  .market-chart-card{padding:20px 16px 18px;}
+  .market-big-price{font-size:48px;}
+  .market-chart-canvas{height:240px;}
+  .market-mint-card{padding:18px;}
+  .swap-top-row{align-items:flex-start;}
+  .chain-select{min-width:auto;}
+}
+
+
+
+
+/* Statistics section — compact two-row key facts style */
+.statistics-row-full{display:block;}
+.financial-summary-card{
+  position:relative !important;
+  top:auto !important;
+  display:block !important;
+  width:100%;
+  margin:0 !important;
+  padding:0 !important;
+  border-radius:26px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid rgba(17,24,39,.08);
+  box-shadow:0 14px 32px rgba(15,23,42,.035);
+}
+.financial-summary-card > *{position:relative;z-index:1;}
+.statistics-head{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  padding:24px 36px 10px;
+  text-align:left;
+}
+.statistics-kicker{display:none;}
+.statistics-head h3{
+  margin:0;
+  font-size:24px;
+  line-height:1.1;
+  color:#0f1521;
+  font-weight:760;
+  letter-spacing:-.015em!important;
+}
+.statistics-head h3 span{display:none;}
+.statistics-subtitle{
+  margin:0;
+  color:#7b8492;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.02em;
+}
+.statistics-subtitle span{font-size:inherit !important;color:inherit !important;font-weight:inherit !important;}
+.statistics-body{padding:8px 34px 24px;}
+.keyfacts-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:0 56px;
+}
+.keyfacts-col{min-width:0;}
+.keyfact-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  align-items:start;
+  padding:9px 0;
+  border-bottom:1px solid rgba(15,23,42,.14);
+}
+.keyfact-row.emphasis{padding-top:6px;padding-bottom:12px;}
+.keyfact-label{color:#353942;font-size:14px;line-height:1.24;font-weight:500;}
+.keyfact-sub{margin-top:4px;color:#8a9098;font-size:11px;line-height:1.32;}
+.keyfact-value{text-align:right;color:#111827;}
+.keyfact-value strong{display:block;font-size:16px;line-height:1.15;font-weight:600;letter-spacing:-.01em;}
+.keyfact-row.emphasis .keyfact-value strong{font-size:18px;}
+.keyfact-change{display:block;margin-top:5px;color:#15764a;font-size:12px;font-weight:650;letter-spacing:-.01em;}
+.keyfact-live{display:inline-flex;align-items:center;gap:8px;}
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#111827;vertical-align:middle;}
+.keyfact-green strong,.keyfact-green{color:#15764a;}
+.risk-summary{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:nowrap;}
+.risk-badge{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(15,23,42,.11);background:#f7f7f6;color:#111827;font-size:12px;font-weight:700;}
+.risk-scale{display:flex;justify-content:flex-end;gap:7px;margin-top:10px;}
+.risk-summary .risk-node{width:24px;height:24px;font-size:10px;}
+.risk-node{width:22px;height:22px;border-radius:50%;border:1px solid rgba(15,23,42,.12);display:grid;place-items:center;color:#6b7280;font-size:10px;background:#fff;}
+.risk-node.active{background:#111827;border-color:#111827;color:#fff;}
+.keyfacts-footnote{margin-top:12px;padding-top:12px;border-top:1px solid rgba(15,23,42,.10);color:#7d8490;font-size:12px;line-height:1.5;}
+@media (max-width:1024px){
+  .statistics-head{padding:20px 24px 8px;gap:10px;flex-wrap:wrap;}
+  .statistics-head h3{font-size:22px;}
+  .statistics-subtitle{font-size:12px;}
+  .statistics-body{padding:8px 24px 22px;}
+  .keyfacts-grid{grid-template-columns:1fr;gap:0;}
+}
+@media (max-width:680px){
+  .statistics-head h3{font-size:30px;}
+  .keyfact-row{grid-template-columns:1fr;gap:8px;}
+  .keyfact-value,.risk-summary{text-align:left;justify-content:flex-start;}
+  .risk-scale{justify-content:flex-start;flex-wrap:wrap;}
+}
+
+
+
+
+
+/* Refined Documents page — compact institutional layout */
+#detail #detail-documents{
+  padding-top:22px;
+}
+#detail #detail-documents .docs-layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 300px !important;
+  gap:34px !important;
+  align-items:start !important;
+  max-width:1220px;
+  margin:0 auto;
+}
+#detail #detail-documents .doc-group{
+  margin:0 0 30px;
+  padding-top:0 !important;
+  border-top:0 !important;
+}
+#detail #detail-documents .doc-group h3{
+  font-size:15px;
+  line-height:1;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-weight:650;
+  color:#111827;
+  margin:0 0 10px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(0,0,0,.10);
+}
+#detail #detail-documents .doc-list{
+  display:grid;
+  gap:8px;
+}
+#detail #detail-documents .doc-item{
+  grid-template-columns:34px minmax(0,1fr) 138px 104px !important;
+  gap:14px !important;
+  align-items:center;
+  padding:12px 14px !important;
+  min-height:70px;
+  border:1px solid rgba(0,0,0,.075) !important;
+  border-radius:14px !important;
+  background:rgba(255,255,255,.72) !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.025);
+  transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+#detail #detail-documents .doc-item:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,0,0,.14) !important;
+  background:#fff !important;
+  box-shadow:0 14px 30px rgba(0,0,0,.04);
+}
+#detail #detail-documents .doc-ico{
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  background:#f3f7f4;
+  color:#108750;
+  font-size:14px;
+}
+#detail #detail-documents .doc-meta b{
+  font-size:14px;
+  line-height:1.2;
+  margin-bottom:3px;
+  letter-spacing:.01em !important;
+  color:#151b2d;
+}
+#detail #detail-documents .doc-meta span,
+#detail #detail-documents .doc-date,
+#detail #detail-documents .doc-size{
+  font-size:12px;
+  line-height:1.35;
+  color:#6b7280;
+}
+#detail #detail-documents .doc-date{
+  color:#4b5563;
+}
+#detail #detail-documents .doc-btn{
+  justify-self:end;
+  padding:9px 12px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:650;
+  border-color:rgba(0,0,0,.12);
+  color:#111827;
+  background:#fff;
+  white-space:nowrap;
+}
+#detail #detail-documents .doc-btn:hover{
+  border-color:#111;
+  background:#111;
+  color:#fff;
+}
+#detail #detail-documents .side-stack{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:14px !important;
+  margin-top:0 !important;
+}
+#detail #detail-documents .side-stack > .subcard,
+#detail #detail-documents .compliance-box{
+  border:1px solid rgba(0,0,0,.075) !important;
+  border-radius:18px !important;
+  background:rgba(255,255,255,.68) !important;
+  padding:18px !important;
+  box-shadow:0 10px 26px rgba(0,0,0,.026);
+}
+#detail #detail-documents .help-card .side-section-title,
+#detail #detail-documents .compliance-copy .side-section-title{
+  font-size:20px;
+  line-height:1.1;
+  letter-spacing:.01em !important;
+  margin:0 0 10px !important;
+  color:#111827;
+}
+#detail #detail-documents .help-card p,
+#detail #detail-documents .compliance-box p{
+  font-size:13px;
+  line-height:1.55;
+  color:#5f6b7d;
+  margin:0 0 10px;
+}
+#detail #detail-documents .support-box{
+  grid-template-columns:32px 1fr;
+  gap:10px;
+  padding:12px;
+  border-radius:14px;
+  margin:14px 0;
+  background:#fff;
+}
+#detail #detail-documents .support-icon{
+  width:32px;
+  height:32px;
+  font-size:14px;
+}
+#detail #detail-documents .support-box b{
+  font-size:13px;
+  line-height:1.2;
+}
+#detail #detail-documents .support-box span{
+  font-size:12px !important;
+  line-height:1.45;
+}
+#detail #detail-documents .secondary-btn{
+  padding:11px 14px;
+  border-radius:12px;
+  font-size:13px;
+  margin-top:4px;
+}
+#detail #detail-documents .compliance-box{
+  overflow:hidden;
+}
+#detail #detail-documents .compliance-visual{
+  height:78px;
+  border-radius:14px;
+  margin:-4px 0 14px;
+  background:linear-gradient(180deg,#f6f6f3,#ededE8);
+}
+#detail #detail-documents .compliance-visual:before{
+  width:82px;
+  height:58px;
+  top:12px;
+}
+#detail #detail-documents .compliance-visual:after{
+  width:26px;
+  height:31px;
+  right:26px;
+  bottom:14px;
+}
+#detail #detail-documents .compliance-copy{
+  padding:0 !important;
+}
+#detail #detail-documents .secure-note{
+  font-size:12px;
+  margin-top:12px !important;
+}
+#detail #detail-documents .footnote{
+  text-align:left;
+  padding:10px 2px 0;
+  font-size:11px;
+  line-height:1.45;
+  color:#8a94a6;
+}
+@media (max-width:1180px){
+  #detail #detail-documents .docs-layout{
+    grid-template-columns:1fr !important;
+    max-width:920px;
+  }
+  #detail #detail-documents .side-stack{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  #detail #detail-documents .footnote{
+    grid-column:1 / -1;
+  }
+}
+@media (max-width:760px){
+  #detail #detail-documents .doc-item{
+    grid-template-columns:30px minmax(0,1fr) !important;
+  }
+  #detail #detail-documents .doc-item > div:nth-child(3),
+  #detail #detail-documents .doc-btn{
+    grid-column:2;
+    justify-self:start;
+  }
+  #detail #detail-documents .side-stack{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+
+/* Interactive TradingView-style chart refinement */
+.market-chart-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:20px;
+}
+.market-chart-toolbar .market-range-tabs{margin-top:0;}
+.chart-zoom-controls{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  padding:4px;
+  border:1px solid rgba(0,0,0,.055);
+  background:rgba(255,255,255,.58);
+  border-radius:11px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.74);
+}
+.chart-zoom-controls button{
+  border:0;
+  background:transparent;
+  color:#555a61;
+  min-width:30px;
+  height:30px;
+  padding:0 9px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:13px;
+  transition:background .16s ease,color .16s ease,transform .16s ease;
+}
+.chart-zoom-controls button:hover{background:#fff;color:#111;transform:translateY(-1px);}
+.interactive-chart{
+  position:relative;
+  overflow:hidden;
+  cursor:crosshair;
+  user-select:none;
+  touch-action:none;
+}
+.interactive-chart.is-dragging{cursor:grabbing;}
+.chart-grid-line{stroke:rgba(0,0,0,.07);stroke-dasharray:4 6;vector-effect:non-scaling-stroke;}
+.chart-axis-text{font-size:12px;fill:#6d706d;letter-spacing:.02em;}
+.chart-line-path{transition:d .28s cubic-bezier(.2,.8,.2,1);vector-effect:non-scaling-stroke;}
+.chart-area-path{transition:d .28s cubic-bezier(.2,.8,.2,1);}
+.chart-crosshair-x,.chart-crosshair-y{
+  stroke:rgba(0,0,0,.28);
+  stroke-width:1;
+  stroke-dasharray:3 4;
+  opacity:0;
+  pointer-events:none;
+  vector-effect:non-scaling-stroke;
+}
+.chart-hover-dot{
+  fill:#111;
+  stroke:#fff;
+  stroke-width:3;
+  opacity:0;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.20));
+  pointer-events:none;
+  vector-effect:non-scaling-stroke;
+}
+.interactive-chart:hover .chart-crosshair-x,
+.interactive-chart:hover .chart-crosshair-y,
+.interactive-chart:hover .chart-hover-dot{opacity:1;}
+.chart-tooltip{
+  position:absolute;
+  left:0;
+  top:0;
+  min-width:108px;
+  padding:9px 11px;
+  border-radius:12px;
+  background:rgba(17,18,20,.92);
+  color:#fff;
+  box-shadow:0 14px 34px rgba(0,0,0,.18);
+  backdrop-filter:blur(10px);
+  pointer-events:none;
+  opacity:0;
+  transform:translate(-50%,-108%);
+  transition:opacity .12s ease;
+  z-index:3;
+}
+.interactive-chart:hover .chart-tooltip{opacity:1;}
+.chart-tooltip span{display:block;font-size:11px;color:rgba(255,255,255,.62);margin-bottom:4px;white-space:nowrap;}
+.chart-tooltip strong{display:block;font-size:16px;letter-spacing:.02em;}
+.chart-instruction{
+  position:absolute;
+  left:18px;
+  bottom:14px;
+  font-size:11px;
+  color:rgba(0,0,0,.38);
+  background:rgba(255,255,255,.58);
+  border:1px solid rgba(0,0,0,.04);
+  border-radius:999px;
+  padding:6px 10px;
+  pointer-events:none;
+}
+@media (max-width:900px){
+  .market-chart-toolbar{align-items:flex-start;flex-direction:column;}
+  .chart-zoom-controls{align-self:flex-start;}
+}
+
 </style>
 </head>
 <body>
@@ -3323,201 +4448,224 @@ button,input,textarea,select{font:inherit}
             </div>
           </div>
           <div class="subnav" id="detailSubnav">
-            <a class="active" data-detail-tab="overview">Overview</a>
-            <a data-detail-tab="trade">Trade</a>
+            <a class="active" data-detail-tab="trade">Trade</a>
             <a data-detail-tab="documents">Documents</a>
           </div>
 
-          <div class="tab-panel active" id="detail-overview">
-            <div class="overview-layout">
-              <div>
-                <div class="content-grid-3">
-                  <div class="subcard">
-                    <h4>Overview</h4>
-                    <div class="price-line"><div class="big-number" id="overviewPrice">$31.84</div><div class="delta" id="overviewDelta">▲ $0.62 (1.94%) 1D</div></div>
-                    <div class="timestamp" id="overviewTimestamp">As of May 16, 2026 4:00 PM ET</div>
-                    <div style="display:flex;justify-content:flex-end;margin-bottom:8px"><div class="mini-select"><button class="active">1D</button><button>1W</button><button>1M</button></div></div>
-                    <svg class="chart-area" viewBox="0 0 440 230">
-                      <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#15915f" stop-opacity="0.24"/><stop offset="100%" stop-color="#15915f" stop-opacity="0"/></linearGradient></defs>
-                      <path d="M16 175 C36 134,58 156,75 118 C100 68,128 82,150 118 C170 151,186 92,210 104 C238 119,250 73,270 82 C296 94,318 40,338 60 C355 79,372 66,396 32" stroke="#15915f" stroke-width="3" fill="none"/>
-                      <path d="M16 175 C36 134,58 156,75 118 C100 68,128 82,150 118 C170 151,186 92,210 104 C238 119,250 73,270 82 C296 94,318 40,338 60 C355 79,372 66,396 32 L396 208 L16 208 Z" fill="url(#g1)"/>
-                      <path d="M18 208 H402M18 157 H402M18 106 H402M18 55 H402" stroke="rgba(0,0,0,.07)"/>
-                      <text x="18" y="226" font-size="11" fill="#6b768c">May 15</text><text x="110" y="226" font-size="11" fill="#6b768c">10:00 AM</text><text x="208" y="226" font-size="11" fill="#6b768c">12:00 PM</text><text x="304" y="226" font-size="11" fill="#6b768c">2:00 PM</text><text x="382" y="226" font-size="11" fill="#6b768c">4:00 PM</text>
-                      <text x="408" y="55" font-size="11" fill="#6b768c">25.40</text><text x="408" y="106" font-size="11" fill="#6b768c">24.60</text><text x="408" y="157" font-size="11" fill="#6b768c">23.80</text><text x="408" y="208" font-size="11" fill="#6b768c">23.00</text>
-                    </svg>
-                  </div>
-                  <div class="subcard">
-                    <h4>Story</h4>
-                    <p class="sub" id="storyP1" style="font-size:14px;line-height:1.7;color:#3e4861">AI infrastructure is becoming the physical backbone of the next economic cycle. Power generation, grid equipment, cooling, compute supply chains, energy, and hard assets are becoming critical inputs for scalable intelligence.</p>
-                    <p class="sub" id="storyP2" style="font-size:14px;line-height:1.7;color:#3e4861;margin-top:12px">The AI Inflation Hedge ETP (AIH) packages this real-world infrastructure exposure into a transparent, thematic onchain product.</p>
-                    <div class="story-list">
-                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-macro"></use></svg></div><div><b>Demographic tailwinds</b><span>Aging populations driving sustained demand for better health.</span></div></div>
-                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-mechanism"></use></svg></div><div><b>Innovation breakthroughs</b><span>Biotech, genomics, and AI unlocking new treatment paradigms.</span></div></div>
-                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-allocation"></use></svg></div><div><b>Healthspan focus</b><span>Solutions that extend quality of life, not just years.</span></div></div>
-                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-risk"></use></svg></div><div><b>Global opportunity</b><span>Exposure across the full longevity value chain worldwide.</span></div></div>
+          <div class="tab-panel active" id="detail-trade">
+            <div class="etp-trade-shell">
+              <main class="etp-trade-left">
+                <section class="etp-row etp-row-top market-style-row">
+                  <div class="market-chart-card">
+                    <div class="market-chart-head">
+                      <div class="market-product-id">
+                        <div class="market-product-icon" id="tradeMiniIcon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai"></use></svg></div>
+                        <div>
+                          <div class="market-title-line"><span id="tradeProductName">AI Inflation Hedge ETP</span> <em id="tradeProductTicker">AIH</em></div>
+                          <div class="market-status-mobile">Market Closed</div>
+                        </div>
+                      </div>
+                      <div class="market-status-pill"><span></span> Market Closed <button>View Status Page</button></div>
+                    </div>
+
+                    <div class="market-price-row">
+                      <div>
+                        <div class="market-big-price" id="overviewPrice">$31.84</div>
+                        <div class="market-delta" id="overviewDelta">▲ $0.62 (1.94%) 1D</div>
+                      </div>
+                    </div>
+
+                    <div class="market-chart-toolbar">
+                      <div class="market-range-tabs" id="interactiveRangeTabs">
+                        <button class="active" data-range="1D">1D</button><button data-range="1W">1W</button><button data-range="1M">1M</button><button data-range="3M">3M</button><button data-range="1Y">1Y</button><button data-range="ALL">ALL</button>
+                      </div>
+                      <div class="chart-zoom-controls" aria-label="Chart zoom controls">
+                        <button type="button" data-zoom="out">−</button><button type="button" data-zoom="reset">Reset</button><button type="button" data-zoom="in">+</button>
+                      </div>
+                    </div>
+
+                    <div class="market-chart-canvas interactive-chart" id="interactiveTradeChart">
+                      <svg class="market-main-chart" id="tradeInteractiveSvg" viewBox="0 0 980 360" preserveAspectRatio="none" aria-label="Interactive price chart">
+                        <defs>
+                          <linearGradient id="tradePremiumFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#111" stop-opacity="0.12"/><stop offset="72%" stop-color="#111" stop-opacity="0.026"/><stop offset="100%" stop-color="#111" stop-opacity="0"/></linearGradient>
+                          <filter id="chartSoftShadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.08"/></filter>
+                        </defs>
+                        <g class="chart-grid-layer"></g>
+                        <path class="chart-area-path" fill="url(#tradePremiumFill)"></path>
+                        <path class="chart-line-path" fill="none" stroke="#171a1d" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" filter="url(#chartSoftShadow)"></path>
+                        <g class="chart-axis-layer"></g>
+                        <line class="chart-crosshair-x" x1="0" y1="44" x2="0" y2="310"></line>
+                        <line class="chart-crosshair-y" x1="40" y1="0" x2="920" y2="0"></line>
+                        <circle class="chart-hover-dot" r="5"></circle>
+                      </svg>
+                      <div class="chart-tooltip" id="tradeChartTooltip">
+                        <span class="tooltip-time">05/30 07:30</span>
+                        <strong>$31.84</strong>
+                      </div>
+                      <div class="chart-instruction">Hover for price · Wheel or pinch to zoom · Drag to pan</div>
                     </div>
                   </div>
-                  <div class="subcard">
-                    <h4 id="videoTitle">Watch the AI Infrastructure Story</h4>
+
+                  <aside class="swap-card market-mint-card">
+                    <div class="swap-top-row">
+                      <div class="swap-tabs"><button class="active">Buy</button><button>Sell</button></div>
+                      <button class="chain-select"><span class="chain-dot">◆</span> Ethereum <span>⌄</span></button>
+                    </div>
+
+                    <div class="swap-box">
+                      <div class="swap-field">
+                        <label>Spend</label>
+                        <div class="swap-value-row"><strong>0</strong><span class="asset-select"><span class="coin-dot">◎</span> USDC</span></div>
+                      </div>
+                      <div class="swap-divider"><button>↓</button></div>
+                      <div class="swap-field">
+                        <label>Receive at least</label>
+                        <div class="swap-value-row"><strong>0</strong><span class="asset-select etp-select"><span class="mini-product-dot" id="mintMiniIcon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai"></use></svg></span> <span id="mintTickerOut">AIH</span>⌄</span></div>
+                      </div>
+                    </div>
+
+                    <button class="review-btn signup-btn">Connect Wallet</button>
+                    <p class="market-disclaimer">Alloco ETP tokens are offered only where permitted. Availability, mint, redeem and transfer restrictions may apply based on jurisdiction, investor type and product documentation.</p>
+                    <div class="available-strip"><span>Also Available On</span><b>●  ◒  & 2 more</b><span>›</span></div>
+                  </aside>
+                </section>
+
+                <section class="etp-row etp-story-row">
+                  <div class="etp-panel story-panel">
+                    <div class="panel-title-icon"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-macro"></use></svg></div><h3>Story</h3></div>
+                    <p class="sub" id="storyP1">AI infrastructure is becoming the physical backbone of the next economic cycle. Power generation, grid equipment, cooling, compute supply chains, energy, and hard assets are becoming critical inputs for scalable intelligence.</p>
+                    <p class="sub" id="storyP2">The AI Inflation Hedge ETP (AIH) packages this real-world infrastructure exposure into a transparent, thematic onchain product.</p>
+                    <div class="story-list compact-story-list">
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-macro"></use></svg></div><div><b>Structural demand</b><span>Long-term demand from real economy bottlenecks and capital expenditure cycles.</span></div></div>
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-mechanism"></use></svg></div><div><b>Clear product rules</b><span>Transparent basket selection, NAV methodology, and rebalancing framework.</span></div></div>
+                      <div class="story-item"><div class="story-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-story-risk"></use></svg></div><div><b>Controlled access</b><span>Mint, redeem, and secondary trading through one onchain ETP interface.</span></div></div>
+                    </div>
+                  </div>
+                  <div class="etp-panel video-panel">
+                    <h3 id="videoTitle">Watch the AI Infrastructure Story</h3>
                     <div class="video-thumb">
                       <div class="play-btn"></div>
                       <div class="video-controls"><span>▶ 0:00 / 2:46</span><span>◴ ⊡</span></div>
                     </div>
-                    <p class="sub" style="font-size:14px;color:#4d5870"><span id="videoCaption">A 3 minute overview of the AI infrastructure cycle, capacity bottlenecks, and inflation-hedge investment thesis.</span></p>
+                    <p class="sub"><span id="videoCaption">A 3 minute overview of the AI infrastructure cycle, capacity bottlenecks, and inflation-hedge investment thesis.</span></p>
                   </div>
-                </div>
+                </section>
 
-                <div class="subcard ai-box">
-                  <div class="ai-header"><div class="spark"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai-spark"></use></svg></div><div><b style="display:block;color:#162036">Explore with AI</b><span id="aiSubtitle" style="font-size:13px;color:#71809a">Ask AI to better understand the AI infrastructure theme, market drivers, portfolio construction, and risks.</span></div></div>
-                  <div class="ask-row"><input id="aiAskInput" placeholder="Ask anything about AI infrastructure investing..." /><button class="send-btn">➜</button></div>
-                  <div class="chip-row">
-                    <span class="chip">◌ Why does longevity matter?</span>
-                    <span class="chip">⌘ Which companies drive this theme?</span>
-                    <span class="chip">⌁ What risks should I know?</span>
-                    <span class="chip">☰ How is the basket constructed?</span>
+
+                <section class="etp-row statistics-row-full">
+                  <div class="financial-summary-card">
+                    <div class="statistics-head">
+                      <h3>Key Facts</h3>
+                      <p class="statistics-subtitle" id="sideTitle">AI Inflation Hedge ETP <span>(AIH)</span></p>
+                    </div>
+
+                    <div class="statistics-body">
+                      <div class="keyfacts-grid" aria-label="Statistics overview">
+                        <div class="keyfacts-col">
+                          <div class="keyfact-row emphasis">
+                            <div>
+                              <div class="keyfact-label">Last Price</div>
+                              <div class="keyfact-sub">as of May 30, 2026</div>
+                            </div>
+                            <div class="keyfact-value">
+                              <strong id="sidePrice">$31.84</strong>
+                              <span class="keyfact-change" id="sideChange">▲ $0.62 (1.94%)</span>
+                            </div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">iNAV Real-time</div>
+                            <div class="keyfact-value"><strong class="keyfact-live"><span id="sideInav">$31.80</span><span class="live-dot"></span></strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">AUM</div>
+                            <div class="keyfact-value"><strong id="sideAum">$318.4M</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">24h Volume</div>
+                            <div class="keyfact-value"><strong id="sideVolume">$14.9M</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">1D Return</div>
+                            <div class="keyfact-value keyfact-green"><strong>2.33%</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">YTD Return</div>
+                            <div class="keyfact-value keyfact-green"><strong>12.84%</strong></div>
+                          </div>
+                        </div>
+                        <div class="keyfacts-col">
+                          <div class="keyfact-row emphasis">
+                            <div>
+                              <div class="keyfact-label">Inception Date</div>
+                              <div class="keyfact-sub">fund launch</div>
+                            </div>
+                            <div class="keyfact-value"><strong>Jan 15, 2024</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">Base Currency</div>
+                            <div class="keyfact-value"><strong>USD</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">Domicile</div>
+                            <div class="keyfact-value"><strong>Cayman Islands</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div class="keyfact-label">1Y Return</div>
+                            <div class="keyfact-value keyfact-green"><strong>28.67%</strong></div>
+                          </div>
+                          <div class="keyfact-row">
+                            <div>
+                              <div class="keyfact-label">Risk Indicator</div>
+                              <div class="keyfact-sub">theme ETP risk band</div>
+                            </div>
+                            <div class="risk-summary" aria-label="Risk scale">
+                              <div class="risk-node">1</div>
+                              <div class="risk-node">2</div>
+                              <div class="risk-node">3</div>
+                              <div class="risk-node">4</div>
+                              <div class="risk-node active">5</div>
+                              <div class="risk-node">6</div>
+                              <div class="risk-node">7</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="keyfacts-footnote">For informational purposes only. iNAV is indicative and may differ from end-of-day NAV. Performance shown above is simulated for product demonstration.</div>
+                    </div>
                   </div>
-                </div>
-
-                <div class="allocation-grid">
-                  <div class="subcard">
-                    <h4>Allocation Preview</h4>
-                    <div class="allocation-card">
-                      <div class="allocation-donut"></div>
-                      <div class="legend">
-                        <div class="legend-row"><span class="legend-dot" style="background:#058644"></span><span>Biotechnology</span><strong>45.0%</strong></div>
-                        <div class="legend-row"><span class="legend-dot" style="background:#2f9e60"></span><span>Pharmaceuticals</span><strong>25.0%</strong></div>
-                        <div class="legend-row"><span class="legend-dot" style="background:#85c594"></span><span>Health Tech</span><strong>15.0%</strong></div>
-                        <div class="legend-row"><span class="legend-dot" style="background:#84b5ff"></span><span>Diagnostics</span><strong>7.0%</strong></div>
-                        <div class="legend-row"><span class="legend-dot" style="background:#4f82f2"></span><span>Fixed Income</span><strong>8.0%</strong></div>
+                </section>
+                <section class="etp-row allocation-row-full">
+                  <div class="etp-panel allocation-panel">
+                    <h3>Allocation Detail</h3>
+                    <div class="allocation-grid">
+                      <div class="allocation-card">
+                        <div class="allocation-donut"></div>
+                        <div class="legend">
+                          <div class="legend-row"><span class="legend-dot" style="background:#058644"></span><span>Power & Grid Equipment</span><strong>32.0%</strong></div>
+                          <div class="legend-row"><span class="legend-dot" style="background:#2f9e60"></span><span>Cooling Infrastructure</span><strong>24.0%</strong></div>
+                          <div class="legend-row"><span class="legend-dot" style="background:#85c594"></span><span>Compute Supply Chain</span><strong>20.0%</strong></div>
+                          <div class="legend-row"><span class="legend-dot" style="background:#84b5ff"></span><span>Energy & Hard Assets</span><strong>16.0%</strong></div>
+                          <div class="legend-row"><span class="legend-dot" style="background:#4f82f2"></span><span>Cash Buffer</span><strong>8.0%</strong></div>
+                        </div>
+                      </div>
+                      <div>
+                        <table class="table holdings-table">
+                          <tr><th>Ticker</th><th>Company</th><th>Weight</th></tr>
+                          <tr><td><strong>VST</strong></td><td>Vistra Corp.</td><td>6.80%</td></tr>
+                          <tr><td><strong>ETN</strong></td><td>Eaton Corp.</td><td>6.12%</td></tr>
+                          <tr><td><strong>NVDA</strong></td><td>NVIDIA Corp.</td><td>5.70%</td></tr>
+                          <tr><td><strong>CEG</strong></td><td>Constellation Energy</td><td>5.24%</td></tr>
+                          <tr><td><strong>PWR</strong></td><td>Quanta Services</td><td>4.76%</td></tr>
+                          <tr><td><strong>COP</strong></td><td>ConocoPhillips</td><td>3.42%</td></tr>
+                        </table>
+                        <div class="allocation-footnote">Holdings are subject to change. Data as of May 16, 2026.</div>
                       </div>
                     </div>
-                    <div style="font-size:12px;color:#7a8394;margin-top:8px">Subject to change. Data as of May 16, 2026.</div>
                   </div>
-                  <div class="subcard">
-                    <h4>Top Holdings</h4>
-                    <table class="table holdings-table">
-                      <tr><th>Ticker</th><th>Company</th><th>Weight</th></tr>
-                      <tr><td><strong>LLY</strong></td><td>Eli Lilly & Co.</td><td>6.42%</td></tr>
-                      <tr><td><strong>REGN</strong></td><td>Regeneron Pharmaceuticals</td><td>5.28%</td></tr>
-                      <tr><td><strong>MRNA</strong></td><td>Moderna, Inc.</td><td>4.67%</td></tr>
-                      <tr><td><strong>CRSP</strong></td><td>CRISPR Therapeutics</td><td>3.91%</td></tr>
-                      <tr><td><strong>IBB</strong></td><td>iShares Biotechnology ETP</td><td>3.44%</td></tr>
-                      <tr><td><strong>IEF</strong></td><td>iShares 7-10 Year Treasury Bond ETP</td><td>2.78%</td></tr>
-                    </table>
-                    <div style="font-size:12px;color:#7a8394;margin-top:8px">Holdings subject to change.</div>
-                  </div>
-                </div>
-              </div>
+                </section>
+              </main>
 
-              <aside class="side-stack">
-                <div class="subcard">
-                  <h3 class="side-section-title" id="sideTitle">AI Inflation Hedge ETP <span style="font-size:16px;font-weight:500;color:#31415f">(AIH)</span></h3>
-                  <div class="info-list">
-                    <div class="info-item"><span>Current Price</span><b id="sidePrice">$31.84</b></div>
-                    <div class="info-item"><span>1D Change</span><b class="pos" id="sideChange">▲ $0.62 (1.94%)</b></div>
-                    <div class="info-item"><span>Official NAV (May 16, 2026)</span><b id="sideNav">$31.76</b></div>
-                    <div class="info-item"><span>iNAV (Real-time)</span><b id="sideInav">$31.80 ●</b></div>
-                    <div class="info-item"><span>AUM</span><b id="sideAum">$318.4M</b></div>
-                    <div class="info-item"><span>24h Volume</span><b id="sideVolume">$14.9M</b></div>
-                    <div class="info-item"><span>Expense Ratio</span><b id="sideExpense">0.72%</b></div>
-                    <div class="info-item"><span>Inception Date</span><b>Jan 15, 2024</b></div>
-                    <div class="info-item"><span>Domicile</span><b id="sideDomicile">Cayman Islands</b></div>
-                    <div class="info-item"><span>Base Currency</span><b>USD</b></div>
-                  </div>
-                </div>
-                <div class="subcard">
-                  <h3 class="side-section-title">Performance (NAV)</h3>
-                  <div class="perf-tabs"><span class="perf-tab">1D</span><span class="perf-tab">1W</span><span class="perf-tab">1M</span><span class="perf-tab">3M</span><span class="perf-tab">YTD</span><span class="perf-tab">1Y</span><span class="perf-tab">ALL</span></div>
-                  <div class="perf-grid">
-                    <div class="perf-box"><small>1D</small><b class="pos">▲ 2.33%</b></div>
-                    <div class="perf-box"><small>YTD</small><b class="pos">▲ 12.84%</b></div>
-                    <div class="perf-box"><small>1Y</small><b class="pos">▲ 28.67%</b></div>
-                  </div>
-                </div>
-                <div class="subcard">
-                  <h3 class="side-section-title">Risk Indicator</h3>
-                  <div class="risk-row"><div class="risk-dot">1</div><div class="risk-dot">2</div><div class="risk-dot">3</div><div class="risk-dot">4</div><div class="risk-dot active">5</div><div class="risk-dot">6</div><div class="risk-dot">7</div></div>
-                  <div style="display:flex;justify-content:space-between;font-size:12px;color:#7a8394"><span>Lower Risk</span><span>Higher Risk</span></div>
-                </div>
-                <div class="subcard help-card">
-                  <h3 class="side-section-title">Need help?</h3>
-                  <p>Our team is here to help with any questions about Longevity ETP (LONG).</p>
-                  <div class="support-box"><div class="support-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-support-home"></use></svg></div><div><b style="display:block;color:#172135;margin-bottom:6px">Contact Support</b><span style="display:block;color:#627089;font-size:14px">support@alloco.io</span><span style="display:block;color:#627089;font-size:14px">Mon-Fri, 9:00 AM – 6:00 PM ET</span></div></div>
-                  <button class="secondary-btn">Contact Support →</button>
-                </div>
-              </aside>
-            </div>
-          </div>
 
-          <div class="tab-panel" id="detail-trade">
-            <div class="trade-layout">
-              <div class="trade-main">
-                <div class="subcard">
-                  <div class="overview-tab-wrap">
-                    <div>
-                      <div class="price-line"><div class="big-number">$24.57</div><div class="delta">▲ $0.56 (2.33%) 1D</div></div>
-                      <div class="timestamp">As of May 16, 2026 4:00 PM ET</div>
-                    </div>
-                    <div class="chart-type"><button class="active">Line Chart</button><button>Candles</button></div>
-                  </div>
-                  <div class="segmented" style="margin-bottom:14px"><button class="active">1D</button><button>1W</button><button>1M</button><button>3M</button><button>YTD</button><button>1Y</button><button>ALL</button></div>
-                  <svg class="chart-area" viewBox="0 0 760 250" style="height:250px">
-                    <defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#15915f" stop-opacity="0.2"/><stop offset="100%" stop-color="#15915f" stop-opacity="0"/></linearGradient></defs>
-                    <path d="M26 188 C56 160,72 180,108 150 C160 106,182 92,225 105 C260 116,292 92,322 104 C365 122,410 172,438 138 C473 94,502 123,536 82 C578 32,602 76,645 42 C677 18,698 72,730 45" stroke="#15915f" stroke-width="3" fill="none"/>
-                    <path d="M26 188 C56 160,72 180,108 150 C160 106,182 92,225 105 C260 116,292 92,322 104 C365 122,410 172,438 138 C473 94,502 123,536 82 C578 32,602 76,645 42 C677 18,698 72,730 45 L730 228 L26 228 Z" fill="url(#g2)"/>
-                    <path d="M28 228 H734M28 194 H734M28 160 H734M28 126 H734M28 92 H734M28 58 H734" stroke="rgba(0,0,0,.08)" stroke-dasharray="2 4"/>
-                    <text x="28" y="246" font-size="11" fill="#6b768c">May 15</text><text x="188" y="246" font-size="11" fill="#6b768c">10:00 AM</text><text x="346" y="246" font-size="11" fill="#6b768c">12:00 PM</text><text x="500" y="246" font-size="11" fill="#6b768c">2:00 PM</text><text x="676" y="246" font-size="11" fill="#6b768c">4:00 PM</text>
-                    <text x="740" y="58" font-size="11" fill="#6b768c">25.40</text><text x="740" y="92" font-size="11" fill="#6b768c">25.00</text><text x="740" y="126" font-size="11" fill="#6b768c">24.60</text><text x="740" y="160" font-size="11" fill="#6b768c">24.20</text><text x="740" y="194" font-size="11" fill="#6b768c">23.80</text><text x="740" y="228" font-size="11" fill="#6b768c">23.40</text>
-                  </svg>
-                </div>
-                <div class="subcard" style="margin-top:16px">
-                  <div class="info-row" style="grid-template-columns:repeat(5,1fr)">
-                    <div class="metric"><span>Official NAV</span><b>$24.38</b><small style="color:#6c7790">As of May 16, 2026</small></div>
-                    <div class="metric"><span>iNAV</span><b>$24.44</b><small style="color:#6c7790">Real-time ●</small></div>
-                    <div class="metric"><span>Premium / Discount</span><b class="pos">+0.53%</b><small style="color:#6c7790">At Market Price</small></div>
-                    <div class="metric"><span>AUM</span><b>$245.7M</b><small style="color:#6c7790">As of May 16, 2026</small></div>
-                    <div class="metric"><span>24h Volume</span><b>$9.82M</b><small style="color:#6c7790">As of May 16, 2026</small></div>
-                  </div>
-                </div>
-                <div class="subcard" style="margin-top:16px">
-                  <h3 class="side-section-title" style="margin-bottom:18px">Route Explanation</h3>
-                  <div class="route-grid">
-                    <div class="route-step"><div class="route-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-route-source"></use></svg></div><div><b>Small Orders</b><span>Onchain Liquidity</span><span>Orders up to $50K are routed to onchain liquidity pools for best execution.</span></div></div>
-                    <div class="route-step"><div class="route-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-route-execute"></use></svg></div><div><b>Mid-size Orders</b><span>RFQ</span><span>Orders between $50K–$2M are routed to market makers via RFQ.</span></div></div>
-                    <div class="route-step"><div class="route-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-route-settle"></use></svg></div><div><b>Large Orders</b><span>Primary Market</span><span>Orders above $2M are routed to the Primary Market for creation or redemption.</span></div></div>
-                  </div>
-                  <div style="text-align:right;margin-top:16px"><span class="view-link">Learn more →</span></div>
-                </div>
-                <div class="footnote">Not FDIC Insured ・ No Bank Guarantee ・ May Lose Value</div>
-              </div>
-              <aside>
-                <div class="order-card">
-                  <div class="buy-sell"><button class="active">Buy</button><button>Sell</button></div>
-                  <div class="field">
-                    <label>You pay</label>
-                    <div class="money-input">
-                      <div class="money-box"><strong>$ 10,000</strong></div>
-                      <div class="select-box">🇺🇸 USD ⌄</div>
-                    </div>
-                  </div>
-                  <div class="swap-icon"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-swap"></use></svg></div>
-                  <div class="field">
-                    <label>Estimated shares</label>
-                    <div class="estimate-box"><b>≈ 407.17 LONG</b><div style="margin-top:8px;color:#627089;font-size:14px">1 LONG ≈ $24.57 ⓘ</div></div>
-                  </div>
-                  <div class="field">
-                    <label>Route (best execution)</label>
-                    <div class="route-box">🟢 Onchain Liquidity ⌄</div>
-                  </div>
-                  <div class="field">
-                    <label>Expected slippage</label>
-                    <div style="font-size:15px;color:#162036">0.08% – 0.15% ⓘ</div>
-                  </div>
-                  <button class="review-btn">Review Order</button>
-                  <button class="secondary-btn">Go to Primary Market</button>
-                  <div class="secure-note">🛡 <span>All trades are executed securely via Alloco.</span></div>
-                </div>
-              </aside>
             </div>
           </div>
 
@@ -4085,6 +5233,10 @@ function renderProduct(productKey) {
   const title = document.getElementById('detailTitle');
   if(title) title.innerHTML = `${p.title} <span class="ticker" id="detailTicker">(${p.ticker})</span>`;
   const icon = document.getElementById('detailIcon'); if(icon) icon.innerHTML = p.icon;
+  const tradeMiniIcon = document.getElementById('tradeMiniIcon'); if(tradeMiniIcon) tradeMiniIcon.innerHTML = p.icon;
+  const mintMiniIcon = document.getElementById('mintMiniIcon'); if(mintMiniIcon) mintMiniIcon.innerHTML = p.icon;
+  setText('tradeProductName', p.title);
+  setText('tradeProductTicker', p.ticker);
   setText('detailBadgeTheme', p.badge);
   setText('detailSummary', p.summary);
   setText('overviewPrice', p.price);
@@ -4103,6 +5255,7 @@ function renderProduct(productKey) {
   const sideTitle = document.getElementById('sideTitle');
   if(sideTitle) sideTitle.innerHTML = `${p.title} <span style="font-size:16px;font-weight:500;color:#31415f">(${p.ticker})</span>`;
   const aiAsk = document.getElementById('aiAskInput'); if(aiAsk) aiAsk.placeholder = p.ask;
+  setText('mintTickerOut', p.ticker);
   const caption = document.getElementById('videoCaption'); if(caption) caption.textContent = p.videoCaption;
   const allocationRows = document.querySelectorAll('.allocation-card .legend-row');
   p.allocations.forEach((row, i)=>{
@@ -4131,7 +5284,7 @@ function renderProduct(productKey) {
 const screens=[...document.querySelectorAll('.screen')];
 const navs=[...document.querySelectorAll('.nav a')];
 const toast=document.getElementById('toast');
-function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id)); if(id==='detail'){setDetailTab('overview');}}
+function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id)); if(id==='detail'){setDetailTab('trade');}}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-target]'); if(t){const p=t.dataset.product || t.closest('[data-product]')?.dataset.product; if(t.dataset.target==='detail' && p) renderProduct(p); go(t.dataset.target);}});
 function note(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
 const login=document.getElementById('login');
@@ -4152,10 +5305,10 @@ document.getElementById('continueBtn').onclick=()=>{login.classList.remove('show
 login.onclick=e=>{if(e.target===login)login.classList.remove('show')};
 const legacyPublishBtn=document.getElementById('publishBtn'); if(legacyPublishBtn){legacyPublishBtn.onclick=()=>note('ETP draft published');}
 const detailTabs=[...document.querySelectorAll('[data-detail-tab]')];
-const detailPanels={overview:document.getElementById('detail-overview'),trade:document.getElementById('detail-trade'),documents:document.getElementById('detail-documents')};
+const detailPanels={trade:document.getElementById('detail-trade'),documents:document.getElementById('detail-documents')};
 function setDetailTab(tab){detailTabs.forEach(el=>el.classList.toggle('active',el.dataset.detailTab===tab)); Object.entries(detailPanels).forEach(([k,p])=>p.classList.toggle('active',k===tab));}
 detailTabs.forEach(el=>el.addEventListener('click',()=>setDetailTab(el.dataset.detailTab)));
-[...document.querySelectorAll('.product[data-target="detail"], .view-link[data-target="detail"], .pill[data-target="detail"]')].forEach(el=>el.addEventListener('click',()=>setDetailTab('overview')));
+[...document.querySelectorAll('.product[data-target="detail"], .view-link[data-target="detail"], .pill[data-target="detail"]')].forEach(el=>el.addEventListener('click',()=>setDetailTab('trade')));
 [...document.querySelectorAll('.outline-btn'), ...document.querySelectorAll('.doc-btn')].forEach(el=>el.addEventListener('click',()=>note('Demo action')));
 [...document.querySelectorAll('.secondary-btn')].forEach(el=>el.addEventListener('click',()=>note('Support flow opened')));
 const reviewBtn=document.querySelector('.review-btn'); if(reviewBtn){reviewBtn.onclick=()=>note('Order review opened');}
@@ -4718,6 +5871,226 @@ function initFeaturedThemeInteractions(){
   });
 }
 initFeaturedThemeInteractions();
+
+
+
+function initInteractiveTradeChart(){
+  const root = document.getElementById('interactiveTradeChart');
+  const svg = document.getElementById('tradeInteractiveSvg');
+  const tabs = document.getElementById('interactiveRangeTabs');
+  const tooltip = document.getElementById('tradeChartTooltip');
+  if(!root || !svg || !tabs || !tooltip) return;
+
+  const W = 980, H = 360;
+  const pad = {l:40, r:66, t:46, b:48};
+  const plotW = W - pad.l - pad.r;
+  const plotH = H - pad.t - pad.b;
+  const gridLayer = svg.querySelector('.chart-grid-layer');
+  const axisLayer = svg.querySelector('.chart-axis-layer');
+  const linePath = svg.querySelector('.chart-line-path');
+  const areaPath = svg.querySelector('.chart-area-path');
+  const cx = svg.querySelector('.chart-crosshair-x');
+  const cy = svg.querySelector('.chart-crosshair-y');
+  const dot = svg.querySelector('.chart-hover-dot');
+
+  const ranges = {
+    '1D': {n:96, start:31.10, drift:.77, noise:.035, labelStep:19, labels:['05/29 08:30','05/29 14:00','05/29 20:00','05/30 02:00','05/30 07:30']},
+    '1W': {n:120, start:29.72, drift:2.12, noise:.065, labelStep:24, labels:['Mon','Tue','Wed','Thu','Fri']},
+    '1M': {n:140, start:27.84, drift:3.95, noise:.085, labelStep:28, labels:['May 01','May 08','May 15','May 22','May 30']},
+    '3M': {n:156, start:24.62, drift:7.30, noise:.105, labelStep:31, labels:['Mar','Apr','May','Jun','Now']},
+    '1Y': {n:180, start:19.88, drift:11.82, noise:.15, labelStep:36, labels:['Jun','Sep','Dec','Mar','Now']},
+    'ALL': {n:210, start:15.40, drift:16.12, noise:.18, labelStep:42, labels:['2024','Q3 24','2025','Q3 25','2026']}
+  };
+
+  const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+  function seededNoise(i, seed){
+    const a = Math.sin(i * 12.9898 + seed * 78.233) * 43758.5453;
+    return (a - Math.floor(a)) - .5;
+  }
+  function makeData(range){
+    const cfg = ranges[range] || ranges['1D'];
+    const seed = range.split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+    let data=[];
+    let value = cfg.start;
+    for(let i=0;i<cfg.n;i++){
+      const t = i/(cfg.n-1);
+      const wave = Math.sin(t*Math.PI*3.2+seed*.01)*0.12 + Math.sin(t*Math.PI*9.4)*0.045;
+      const pulse = Math.max(0, Math.sin((t-.58)*Math.PI*3))*0.25;
+      value = cfg.start + cfg.drift*t + wave + pulse + seededNoise(i,seed)*cfg.noise;
+      data.push({i, value});
+    }
+    data[data.length-1].value = 31.84;
+    return data;
+  }
+
+  let currentRange='1D';
+  let data = makeData(currentRange);
+  let viewStart = 0;
+  let viewEnd = data.length - 1;
+  let isDragging = false;
+  let dragX = 0;
+  let dragStart = 0;
+  let dragEnd = 0;
+
+  function visibleData(){
+    const a = Math.floor(viewStart), b = Math.ceil(viewEnd);
+    return data.slice(a,b+1);
+  }
+  function getScales(){
+    const vis = visibleData();
+    let min = Math.min(...vis.map(d=>d.value));
+    let max = Math.max(...vis.map(d=>d.value));
+    const gap = Math.max(.16,(max-min)*.16);
+    min -= gap; max += gap;
+    const x = idx => pad.l + ((idx-viewStart)/(viewEnd-viewStart))*plotW;
+    const y = val => pad.t + (1-(val-min)/(max-min))*plotH;
+    return {min,max,x,y};
+  }
+  function smoothPath(points){
+    if(points.length<2) return '';
+    let d = `M${points[0][0].toFixed(2)} ${points[0][1].toFixed(2)}`;
+    for(let i=0;i<points.length-1;i++){
+      const p0 = points[Math.max(0,i-1)], p1 = points[i], p2 = points[i+1], p3 = points[Math.min(points.length-1,i+2)];
+      const cp1x = p1[0] + (p2[0]-p0[0]) / 6;
+      const cp1y = p1[1] + (p2[1]-p0[1]) / 6;
+      const cp2x = p2[0] - (p3[0]-p1[0]) / 6;
+      const cp2y = p2[1] - (p3[1]-p1[1]) / 6;
+      d += ` C${cp1x.toFixed(2)} ${cp1y.toFixed(2)},${cp2x.toFixed(2)} ${cp2y.toFixed(2)},${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`;
+    }
+    return d;
+  }
+  function render(){
+    const scale = getScales();
+    const vis = visibleData();
+    const pts = vis.map(d=>[scale.x(d.i), scale.y(d.value)]);
+    const line = smoothPath(pts);
+    linePath.setAttribute('d', line);
+    if(pts.length){
+      areaPath.setAttribute('d', `${line} L${pts[pts.length-1][0].toFixed(2)} ${pad.t+plotH} L${pts[0][0].toFixed(2)} ${pad.t+plotH} Z`);
+    }
+
+    const yTicks = 5;
+    gridLayer.innerHTML = '';
+    axisLayer.innerHTML = '';
+    for(let i=0;i<yTicks;i++){
+      const y = pad.t + i*(plotH/(yTicks-1));
+      const val = scale.max - i*((scale.max-scale.min)/(yTicks-1));
+      gridLayer.insertAdjacentHTML('beforeend', `<line class="chart-grid-line" x1="${pad.l}" y1="${y}" x2="${pad.l+plotW}" y2="${y}"/>`);
+      axisLayer.insertAdjacentHTML('beforeend', `<text class="chart-axis-text" x="${pad.l+plotW+18}" y="${y+4}">${val.toFixed(2)}</text>`);
+    }
+    const labels = ranges[currentRange].labels;
+    labels.forEach((label,i)=>{
+      const x = pad.l + i*(plotW/(labels.length-1));
+      axisLayer.insertAdjacentHTML('beforeend', `<text class="chart-axis-text" x="${x}" y="${H-13}" text-anchor="${i===0?'start':i===labels.length-1?'end':'middle'}">${label}</text>`);
+    });
+
+    const last = data[data.length-1].value;
+    const first = data[0].value;
+    const change = last-first;
+    const pct = change/first*100;
+    const priceEl = document.getElementById('overviewPrice');
+    const deltaEl = document.getElementById('overviewDelta');
+    if(priceEl) priceEl.textContent = `$${last.toFixed(2)}`;
+    if(deltaEl) deltaEl.textContent = `▲ $${Math.abs(change).toFixed(2)} (${pct.toFixed(2)}%) ${currentRange}`;
+  }
+  function showHover(clientX){
+    const rect = root.getBoundingClientRect();
+    const px = clamp(clientX - rect.left, 0, rect.width);
+    const svgX = px / rect.width * W;
+    const rel = clamp((svgX - pad.l) / plotW, 0, 1);
+    const idx = Math.round(viewStart + rel*(viewEnd-viewStart));
+    const d = data[clamp(idx,0,data.length-1)];
+    const scale = getScales();
+    const x = scale.x(d.i), y = scale.y(d.value);
+    cx.setAttribute('x1', x); cx.setAttribute('x2', x);
+    cy.setAttribute('y1', y); cy.setAttribute('y2', y);
+    dot.setAttribute('cx', x); dot.setAttribute('cy', y);
+    const displayX = (x / W) * rect.width;
+    const displayY = (y / H) * rect.height;
+    tooltip.style.left = `${displayX}px`;
+    tooltip.style.top = `${Math.max(48,displayY-8)}px`;
+    tooltip.querySelector('.tooltip-time').textContent = makeTimeLabel(d.i);
+    tooltip.querySelector('strong').textContent = `$${d.value.toFixed(2)}`;
+  }
+  function makeTimeLabel(i){
+    if(currentRange==='1D'){
+      const mins = 8*60+30 + Math.round(i*15);
+      const day = mins >= 24*60 ? '05/30' : '05/29';
+      const m = mins % (24*60);
+      return `${day} ${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
+    }
+    if(currentRange==='1W') return `Day ${Math.floor(i/24)+1}, ${String(9+i%8).padStart(2,'0')}:00`;
+    if(currentRange==='1M') return `May ${String(1+Math.floor(i/5)).padStart(2,'0')}`;
+    if(currentRange==='3M') return `Session ${i+1}`;
+    if(currentRange==='1Y') return `Month ${Math.max(1,Math.round(i/15))}`;
+    return `Point ${i+1}`;
+  }
+  function zoom(factor, center=.5){
+    const span = viewEnd - viewStart;
+    const minSpan = Math.max(18, data.length*.12);
+    const maxSpan = data.length - 1;
+    let nextSpan = clamp(span * factor, minSpan, maxSpan);
+    const centerIdx = viewStart + span*center;
+    viewStart = clamp(centerIdx - nextSpan*center, 0, data.length-1-nextSpan);
+    viewEnd = viewStart + nextSpan;
+    render();
+  }
+  function resetView(){
+    viewStart = 0; viewEnd = data.length - 1; render();
+  }
+
+  tabs.addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-range]');
+    if(!btn) return;
+    currentRange = btn.dataset.range;
+    tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b===btn));
+    data = makeData(currentRange);
+    resetView();
+    showHover(root.getBoundingClientRect().left + root.getBoundingClientRect().width*.86);
+  });
+
+  root.addEventListener('mousemove', e=>{
+    if(isDragging){
+      const rect = root.getBoundingClientRect();
+      const dx = (e.clientX - dragX) / rect.width * (dragEnd-dragStart);
+      const span = dragEnd-dragStart;
+      viewStart = clamp(dragStart - dx, 0, data.length-1-span);
+      viewEnd = viewStart + span;
+      render();
+    }
+    showHover(e.clientX);
+  });
+  root.addEventListener('mouseenter', e=>showHover(e.clientX));
+  root.addEventListener('mouseleave', ()=>{ isDragging=false; root.classList.remove('is-dragging'); });
+  root.addEventListener('mousedown', e=>{
+    isDragging=true; root.classList.add('is-dragging');
+    dragX=e.clientX; dragStart=viewStart; dragEnd=viewEnd;
+  });
+  window.addEventListener('mouseup', ()=>{ isDragging=false; root.classList.remove('is-dragging'); });
+  root.addEventListener('wheel', e=>{
+    e.preventDefault();
+    const rect = root.getBoundingClientRect();
+    const center = clamp((e.clientX-rect.left)/rect.width,0,1);
+    zoom(e.deltaY < 0 ? .82 : 1.22, center);
+    showHover(e.clientX);
+  }, {passive:false});
+
+  document.querySelectorAll('.chart-zoom-controls button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const type = btn.dataset.zoom;
+      if(type==='in') zoom(.78);
+      if(type==='out') zoom(1.25);
+      if(type==='reset') resetView();
+    });
+  });
+
+  render();
+  requestAnimationFrame(()=>{
+    const rect = root.getBoundingClientRect();
+    showHover(rect.left + rect.width*.86);
+  });
+}
+initInteractiveTradeChart();
 
 </script>
 </body>
