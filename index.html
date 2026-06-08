@@ -377,13 +377,13 @@
           <div class="asset-filter-row">
             <div class="asset-filters" id="assetFilters">
               <button class="asset-chip active" data-filter="all">All assets</button>
-              <button class="asset-chip" data-filter="healthcare">Healthcare</button>
-              <button class="asset-chip" data-filter="infrastructure">Infrastructure</button>
-              <button class="asset-chip" data-filter="yield">Yield</button>
+              <button class="asset-chip" data-filter="congress">Congress Trades</button>
+              <button class="asset-chip" data-filter="value">Value Discipline</button>
+              <button class="asset-chip" data-filter="ai">AI</button>
             </div>
             <div class="asset-meta">
               <span class="asset-meta-pill">Curated themes</span>
-              <span class="asset-count" id="assetCount">3 assets</span>
+              <span class="asset-count" id="assetCount">4 assets</span>
             </div>
           </div>
         </div>
@@ -395,72 +395,81 @@
                 <th><button class="sort-btn" data-sort="product">Product <span>↕</span></button></th>
                 <th><button class="sort-btn" data-sort="theme">Theme <span>↕</span></button></th>
                 <th><button class="sort-btn" data-sort="price">Market Price <span>↕</span></button></th>
-                <th><button class="sort-btn" data-sort="trend">7d Trend <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="alltime">All Time <span>↕</span></button></th>
+                <th><button class="sort-btn" data-sort="return3m">3M Return <span>↕</span></button></th>
                 <th><button class="sort-btn" data-sort="risk">Risk Level <span>↕</span></button></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr class="asset-row" data-target="detail" data-product="inflation" data-name="Pelosi ETP" data-theme="Political Alpha" data-price="48.76" data-volume="21.7" data-trend="88" data-risk="5" data-category="infrastructure">
+              <tr class="asset-row" data-target="detail" data-product="duan" data-name="Duan Yongping ETP" data-theme="Value Discipline" data-price="36.42" data-alltime="72.40" data-return3m="18.60" data-risk="3" data-category="value">
+                <td>
+                  <div class="asset-product-cell">
+                    <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg></div>
+                    <div>
+                      <strong>Duan Yongping ETP</strong>
+                      <small>DYP · Value investing with discipline, patience, and brand conviction.</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="asset-theme-tag">Value Discipline</span></td>
+                <td><div class="asset-price-cell"><strong>$36.42</strong></div></td>
+                <td><span class="trend-pill up">+72.40%</span></td>
+                <td><span class="trend-pill up">+18.60%</span></td>
+                <td><span class="risk-pill risk-middle">Middle</span></td>
+                <td><button class="view-btn" data-target="detail" data-product="duan">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
+              </tr>
+
+              <tr class="asset-row" data-target="detail" data-product="inflation" data-name="Pelosi ETP" data-theme="Congress Trades" data-price="48.76" data-alltime="96.20" data-return3m="24.80" data-risk="5" data-category="congress">
                 <td>
                   <div class="asset-product-cell">
                     <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-watch"></use></svg></div>
                     <div>
                       <strong>Pelosi ETP</strong>
-                      <small>PELOSI · Congressional trades and policy-linked stocks</small>
+                      <small>PLSI · Political signal investing through public disclosure data.</small>
                     </div>
                   </div>
                 </td>
-                <td><span class="asset-theme-tag">Political Alpha</span></td>
-                <td>
-                  <div class="asset-price-cell">
-                    <strong>$48.76</strong>
-                    <span class="pos">+2.35%</span>
-                  </div>
-                </td>
-                <td><span class="trend-pill up">↗ Strong</span></td>
+                <td><span class="asset-theme-tag">Congress Trades</span></td>
+                <td><div class="asset-price-cell"><strong>$48.76</strong></div></td>
+                <td><span class="trend-pill up">+96.20%</span></td>
+                <td><span class="trend-pill up">+21.40%</span></td>
                 <td><span class="risk-pill risk-high">High</span></td>
                 <td><button class="view-btn" data-target="detail" data-product="inflation">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
               </tr>
-              <tr class="asset-row" data-target="detail" data-product="arb" data-name="Jim Simons ETP" data-theme="Quantitative Alpha" data-price="29.17" data-volume="12.8" data-trend="79" data-risk="3" data-category="infrastructure">
+
+              <tr class="asset-row" data-target="detail" data-product="leopold" data-name="Leopold ETP" data-theme="AI" data-price="22.18" data-alltime="118.70" data-return3m="31.90" data-risk="5" data-category="ai">
                 <td>
                   <div class="asset-product-cell">
-                    <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg></div>
+                    <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-ai-infra"></use></svg></div>
                     <div>
-                      <strong>Jim Simons ETP</strong>
-                      <small>JSIM · Systematic Equity Signals</small>
+                      <strong>Leopold ETP</strong>
+                      <small>AGI · Investing in the infrastructure behind the AGI race.</small>
                     </div>
                   </div>
                 </td>
-                <td><span class="asset-theme-tag">Quantitative Alpha</span></td>
-                <td>
-                  <div class="asset-price-cell">
-                    <strong>$29.17</strong>
-                    <span class="pos">+1.02%</span>
-                  </div>
-                </td>
-                <td><span class="trend-pill up">↗ Positive</span></td>
-                <td><span class="risk-pill risk-middle">Middle</span></td>
-                <td><button class="view-btn" data-target="detail" data-product="arb">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
+                <td><span class="asset-theme-tag">AI</span></td>
+                <td><div class="asset-price-cell"><strong>$22.18</strong></div></td>
+                <td><span class="trend-pill up">+118.70%</span></td>
+                <td><span class="trend-pill up">+31.90%</span></td>
+                <td><span class="risk-pill risk-high">High</span></td>
+                <td><button class="view-btn" data-target="detail" data-product="leopold">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
               </tr>
-              <tr class="asset-row" data-target="detail" data-product="stable" data-name="Stable Yield ETP" data-theme="Market Neutral Yield" data-price="1.08" data-volume="33.4" data-trend="58" data-risk="1" data-category="yield">
+
+              <tr class="asset-row" data-target="detail" data-product="stable" data-name="Stable Yield ETP" data-theme="Stable Yield" data-price="12.84" data-alltime="16.80" data-return3m="4.20" data-risk="1" data-category="yield">
                 <td>
                   <div class="asset-product-cell">
                     <div class="asset-avatar"><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-stable"></use></svg></div>
                     <div>
                       <strong>Stable Yield ETP</strong>
-                      <small>SYD · Funding, Basis, and Liquidity Premium</small>
+                      <small>SYD · Market-neutral yield from liquidity and funding markets.</small>
                     </div>
                   </div>
                 </td>
-                <td><span class="asset-theme-tag">Market Neutral Yield</span></td>
-                <td>
-                  <div class="asset-price-cell">
-                    <strong>$1.04</strong>
-                    <span class="pos">+0.21%</span>
-                  </div>
-                </td>
-                <td><span class="trend-pill flat">→ Stable</span></td>
+                <td><span class="asset-theme-tag">Stable Yield</span></td>
+                <td><div class="asset-price-cell"><strong>$12.84</strong></div></td>
+                <td><span class="trend-pill stable">+16.80%</span></td>
+                <td><span class="trend-pill stable">+4.20%</span></td>
                 <td><span class="risk-pill risk-low">Low</span></td>
                 <td><button class="view-btn" data-target="detail" data-product="stable">View <span><svg class="al-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></span></button></td>
               </tr>

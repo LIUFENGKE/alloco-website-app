@@ -202,6 +202,48 @@ productData.stable.heroArt = "assets/image_293102eb11ac.png";
 productData.duan.heroArt = "assets/image_a8e67386fe0b.png";
 productData.leopold.heroArt = "assets/image_7174578cea78.png";
 
+
+/* Product detail overrides for current Top Performers list */
+productData.inflation.ticker = "PLSI";
+productData.inflation.badge = "Congress Trades";
+productData.inflation.riskLabel = "High Risk";
+productData.inflation.riskClass = "risk-high";
+productData.inflation.summary = "Political signal investing through public disclosure data.";
+productData.inflation.price = "$48.76";
+productData.inflation.delta = "▲ $1.12 (2.35%) 1D";
+productData.inflation.sideChange = "▲ $1.12 (2.35%)";
+productData.inflation.aum = "$245.8M";
+
+productData.duan.ticker = "DYP";
+productData.duan.badge = "Value Discipline";
+productData.duan.riskLabel = "Middle Risk";
+productData.duan.riskClass = "risk-middle";
+productData.duan.summary = "Value investing with discipline, patience, and brand conviction.";
+productData.duan.price = "$36.42";
+productData.duan.delta = "▲ $0.84 (2.36%) 1D";
+productData.duan.sideChange = "▲ $0.84 (2.36%)";
+productData.duan.aum = "$156.2M";
+
+productData.leopold.ticker = "AGI";
+productData.leopold.badge = "AI";
+productData.leopold.riskLabel = "High Risk";
+productData.leopold.riskClass = "risk-high";
+productData.leopold.summary = "Investing in the infrastructure behind the AGI race.";
+productData.leopold.price = "$22.18";
+productData.leopold.delta = "▲ $0.53 (2.45%) 1D";
+productData.leopold.sideChange = "▲ $0.53 (2.45%)";
+productData.leopold.aum = "$98.7M";
+
+productData.stable.ticker = "SYD";
+productData.stable.badge = "Stable Yield";
+productData.stable.riskLabel = "Low Risk";
+productData.stable.riskClass = "risk-low";
+productData.stable.summary = "Market-neutral yield from liquidity and funding markets.";
+productData.stable.price = "$12.84";
+productData.stable.delta = "▲ $0.08 (0.63%) 1D";
+productData.stable.sideChange = "▲ $0.08 (0.63%)";
+productData.stable.aum = "$224.6M";
+
 const screens=[...document.querySelectorAll('.screen')];
 const navs=[...document.querySelectorAll('.nav a')];
 const toast=document.getElementById('toast');
@@ -307,7 +349,9 @@ function sortAssetRows(key){
     else if(key==='theme'){ av=a.dataset.theme.toLowerCase(); bv=b.dataset.theme.toLowerCase(); }
     else if(key==='price'){ av=parseFloat(a.dataset.price); bv=parseFloat(b.dataset.price); }
     else if(key==='volume'){ av=parseFloat(a.dataset.volume); bv=parseFloat(b.dataset.volume); }
-    else if(key==='trend'){ av=parseFloat(a.dataset.trend); bv=parseFloat(b.dataset.trend); }
+    else if(key==='alltime'){ av=parseFloat(a.dataset.alltime); bv=parseFloat(b.dataset.alltime); }
+    else if(key==='return3m'){ av=parseFloat(a.dataset.return3m); bv=parseFloat(b.dataset.return3m); }
+    else if(key==='trend'){ av=parseFloat(a.dataset.trend || a.dataset.return3m || 0); bv=parseFloat(b.dataset.trend || b.dataset.return3m || 0); }
     else if(key==='risk'){ av=parseFloat(a.dataset.risk); bv=parseFloat(b.dataset.risk); }
     else { av=0; bv=0; }
     if(typeof av === 'string') return av.localeCompare(bv) * sortState.dir;

@@ -5608,3 +5608,41 @@ button,input,textarea,select{font:inherit}
   .compact-fact strong{font-size:26px !important;}
   .allocation-panel .legend{grid-template-columns:1fr !important;}
 }
+
+
+/* Top Performers table update */
+.asset-meta .asset-count{
+  white-space:nowrap;
+}
+.asset-table{
+  min-width:1180px !important;
+}
+.asset-table thead th:nth-child(4),
+.asset-table thead th:nth-child(5){
+  min-width:130px;
+}
+.asset-table tbody td{
+  padding-top:22px !important;
+  padding-bottom:22px !important;
+}
+.asset-product-cell small{
+  max-width:420px;
+  white-space:normal !important;
+  line-height:1.35 !important;
+  text-transform:none !important;
+  letter-spacing:.02em !important;
+}
+.trend-pill.stable{
+  background:rgba(0,0,0,.035);
+  color:#30332f;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+
+/* Top Performers: market price only */
+.asset-price-cell{
+  gap:0 !important;
+}
+.asset-price-cell strong{
+  font-weight:520 !important;
+}
