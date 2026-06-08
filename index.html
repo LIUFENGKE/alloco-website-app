@@ -4032,6 +4032,538 @@ button,input,textarea,select{font:inherit}
   }
 }
 
+
+
+/* Black & white question-by-question ETP Launcher */
+#create{background:#080808;color:#f4f4f0;}
+#create.screen{overflow:auto;}
+#create .launcher-wizard-page{min-height:calc(100vh - 78px);background:radial-gradient(circle at 82% 12%,rgba(255,255,255,.08),transparent 24%),linear-gradient(180deg,#080808 0%,#111 100%);padding:56px 56px 76px;}
+#create .launcher-wizard-shell{width:min(1680px,100%);margin:0 auto;display:grid;grid-template-columns:78px minmax(0,1fr) 420px;gap:38px;align-items:start;}
+#create .wizard-progress-rail{position:sticky;top:112px;height:620px;display:flex;flex-direction:column;align-items:center;gap:20px;color:#8f8f8a;}
+#create .wizard-progress-top{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;gap:12px;align-items:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;}
+#create .wizard-progress-top span{color:#fff;}
+#create .wizard-progress-track{width:1px;flex:1;background:rgba(255,255,255,.16);position:relative;overflow:hidden;}
+#create .wizard-progress-track i{position:absolute;left:0;top:0;width:100%;height:0%;background:#fff;transition:height .35s ease;}
+#create .wizard-main{min-height:720px;display:flex;flex-direction:column;justify-content:center;position:relative;}
+#create .wizard-panel{display:none;max-width:980px;animation:wizardFade .28s ease;}
+#create .wizard-panel.active{display:block;}
+@keyframes wizardFade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+#create .wizard-number{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border-radius:9px;background:#fff;color:#111;font-size:13px;font-weight:700;margin-bottom:30px;padding:0 10px;}
+#create .wizard-panel h1,#create .wizard-panel h2{font-family:Inter,ui-sans-serif,system-ui,sans-serif;margin:0 0 24px;color:#f8f8f5;font-weight:420;letter-spacing:.03em!important;line-height:1.18;max-width:1050px;}
+#create .wizard-panel h1{font-size:72px;}
+#create .wizard-panel h2{font-size:54px;}
+#create .wizard-lead,#create .wizard-copy{font-size:22px;line-height:1.65;color:#bdbdb7;max-width:920px;margin:0 0 54px;font-style:italic;letter-spacing:.02em;}
+#create .wizard-start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:840px;margin-bottom:58px;}
+#create .wizard-start-grid div{border-top:1px solid rgba(255,255,255,.22);padding-top:18px;}
+#create .wizard-start-grid span{display:block;color:#7d7d78;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px;}
+#create .wizard-start-grid b{font-size:22px;font-weight:420;color:#fff;}
+#create textarea,#create input,#create select{background:transparent!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.32)!important;border-radius:0!important;color:#fff!important;outline:none!important;box-shadow:none!important;padding:18px 0!important;font-size:38px;letter-spacing:.02em;width:100%;}
+#create textarea{min-height:180px;resize:vertical;line-height:1.35;}
+#create textarea::placeholder,#create input::placeholder{color:rgba(255,255,255,.34);}
+#create select{appearance:none;color:#f0f0ea!important;background-image:linear-gradient(45deg, transparent 50%, #fff 50%),linear-gradient(135deg, #fff 50%, transparent 50%)!important;background-position:calc(100% - 24px) 56%,calc(100% - 14px) 56%!important;background-size:10px 10px,10px 10px!important;background-repeat:no-repeat!important;padding-right:52px!important;}
+#create select option{background:#111;color:#fff;}
+#create .wizard-field-note{color:#777;display:flex;justify-content:flex-end;font-size:13px;margin-top:10px;}
+#create .wizard-two-fields{display:grid;grid-template-columns:1fr 260px;gap:54px;max-width:960px;}
+#create label span{display:block;color:#8e8e88;font-size:12px;text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px;}
+#create .wizard-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:16px;max-width:760px;}
+#create .theme-choice{background:transparent;border:1px solid rgba(255,255,255,.24);color:#cfcfc9;border-radius:999px;padding:20px 22px;font-size:17px;cursor:pointer;transition:.18s;text-align:left;}
+#create .theme-choice:hover,#create .theme-choice.active{background:#fff;color:#111;border-color:#fff;transform:translateY(-1px);}
+#create .wizard-asset-builder{display:grid;grid-template-columns:repeat(2,minmax(210px,1fr));gap:14px;max-width:760px;}
+#create .asset-pill{background:transparent;border:1px solid rgba(255,255,255,.24);color:#fff;border-radius:18px;padding:16px 48px 16px 18px;min-height:68px;font-size:21px;}
+#create .asset-pill span{color:#858580;font-size:13px;margin-top:6px;}
+#create .asset-pill button{color:#aaa;top:16px;right:16px;}
+#create .add-asset-btn{background:#fff;color:#111;border:1px solid #fff;border-radius:18px;min-height:68px;font-size:18px;cursor:pointer;}
+#create .wizard-structure-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin-bottom:34px;}
+#create .structure-card{background:transparent;border:1px solid rgba(255,255,255,.24);border-radius:20px;padding:22px 46px 22px 22px;color:#fff;}
+#create .structure-card b{color:#fff;font-size:19px;font-weight:500;}
+#create .structure-card span{color:#888;font-size:13px;}
+#create .structure-card input{accent-color:#fff!important;width:16px!important;height:16px!important;padding:0!important;border:0!important;}
+#create .structure-card.active{background:#fff;border-color:#fff;}
+#create .structure-card.active b{color:#111;}
+#create .structure-card.active span{color:#555;}
+#create .wizard-issue-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:980px;}
+#create .wizard-issue-grid input,#create .wizard-issue-grid select{font-size:20px;}
+#create .wizard-nav{display:flex;gap:16px;align-items:center;margin-top:54px;}
+#create .wizard-primary,#create .wizard-secondary,#create .wizard-generate{border-radius:999px;padding:18px 34px;min-width:172px;cursor:pointer;transition:.18s;font-size:18px;}
+#create .wizard-primary,#create .wizard-generate{background:#fff;color:#111;border:1px solid #fff;box-shadow:none;}
+#create .wizard-secondary{background:transparent;color:#bfbfb9;border:1px solid rgba(255,255,255,.24);}
+#create .wizard-primary:hover,#create .wizard-generate:hover{transform:translateY(-2px);background:#f2f2ee;}
+#create .wizard-secondary:hover{border-color:#fff;color:#fff;}
+#create .wizard-preview{position:sticky;top:104px;display:grid;gap:20px;}
+#create .preview-title h3,#create .progress-card h3{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#fff;font-weight:520;letter-spacing:.03em;font-size:22px;}
+#create .preview-title p,#create .progress-card p{color:#898984;}
+#create .preview-card,#create .progress-card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);box-shadow:none;color:#fff;}
+#create .preview-ticker{border-color:rgba(255,255,255,.28);color:#fff;background:transparent;}
+#create .preview-card h2{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#fff;font-weight:460;letter-spacing:.02em;}
+#create .preview-card p,#create .preview-section p,#create .investor-view p{color:#a6a6a0;}
+#create .preview-tags span{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.12);color:#ddd;}
+#create .preview-section,#create .allocation-preview-head,#create .investor-view{border-color:rgba(255,255,255,.12);}
+#create .preview-holdings div{border-color:rgba(255,255,255,.09);}
+#create .preview-holdings b,#create .preview-holdings strong,#create .preview-section b,#create .allocation-preview-head b{color:#fff;}
+#create .preview-holdings span,#create .allocation-preview-head span{color:#888;}
+#create .preview-donut{filter:grayscale(1);}
+#create .progress-node b{color:#fff;}
+#create .progress-node small{color:#858580;}
+#create .progress-node span{background:transparent;border:1px solid rgba(255,255,255,.24);color:#bbb;}
+#create .progress-node.done span,#create .progress-node.active span{background:#fff;color:#111;border-color:#fff;}
+#create .progress-line{background:rgba(255,255,255,.14);}
+#create .progress-line.active{background:#fff;}
+#create .draft-modal{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
+#create .draft-modal-card{background:#111;color:#fff;border:1px solid rgba(255,255,255,.16);}
+#create .draft-modal-card h3{color:#fff;}
+#create .draft-modal-card p{color:#aaa;}
+#create .secure-draft-note{color:#868680;margin-top:18px;}
+@media(max-width:1180px){#create .launcher-wizard-page{padding:34px 24px 56px;}#create .launcher-wizard-shell{grid-template-columns:1fr;}#create .wizard-progress-rail,#create .wizard-preview{position:relative;top:auto;}#create .wizard-progress-rail{height:auto;align-items:flex-start;}#create .wizard-progress-top{writing-mode:horizontal-tb;transform:none;}#create .wizard-progress-track{width:100%;height:1px;flex:none;}#create .wizard-progress-track i{height:100%;width:0%;}#create .wizard-panel h1{font-size:48px;}#create .wizard-panel h2{font-size:38px;}#create .wizard-lead,#create .wizard-copy{font-size:18px;margin-bottom:34px;}#create .wizard-start-grid,#create .wizard-two-fields,#create .wizard-choice-grid,#create .wizard-asset-builder,#create .wizard-structure-row,#create .wizard-issue-grid{grid-template-columns:1fr;}#create textarea,#create input,#create select{font-size:25px;} }
+
+
+/* Compact ETP Launcher override: smaller type, tighter spacing, preview at final step */
+#create .launcher-wizard-page{padding:34px 52px 54px!important;}
+#create .launcher-wizard-shell{width:min(1180px,100%)!important;grid-template-columns:58px minmax(0,980px)!important;gap:26px!important;justify-content:center!important;}
+#create .wizard-progress-rail{top:98px!important;height:500px!important;gap:14px!important;}
+#create .wizard-progress-top{font-size:10px!important;letter-spacing:.16em!important;}
+#create .wizard-main{min-height:560px!important;justify-content:center!important;}
+#create .wizard-panel{max-width:860px!important;}
+#create .wizard-number{min-width:28px!important;height:28px!important;border-radius:7px!important;font-size:11px!important;margin-bottom:18px!important;padding:0 8px!important;}
+#create .wizard-panel h1,#create .wizard-panel h2{margin-bottom:16px!important;line-height:1.14!important;letter-spacing:.015em!important;}
+#create .wizard-panel h1{font-size:54px!important;}
+#create .wizard-panel h2{font-size:40px!important;}
+#create .wizard-lead,#create .wizard-copy{font-size:16px!important;line-height:1.55!important;max-width:780px!important;margin-bottom:30px!important;}
+#create .wizard-start-grid{gap:12px!important;max-width:680px!important;margin-bottom:32px!important;}
+#create .wizard-start-grid div{padding-top:12px!important;}
+#create .wizard-start-grid span{font-size:10px!important;margin-bottom:8px!important;}
+#create .wizard-start-grid b{font-size:16px!important;}
+#create textarea,#create input,#create select{padding:12px 0!important;font-size:26px!important;}
+#create textarea{min-height:128px!important;line-height:1.32!important;}
+#create .wizard-field-note{font-size:11px!important;margin-top:7px!important;}
+#create .wizard-two-fields{grid-template-columns:1fr 190px!important;gap:34px!important;max-width:760px!important;}
+#create label span{font-size:10px!important;letter-spacing:.14em!important;margin-bottom:8px!important;}
+#create .wizard-choice-grid{grid-template-columns:repeat(3,minmax(160px,1fr))!important;gap:10px!important;max-width:720px!important;}
+#create .theme-choice{padding:13px 16px!important;font-size:14px!important;}
+#create .wizard-asset-builder{grid-template-columns:repeat(3,minmax(150px,1fr))!important;gap:10px!important;max-width:760px!important;}
+#create .asset-pill{border-radius:14px!important;padding:12px 38px 12px 14px!important;min-height:54px!important;font-size:16px!important;}
+#create .asset-pill span{font-size:11px!important;margin-top:3px!important;}
+#create .asset-pill button{top:10px!important;right:12px!important;}
+#create .add-asset-btn{border-radius:14px!important;min-height:54px!important;font-size:14px!important;}
+#create .wizard-structure-row{gap:10px!important;max-width:760px!important;margin-bottom:22px!important;}
+#create .structure-card{border-radius:15px!important;padding:16px 36px 16px 16px!important;}
+#create .structure-card b{font-size:15px!important;}
+#create .structure-card span{font-size:11px!important;}
+#create .wizard-issue-grid{grid-template-columns:repeat(4,1fr)!important;gap:14px!important;max-width:820px!important;}
+#create .wizard-issue-grid input,#create .wizard-issue-grid select{font-size:16px!important;}
+#create .wizard-nav{gap:12px!important;margin-top:32px!important;}
+#create .wizard-primary,#create .wizard-secondary,#create .wizard-generate{padding:13px 24px!important;min-width:132px!important;font-size:14px!important;}
+#create .wizard-generate{min-width:220px!important;}
+#create .secure-draft-note{font-size:12px!important;margin-top:12px!important;}
+#create .wizard-preview{grid-column:2!important;display:none!important;position:relative!important;top:auto!important;max-width:920px!important;margin:18px 0 0!important;gap:12px!important;}
+#create .wizard-preview.preview-visible{display:grid!important;}
+#create .preview-title{display:flex!important;justify-content:space-between!important;align-items:end!important;gap:16px!important;border-top:1px solid rgba(255,255,255,.14)!important;padding-top:18px!important;}
+#create .preview-title h3,#create .progress-card h3{font-size:16px!important;margin:0!important;}
+#create .preview-title p,#create .progress-card p{font-size:12px!important;margin:0!important;}
+#create .preview-card{border-radius:18px!important;padding:18px!important;box-shadow:none!important;}
+#create .preview-ticker{font-size:11px!important;padding:5px 10px!important;margin-bottom:10px!important;}
+#create .preview-card h2{font-size:24px!important;margin-bottom:6px!important;}
+#create .preview-card>p{font-size:13px!important;line-height:1.45!important;margin-bottom:12px!important;}
+#create .preview-tags{gap:7px!important;margin-bottom:12px!important;}
+#create .preview-tags span{font-size:11px!important;padding:6px 9px!important;}
+#create .preview-section{padding:12px 0!important;}
+#create .preview-section b,.allocation-preview-head b{font-size:12px!important;}
+#create .preview-section p,.investor-view p{font-size:12px!important;line-height:1.45!important;}
+#create .allocation-preview-head{padding:10px 0!important;}
+#create .preview-allocation{display:grid!important;grid-template-columns:130px 1fr!important;gap:16px!important;align-items:start!important;}
+#create .preview-donut{width:112px!important;height:112px!important;}
+#create .preview-donut:after{inset:28px!important;font-size:11px!important;}
+#create .preview-holdings div{grid-template-columns:70px minmax(0,1fr) 64px!important;padding:8px 0!important;}
+#create .preview-holdings b,#create .preview-holdings strong{font-size:12px!important;}
+#create .preview-holdings span{font-size:11px!important;}
+#create .investor-view{padding-top:12px!important;margin-top:12px!important;gap:10px!important;}
+#create .wizard-progress-card{display:none!important;}
+@media(max-width:1180px){#create .launcher-wizard-page{padding:26px 20px 44px!important;}#create .launcher-wizard-shell{grid-template-columns:1fr!important;}#create .wizard-progress-rail{height:auto!important;}#create .wizard-panel h1{font-size:42px!important;}#create .wizard-panel h2{font-size:32px!important;}#create .wizard-lead,#create .wizard-copy{font-size:15px!important;margin-bottom:24px!important;}#create .wizard-choice-grid,#create .wizard-asset-builder,#create .wizard-structure-row,#create .wizard-issue-grid,#create .wizard-two-fields,#create .wizard-start-grid{grid-template-columns:1fr!important;}#create textarea,#create input,#create select{font-size:20px!important;}#create .wizard-preview{grid-column:1!important;}#create .preview-allocation{grid-template-columns:1fr!important;}}
+
+
+
+/* White compact ETP Launcher override */
+#create{
+  background:#f5f5f2 !important;
+  color:#0b0b0a !important;
+}
+#create .launcher-wizard-page{
+  background:linear-gradient(180deg,#fafaf8 0%,#f1f1ed 100%) !important;
+  padding:34px 52px 54px !important;
+}
+#create .launcher-wizard-shell{
+  width:min(1180px,100%) !important;
+  grid-template-columns:58px minmax(0,980px) !important;
+  gap:26px !important;
+  justify-content:center !important;
+}
+#create .wizard-main{min-height:560px !important;}
+#create .wizard-progress-rail{color:#7a7a73 !important;}
+#create .wizard-progress-top span{color:#0b0b0a !important;}
+#create .wizard-progress-track{background:rgba(0,0,0,.14) !important;}
+#create .wizard-progress-track i{background:#0b0b0a !important;}
+#create .wizard-number{
+  background:#0b0b0a !important;
+  color:#fff !important;
+  border-radius:8px !important;
+}
+#create .wizard-panel h1,
+#create .wizard-panel h2{
+  color:#0b0b0a !important;
+  font-style:normal !important;
+  font-weight:520 !important;
+  letter-spacing:-.035em !important;
+}
+#create .wizard-panel h1{font-size:52px !important;}
+#create .wizard-panel h2{font-size:38px !important;}
+#create .wizard-lead,
+#create .wizard-copy{
+  color:#5f6059 !important;
+  font-style:normal !important;
+  font-size:15px !important;
+  line-height:1.55 !important;
+  margin-bottom:28px !important;
+  letter-spacing:.01em !important;
+}
+#create .wizard-start-grid div{border-top:1px solid rgba(0,0,0,.16) !important;}
+#create .wizard-start-grid span{color:#7a7a73 !important;}
+#create .wizard-start-grid b{color:#0b0b0a !important;font-weight:520 !important;}
+#create textarea,
+#create input,
+#create select{
+  color:#0b0b0a !important;
+  border-bottom:1px solid rgba(0,0,0,.22) !important;
+  background:transparent !important;
+  font-style:normal !important;
+}
+#create textarea::placeholder,
+#create input::placeholder{color:rgba(0,0,0,.34) !important;}
+#create select{
+  color:#0b0b0a !important;
+  background-image:linear-gradient(45deg, transparent 50%, #111 50%),linear-gradient(135deg, #111 50%, transparent 50%) !important;
+}
+#create select option{background:#fff !important;color:#111 !important;}
+#create label span{color:#74766e !important;}
+#create .wizard-field-note,
+#create .secure-draft-note{color:#777970 !important;}
+#create .theme-choice,
+#create .asset-pill,
+#create .structure-card,
+#create .wizard-secondary{
+  background:rgba(255,255,255,.62) !important;
+  border:1px solid rgba(0,0,0,.12) !important;
+  color:#252620 !important;
+}
+#create .theme-choice:hover,
+#create .theme-choice.active,
+#create .structure-card.active{
+  background:#0b0b0a !important;
+  color:#fff !important;
+  border-color:#0b0b0a !important;
+}
+#create .structure-card b{color:#0b0b0a !important;}
+#create .structure-card span,
+#create .asset-pill span{color:#73746d !important;}
+#create .structure-card.active b,
+#create .structure-card.active span{color:#fff !important;}
+#create .asset-pill button{color:#777970 !important;}
+#create .add-asset-btn,
+#create .wizard-primary,
+#create .wizard-generate{
+  background:#0b0b0a !important;
+  color:#fff !important;
+  border:1px solid #0b0b0a !important;
+  box-shadow:none !important;
+}
+#create .wizard-primary:hover,
+#create .wizard-generate:hover,
+#create .add-asset-btn:hover{
+  background:#2a2a26 !important;
+  transform:translateY(-1px) !important;
+}
+#create .wizard-secondary{color:#0b0b0a !important;}
+#create .wizard-secondary:hover{border-color:#0b0b0a !important;color:#0b0b0a !important;background:#fff !important;}
+#create .preview-title{border-top:1px solid rgba(0,0,0,.12) !important;}
+#create .preview-title h3,
+#create .progress-card h3,
+#create .preview-card h2,
+#create .preview-holdings b,
+#create .preview-holdings strong,
+#create .preview-section b,
+#create .allocation-preview-head b,
+#create .progress-node b{color:#0b0b0a !important;}
+#create .preview-title p,
+#create .progress-card p,
+#create .preview-card p,
+#create .preview-section p,
+#create .investor-view p,
+#create .preview-holdings span,
+#create .allocation-preview-head span,
+#create .progress-node small{color:#666861 !important;}
+#create .preview-card,
+#create .progress-card{
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(0,0,0,.10) !important;
+  color:#0b0b0a !important;
+}
+#create .preview-ticker,
+#create .preview-tags span{
+  background:#fff !important;
+  border-color:rgba(0,0,0,.12) !important;
+  color:#0b0b0a !important;
+}
+#create .preview-section,
+#create .allocation-preview-head,
+#create .investor-view,
+#create .preview-holdings div{border-color:rgba(0,0,0,.10) !important;}
+#create .progress-line{background:rgba(0,0,0,.13) !important;}
+#create .progress-line.active{background:#0b0b0a !important;}
+#create .progress-node span{background:#fff !important;border-color:rgba(0,0,0,.14) !important;color:#0b0b0a !important;}
+#create .progress-node.done span,
+#create .progress-node.active span{background:#0b0b0a !important;color:#fff !important;border-color:#0b0b0a !important;}
+#create .draft-modal{background:rgba(245,245,242,.72) !important;}
+#create .draft-modal-card{background:#fff !important;color:#0b0b0a !important;border:1px solid rgba(0,0,0,.12) !important;}
+#create .draft-modal-card h3{color:#0b0b0a !important;}
+#create .draft-modal-card p{color:#666861 !important;}
+#create .wizard-nav.start-hidden{display:none !important;}
+@media(max-width:1180px){
+  #create .launcher-wizard-page{padding:26px 20px 44px !important;}
+  #create .launcher-wizard-shell{grid-template-columns:1fr !important;}
+  #create .wizard-panel h1{font-size:40px !important;}
+  #create .wizard-panel h2{font-size:30px !important;}
+}
+
+
+#create .launcher-wizard-shell{
+  grid-template-columns:minmax(0,980px) 58px !important;
+}
+#create .wizard-main{grid-column:1 !important;}
+#create .wizard-progress-rail{
+  grid-column:2 !important;
+  align-self:start !important;
+  justify-self:end !important;
+}
+#create .wizard-progress-top,
+#create .wizard-start-grid span,
+#create .wizard-number,
+#create .preview-ticker,
+#create .preview-tags span,
+#create .allocation-preview-head span{
+  text-transform:none !important;
+  letter-spacing:.04em !important;
+}
+#create .wizard-panel[data-wizard="0"] h1{margin-top:0 !important;}
+#create .wizard-option-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(260px,1fr));
+  gap:12px;
+  max-width:860px;
+}
+#create .wizard-option-card{
+  border:1px solid rgba(0,0,0,.12);
+  background:rgba(255,255,255,.7);
+  border-radius:16px;
+  padding:16px 18px;
+  text-align:left;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease, box-shadow .18s ease;
+  color:#0b0b0a;
+}
+#create .wizard-option-card:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,0,0,.22);
+  box-shadow:0 8px 20px rgba(0,0,0,.04);
+}
+#create .wizard-option-card b{
+  display:block;
+  font-size:15px;
+  line-height:1.4;
+  font-weight:520;
+  margin-bottom:8px;
+  color:#0b0b0a;
+}
+#create .wizard-option-card span{
+  display:block;
+  font-size:12px;
+  line-height:1.5;
+  color:#666861;
+}
+#create .wizard-option-card.active{
+  background:#0b0b0a;
+  border-color:#0b0b0a;
+}
+#create .wizard-option-card.active b,
+#create .wizard-option-card.active span{
+  color:#fff;
+}
+@media(max-width:1180px){
+  #create .launcher-wizard-shell{grid-template-columns:1fr !important;}
+  #create .wizard-progress-rail{grid-column:1 !important;justify-self:start !important;}
+  #create .wizard-option-list{grid-template-columns:1fr !important;max-width:none !important;}
+}
+
+
+#create .wizard-setting-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(280px,1fr));
+  gap:18px 26px;
+  max-width:980px;
+}
+#create .wizard-setting-block{
+  display:grid;
+  gap:10px;
+}
+#create .wizard-setting-block > span,
+#create .wizard-setting-input > span{
+  color:#74766e !important;
+  font-size:12px;
+  letter-spacing:.08em;
+}
+#create .wizard-setting-input input{
+  padding:10px 0 !important;
+  font-size:24px !important;
+}
+#create .wizard-pill-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+#create .wizard-pill-option{
+  border:1px solid rgba(0,0,0,.12);
+  background:rgba(255,255,255,.72);
+  color:#0b0b0a;
+  border-radius:999px;
+  padding:12px 16px;
+  font-size:14px;
+  line-height:1;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease;
+}
+#create .wizard-pill-option:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,0,0,.22);
+}
+#create .wizard-pill-option.active{
+  background:#0b0b0a;
+  color:#fff;
+  border-color:#0b0b0a;
+}
+@media(max-width:1180px){
+  #create .wizard-setting-grid{grid-template-columns:1fr !important;max-width:none !important;}
+}
+
+
+/* Review page: move final preview below the form instead of right side */
+#create .wizard-preview.preview-visible{
+  grid-column:1 / 2 !important;
+  grid-row:2 !important;
+  display:block !important;
+  position:relative !important;
+  top:auto !important;
+  width:100% !important;
+  max-width:980px !important;
+  margin:8px 0 0 !important;
+}
+#create .wizard-preview.preview-visible .preview-title{
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:space-between !important;
+  gap:20px !important;
+  border-top:1px solid rgba(0,0,0,.12) !important;
+  padding-top:22px !important;
+  margin-bottom:14px !important;
+}
+#create .wizard-preview.preview-visible .preview-title h3{
+  font-size:18px !important;
+  line-height:1.2 !important;
+  margin:0 !important;
+}
+#create .wizard-preview.preview-visible .preview-title p{
+  max-width:360px !important;
+  text-align:right !important;
+}
+#create .wizard-preview.preview-visible .preview-card{
+  display:grid !important;
+  grid-template-columns:260px minmax(0,1fr) !important;
+  gap:22px !important;
+  padding:22px !important;
+  border-radius:20px !important;
+}
+#create .wizard-preview.preview-visible .preview-card h2{
+  font-size:30px !important;
+  line-height:1.05 !important;
+  margin:8px 0 8px !important;
+}
+#create .wizard-preview.preview-visible .preview-ticker,
+#create .wizard-preview.preview-visible .preview-card > h2,
+#create .wizard-preview.preview-visible .preview-card > p,
+#create .wizard-preview.preview-visible .preview-tags{
+  grid-column:1 !important;
+}
+#create .wizard-preview.preview-visible .preview-section,
+#create .wizard-preview.preview-visible .allocation-preview-head,
+#create .wizard-preview.preview-visible .preview-allocation,
+#create .wizard-preview.preview-visible .investor-view{
+  grid-column:2 !important;
+}
+#create .wizard-preview.preview-visible .preview-section{
+  margin-top:0 !important;
+  padding-top:0 !important;
+  border-top:0 !important;
+}
+#create .wizard-preview.preview-visible .preview-allocation{
+  grid-template-columns:120px minmax(0,1fr) !important;
+}
+#create .wizard-preview.preview-visible .preview-donut{
+  width:110px !important;
+  height:110px !important;
+}
+#create .wizard-preview.preview-visible .preview-holdings{
+  gap:6px !important;
+}
+#create .wizard-preview.preview-visible .preview-holdings div{
+  padding:8px 0 !important;
+}
+#create .wizard-preview.preview-visible .investor-view{
+  margin-top:0 !important;
+}
+@media(max-width:1180px){
+  #create .wizard-preview.preview-visible{
+    grid-column:1 !important;
+    grid-row:auto !important;
+    max-width:none !important;
+  }
+  #create .wizard-preview.preview-visible .preview-title{
+    display:block !important;
+  }
+  #create .wizard-preview.preview-visible .preview-title p{
+    text-align:left !important;
+    max-width:none !important;
+  }
+  #create .wizard-preview.preview-visible .preview-card{
+    grid-template-columns:1fr !important;
+  }
+  #create .wizard-preview.preview-visible .preview-ticker,
+  #create .wizard-preview.preview-visible .preview-card > h2,
+  #create .wizard-preview.preview-visible .preview-card > p,
+  #create .wizard-preview.preview-visible .preview-tags,
+  #create .wizard-preview.preview-visible .preview-section,
+  #create .wizard-preview.preview-visible .allocation-preview-head,
+  #create .wizard-preview.preview-visible .preview-allocation,
+  #create .wizard-preview.preview-visible .investor-view{
+    grid-column:1 !important;
+  }
+}
+
+
+/* Final launcher typography adjustment: question titles should not feel bold */
+#create .wizard-panel h1,
+#create .wizard-panel h2{
+  font-weight:400 !important;
+}
+#create .wizard-panel:not([data-wizard="0"]) h2{
+  font-weight:400 !important;
+}
+
 </style>
 </head>
 <body>
@@ -4914,180 +5446,205 @@ button,input,textarea,select{font:inherit}
   </section>
 
   
+
 <section class="screen" id="create">
-  <div class="wrap launcher-page">
-    <div class="launcher-header">
-      <div>
-        <h1>Start Creating <em>My</em> ETP</h1>
-        <p>Turn your theme into a transparent, NAV-based ETP built for the future.</p>
-      </div>
-      <div class="launcher-header-note">
-        <span>Draft mode</span>
-        <b>Private until publish</b>
-      </div>
-    </div>
-
-    <div class="launcher-grid">
-      <div class="launcher-builder">
-        <div class="launcher-step" data-step="1">
-          <div class="step-index">1</div>
-          <div class="step-label">
-            <b>Mission</b>
-            <span>Required</span>
-          </div>
-          <div class="step-field">
-            <textarea id="missionInput" maxlength="250" placeholder="Describe the problem your ETP is solving..."></textarea>
-            <div class="char-counter"><span id="missionCount">0</span>/250</div>
-          </div>
+  <div class="launcher-wizard-page">
+    <div class="launcher-wizard-shell">
+      <div class="wizard-progress-rail" aria-label="ETP creation progress">
+        <div class="wizard-progress-top">
+          <span id="wizardStepLabel">00</span>
+          <b id="wizardProgressText">Start</b>
         </div>
+        <div class="wizard-progress-track"><i id="wizardProgressFill"></i></div>
+      </div>
 
-        <div class="launcher-step" data-step="2">
-          <div class="step-index">2</div>
-          <div class="step-label">
-            <b>ETP Name</b>
-            <span>Required</span>
+      <main class="wizard-main" id="launcherWizard">
+        <section class="wizard-panel active" data-wizard="0" data-label="Start">
+          <h1>Start Creating My ETP</h1>
+          <p class="wizard-lead">Turn an investment idea, public insight, or strategy into a structured onchain ETP draft.</p>
+          <div class="wizard-start-grid">
+            <div><span>Format</span><b>Guided questions</b></div>
+            <div><span>Output</span><b>Private ETP draft</b></div>
+            <div><span>Style</span><b>NAV-based product</b></div>
           </div>
-          <div class="step-field two-col">
-            <input id="etpNameInput" value="Pelosi ETP" />
-            <label class="ticker-field">
-              <span>Ticker</span>
-              <input id="tickerInput" value="PELOSI" maxlength="8" />
-            </label>
-          </div>
-        </div>
+          <button class="wizard-primary" id="wizardContinueBtn" type="button">Continue <span>→</span></button>
+        </section>
 
-        <div class="launcher-step" data-step="3">
-          <div class="step-index">3</div>
-          <div class="step-label">
-            <b>Category / Theme</b>
-            <span>Optional</span>
+        <section class="wizard-panel" data-wizard="1" data-label="Idea">
+          <div class="wizard-number">01</div>
+          <h2>What investment idea should this ETP express?</h2>
+          <p class="wizard-copy">Describe the market view, insight, or portfolio logic behind the product.</p>
+          <textarea id="missionInput" maxlength="250" placeholder="Example: A transparent ETP that tracks public congressional trading signals and policy-linked technology exposure."></textarea>
+          <div class="wizard-field-note"><span id="missionCount">0</span>/250</div>
+        </section>
+
+        <section class="wizard-panel" data-wizard="2" data-label="Audience">
+          <div class="wizard-number">02</div>
+          <h2>Do you already monetize this insight or portfolio elsewhere?</h2>
+          <p class="wizard-copy">This helps Alloco understand whether the ETP is for an existing audience, a public strategy, or a new product idea.</p>
+          <input id="monetizeInput" type="hidden" value="New idea" />
+          <div class="wizard-option-list" id="monetizeOptionList" role="listbox" aria-label="Audience and monetization source">
+            <button class="wizard-option-card active" type="button" data-value="New idea">
+              <b>No, this is a new product idea</b>
+              <span>Starting from a fresh concept without an existing audience or monetization channel.</span>
+            </button>
+            <button class="wizard-option-card" type="button" data-value="Newsletter / paid community">
+              <b>Yes, through a newsletter or paid community</b>
+              <span>There is already a paid subscriber base following the idea.</span>
+            </button>
+            <button class="wizard-option-card" type="button" data-value="Trading strategy">
+              <b>Yes, through a trading strategy or fund</b>
+              <span>The strategy already exists in a managed account, fund, or internal portfolio format.</span>
+            </button>
+            <button class="wizard-option-card" type="button" data-value="Social audience">
+              <b>Yes, through X, YouTube, Substack, or other platforms</b>
+              <span>The audience follows the insight publicly and could become the initial user base.</span>
+            </button>
           </div>
-          <div class="step-field">
-            <div class="theme-chip-row" id="themeChipRow">
-              <button class="theme-choice active" data-theme="Political Alpha">Political Alpha</button>
-              <button class="theme-choice" data-theme="Energy">Energy</button>
-              <button class="theme-choice" data-theme="Hard Assets">Hard Assets</button>
-              <button class="theme-choice" data-theme="Crypto Yield">Crypto Yield</button>
-              <button class="theme-choice more">⌄</button>
+        </section>
+
+        <section class="wizard-panel" data-wizard="3" data-label="Name">
+          <div class="wizard-number">03</div>
+          <h2>Name your ETP.</h2>
+          <p class="wizard-copy">Keep the name clear enough for investors to understand the product in one second.</p>
+          <div class="wizard-two-fields">
+            <label><span>ETP Name</span><input id="etpNameInput" value="Pelosi ETP" /></label>
+            <label><span>Ticker</span><input id="tickerInput" value="PELOSI" maxlength="8" /></label>
+          </div>
+        </section>
+
+        <section class="wizard-panel" data-wizard="4" data-label="Theme">
+          <div class="wizard-number">04</div>
+          <h2>Choose the category or theme.</h2>
+          <p class="wizard-copy">Pick the closest starting point. You can refine the product theme later.</p>
+          <div class="theme-chip-row wizard-choice-grid" id="themeChipRow">
+            <button class="theme-choice active" data-theme="Political Alpha" type="button">Political Alpha</button>
+            <button class="theme-choice" data-theme="Energy" type="button">Energy</button>
+            <button class="theme-choice" data-theme="AI Infrastructure" type="button">AI Infrastructure</button>
+            <button class="theme-choice" data-theme="Crypto Yield" type="button">Crypto Yield</button>
+            <button class="theme-choice" data-theme="Hard Assets" type="button">Hard Assets</button>
+            <button class="theme-choice" data-theme="Custom Theme" type="button">Custom Theme</button>
+          </div>
+        </section>
+
+        <section class="wizard-panel" data-wizard="5" data-label="Basket">
+          <div class="wizard-number">05</div>
+          <h2>What assets should represent the theme?</h2>
+          <p class="wizard-copy">Add the first basket candidates. The final product can still be reviewed by research, risk, and compliance.</p>
+          <div class="asset-builder wizard-asset-builder" id="assetBuilder">
+            <div class="asset-pill" data-ticker="AMZN" data-name="Amazon">AMZN <span>Amazon</span><button type="button">×</button></div>
+            <div class="asset-pill" data-ticker="AVGO" data-name="Broadcom">AVGO <span>Broadcom</span><button type="button">×</button></div>
+            <div class="asset-pill" data-ticker="PANW" data-name="Palo Alto Networks">PANW <span>Palo Alto Networks</span><button type="button">×</button></div>
+            <div class="asset-pill" data-ticker="GOOGL" data-name="Alphabet">GOOGL <span>Alphabet</span><button type="button">×</button></div>
+            <button class="add-asset-btn" id="addAssetBtn" type="button">＋ Add Asset</button>
+          </div>
+        </section>
+
+        <section class="wizard-panel" data-wizard="6" data-label="Structure">
+          <div class="wizard-number">06</div>
+          <h2>Choose the product structure.</h2>
+          <p class="wizard-copy">Select the wrapper logic and draft operating parameters.</p>
+          <div class="structure-row wizard-structure-row">
+            <label class="structure-card active"><b>Theme Basket</b><span>Equity / ETF basket</span><input type="radio" name="structure" value="Theme Basket" checked /></label>
+            <label class="structure-card"><b>Strategy ETP</b><span>Rules-based allocation</span><input type="radio" name="structure" value="Strategy ETP" /></label>
+            <label class="structure-card"><b>Yield ETP</b><span>Income-oriented product</span><input type="radio" name="structure" value="Yield ETP" /></label>
+          </div>
+          <div class="wizard-setting-grid">
+            <div class="wizard-setting-block">
+              <span>Domicile</span>
+              <input id="domicileInput" type="hidden" value="Cayman Islands" />
+              <div class="wizard-pill-row" id="domicileOptions">
+                <button class="wizard-pill-option active" type="button" data-target-input="domicileInput" data-value="Cayman Islands">Cayman Islands</button>
+                <button class="wizard-pill-option" type="button" data-target-input="domicileInput" data-value="BVI">BVI</button>
+                <button class="wizard-pill-option" type="button" data-target-input="domicileInput" data-value="Singapore">Singapore</button>
+                <button class="wizard-pill-option" type="button" data-target-input="domicileInput" data-value="Hong Kong">Hong Kong</button>
+              </div>
             </div>
-            <small>Choose a category or define your own theme.</small>
-          </div>
-        </div>
-
-        <div class="launcher-step" data-step="4">
-          <div class="step-index">4</div>
-          <div class="step-label">
-            <b>Underlying<br>Asset Basket</b>
-            <span>Optional</span>
-          </div>
-          <div class="step-field">
-            <div class="asset-builder" id="assetBuilder">
-              <div class="asset-pill" data-ticker="AMZN" data-name="Amazon">AMZN <span>Amazon</span><button>×</button></div>
-              <div class="asset-pill" data-ticker="AVGO" data-name="Broadcom">AVGO <span>Broadcom</span><button>×</button></div>
-              <div class="asset-pill" data-ticker="PANW" data-name="Palo Alto Networks">PANW <span>Palo Alto Networks</span><button>×</button></div>
-              <div class="asset-pill" data-ticker="GOOGL" data-name="Alphabet">GOOGL <span>Alphabet</span><button>×</button></div>
-              <div class="asset-pill" data-ticker="CRWD" data-name="CrowdStrike">CRWD <span>CrowdStrike</span><button>×</button></div>
-              <button class="add-asset-btn" id="addAssetBtn">＋ Add Asset</button>
+            <label class="wizard-setting-block wizard-setting-input"><span>Fee</span><input id="feeInput" value="0.60" /></label>
+            <div class="wizard-setting-block">
+              <span>Rebalance</span>
+              <input id="rebalanceInput" type="hidden" value="Quarterly" />
+              <div class="wizard-pill-row" id="rebalanceOptions">
+                <button class="wizard-pill-option active" type="button" data-target-input="rebalanceInput" data-value="Quarterly">Quarterly</button>
+                <button class="wizard-pill-option" type="button" data-target-input="rebalanceInput" data-value="Monthly">Monthly</button>
+                <button class="wizard-pill-option" type="button" data-target-input="rebalanceInput" data-value="Semi-Annually">Semi-Annually</button>
+              </div>
             </div>
-            <small>Select the assets that best represent your theme.</small>
+            <div class="wizard-setting-block">
+              <span>NAV</span>
+              <input id="navMethodInput" type="hidden" value="Daily" />
+              <div class="wizard-pill-row" id="navMethodOptions">
+                <button class="wizard-pill-option active" type="button" data-target-input="navMethodInput" data-value="Daily">Daily</button>
+                <button class="wizard-pill-option" type="button" data-target-input="navMethodInput" data-value="Intraday iNAV">Intraday iNAV</button>
+                <button class="wizard-pill-option" type="button" data-target-input="navMethodInput" data-value="Weekly">Weekly</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div class="launcher-actions">
-          <button class="generate-btn" id="generateDraftBtn">Generate ETP Draft <span>→</span></button>
-          <div class="secure-draft-note">◇ Your draft is secure and private until you publish.</div>
-        </div>
-      </div>
+        <section class="wizard-panel" data-wizard="7" data-label="Review">
+          <div class="wizard-number">07</div>
+          <h2>Review your private ETP draft.</h2>
+          <p class="wizard-copy">Alloco will turn this into a product draft with basket logic, NAV methodology, risk notes, and launch documentation.</p>
+          <button class="generate-btn wizard-generate" id="generateDraftBtn" type="button">Generate ETP Draft <span>→</span></button>
+          <div class="secure-draft-note">Private until publish. Nothing is launched without final review.</div>
+        </section>
 
-      <aside class="launcher-side">
+        <div class="wizard-nav">
+          <button class="wizard-secondary" id="wizardBackBtn" type="button">← Back</button>
+          <button class="wizard-primary" id="wizardNextBtn" type="button">Next <span>→</span></button>
+        </div>
+      </main>
+
+      <aside class="wizard-preview">
         <div class="preview-title">
           <h3>Live ETP Preview</h3>
-          <p>See how your ETP will look to investors.</p>
+          <p>Final preview before draft generation.</p>
         </div>
-
         <div class="preview-card" id="previewCard">
           <div class="preview-ticker" id="previewTicker">PELOSI</div>
           <h2 id="previewName">Pelosi ETP</h2>
-          <p id="previewSubtitle">Helping investors access public political-trading signals through a transparent onchain ETP.</p>
-
-          <div class="preview-tags">
-            <span>Theme</span>
-            <span>NAV-Based</span>
-            <span id="previewStructureTag">Theme Basket</span>
-          </div>
-
-          <div class="preview-section">
-            <b>Mission</b>
-            <p id="previewMission">A transparent, NAV-based ETP offering diversified exposure to public congressional-trading signals, policy-linked technology stocks, cybersecurity, AI infrastructure and cash buffers.</p>
-          </div>
-
-          <div class="allocation-preview-head">
-            <b>Allocation Preview</b>
-            <span>As of draft</span>
-          </div>
+          <p id="previewSubtitle">Helping investors access political alpha through a transparent ETP.</p>
+          <div class="preview-tags"><span>Theme</span><span>NAV-Based</span><span id="previewStructureTag">Theme Basket</span></div>
+          <div class="preview-section"><b>Mission</b><p id="previewMission">A transparent, NAV-based ETP offering diversified exposure to public political-trading signals, policy-linked technology stocks, cybersecurity, AI infrastructure and cash buffers.</p></div>
+          <div class="allocation-preview-head"><b>Allocation Preview</b><span>Draft</span></div>
           <div class="preview-allocation">
             <div class="preview-donut"></div>
             <div class="preview-holdings" id="previewHoldings">
-              <div><b>AMZN</b><span>Amazon</span><strong>8.0%</strong></div>
-              <div><b>AVGO</b><span>Broadcom</span><strong>15.0%</strong></div>
-              <div><b>PANW</b><span>Palo Alto Networks</span><strong>12.0%</strong></div>
-              <div><b>GOOGL</b><span>Alphabet</span><strong>13.0%</strong></div>
-              <div><b>CRWD</b><span>CrowdStrike</span><strong>8.0%</strong></div>
-              <div><b>Cash</b><span>Short-Term Buffer</span><strong>20.0%</strong></div>
+              <div><b>AMZN</b><span>Amazon</span><strong>25.0%</strong></div>
+              <div><b>AVGO</b><span>Broadcom</span><strong>20.0%</strong></div>
+              <div><b>PANW</b><span>Palo Alto Networks</span><strong>18.0%</strong></div>
+              <div><b>GOOGL</b><span>Alphabet</span><strong>15.0%</strong></div>
             </div>
           </div>
-
-          <div class="investor-view">
-            <span>◎</span>
-            <p id="investorViewText">A transparent, NAV-based ETP offering diversified exposure to politician-inspired market signals, built with institutional-grade standards.</p>
-          </div>
+          <div class="investor-view"><span>◎</span><p id="investorViewText">A transparent, NAV-based ETP offering diversified exposure to politician-inspired market signals, built with institutional-grade standards.</p></div>
         </div>
 
-        <div class="progress-card">
+        <div class="progress-card wizard-progress-card">
           <h3>Creation Progress</h3>
-          <p>Track your progress to launch.</p>
+          <p>Question-by-question flow.</p>
           <div class="progress-steps" id="progressSteps">
-            <div class="progress-node done"><span>✓</span><b>Idea</b><small>Define your mission</small></div>
+            <div class="progress-node done"><span>✓</span><b>Idea</b><small>Define thesis</small></div>
             <div class="progress-line active"></div>
-            <div class="progress-node active"><span>2</span><b>Basket</b><small>Select your assets</small></div>
+            <div class="progress-node active"><span>2</span><b>Basket</b><small>Select assets</small></div>
             <div class="progress-line"></div>
-            <div class="progress-node"><span>3</span><b>Structure</b><small>Configure details</small></div>
+            <div class="progress-node"><span>3</span><b>Structure</b><small>Configure terms</small></div>
             <div class="progress-line"></div>
-            <div class="progress-node"><span>4</span><b>Review</b><small>Finalize & publish</small></div>
+            <div class="progress-node"><span>4</span><b>Review</b><small>Generate draft</small></div>
           </div>
         </div>
       </aside>
     </div>
 
-    <div class="academy-section">
-      <div class="academy-header">
-        <h2>Learn How to Build an ETP</h2>
-        <p>A step-by-step guide to turning your idea into a transparent, NAV-based ETP.</p>
-      </div>
-      <div class="academy-grid">
-        <div class="academy-video">
-          <div class="academy-brand">◇ Alloco Academy</div>
-          <h3>How to Build<br>an ETP</h3>
-          <button class="academy-play" id="academyPlayBtn">▶</button>
-          <div class="academy-controls"><span>▶ 0:00 / 4:32</span><span>◉ ⚙ □ ⛶</span></div>
-        </div>
-        <div class="academy-lessons">
-          <div class="lesson-card"><span>◎</span><div><b>1. Define the mission</b><p>Clarify the problem, your investment thesis, and the outcomes your ETP aims to achieve.</p></div><small>4 min read</small></div>
-          <div class="lesson-card"><span>▦</span><div><b>2. Build the basket</b><p>Select high-conviction assets that align with your theme and investment goals.</p></div><small>6 min read</small></div>
-          <div class="lesson-card"><span>☷</span><div><b>3. Choose the structure</b><p>Pick the right structure, set parameters, and prepare for launch.</p></div><small>5 min read</small></div>
-        </div>
-      </div>
-    </div>
-
     <div class="draft-modal" id="draftModal">
       <div class="draft-modal-card">
-        <button class="draft-close" id="draftCloseBtn">×</button>
+        <button class="draft-close" id="draftCloseBtn" type="button">×</button>
         <div class="draft-icon">✓</div>
         <h3>ETP draft generated</h3>
         <p>Your product draft has been created in private mode. You can keep editing, run AI review, or prepare the product for publication.</p>
         <div class="draft-modal-actions">
-          <button class="pill black" id="continueEditingBtn">Continue Editing</button>
-          <button class="pill">Run AI Review</button>
+          <button class="pill black" id="continueEditingBtn" type="button">Continue Editing</button>
+          <button class="pill" type="button">Run AI Review</button>
         </div>
       </div>
     </div>
@@ -5450,7 +6007,7 @@ function renderProduct(productKey) {
 const screens=[...document.querySelectorAll('.screen')];
 const navs=[...document.querySelectorAll('.nav a')];
 const toast=document.getElementById('toast');
-function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id)); if(id==='detail'){setDetailTab('trade');}}
+function go(id){screens.forEach(s=>{const active=s.id===id; s.classList.toggle('active',active); if(active) s.scrollTop=0;});navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id)); if(id==='detail'){setDetailTab('trade');} if(id==='create' && typeof window.resetLauncherWizard==='function'){window.resetLauncherWizard();}}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-target]'); if(t){const p=t.dataset.product || t.closest('[data-product]')?.dataset.product; if(t.dataset.target==='detail' && p) renderProduct(p); go(t.dataset.target);}});
 function note(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
 const login=document.getElementById('login');
@@ -6259,5 +6816,77 @@ function initInteractiveTradeChart(){
 initInteractiveTradeChart();
 
 </script>
+
+
+<script>
+(function(){
+  function initLauncherWizard(){
+    const root=document.getElementById('launcherWizard');
+    if(!root) return;
+    const panels=[...root.querySelectorAll('.wizard-panel')];
+    const next=document.getElementById('wizardNextBtn');
+    const back=document.getElementById('wizardBackBtn');
+    const start=document.getElementById('wizardContinueBtn');
+    const nav=root.querySelector('.wizard-nav');
+    const fill=document.getElementById('wizardProgressFill');
+    const stepLabel=document.getElementById('wizardStepLabel');
+    const progressText=document.getElementById('wizardProgressText');
+    const monetizeInput=document.getElementById('monetizeInput');
+    const monetizeOptions=[...document.querySelectorAll('#monetizeOptionList .wizard-option-card')];
+    const pillOptions=[...document.querySelectorAll('#create .wizard-pill-option')];
+    let index=0;
+
+    monetizeOptions.forEach(option=>{
+      option.addEventListener('click',()=>{
+        monetizeOptions.forEach(card=>card.classList.remove('active'));
+        option.classList.add('active');
+        if(monetizeInput) monetizeInput.value = option.dataset.value || option.textContent.trim();
+      });
+    });
+
+    pillOptions.forEach(option=>{
+      option.addEventListener('click',()=>{
+        const targetId = option.dataset.targetInput;
+        const targetInput = targetId ? document.getElementById(targetId) : null;
+        const group = option.parentElement?.querySelectorAll('.wizard-pill-option') || [];
+        group.forEach(card=>card.classList.remove('active'));
+        option.classList.add('active');
+        if(targetInput) {
+          targetInput.value = option.dataset.value || option.textContent.trim();
+          targetInput.dispatchEvent(new Event('change', {bubbles:true}));
+        }
+      });
+    });
+    function show(i){
+      index=Math.max(0,Math.min(i,panels.length-1));
+      panels.forEach((p,n)=>p.classList.toggle('active',n===index));
+      const pct=(index/(panels.length-1))*100;
+      if(fill){
+        fill.style.height=pct+'%';
+        fill.style.width=pct+'%';
+      }
+      if(stepLabel) stepLabel.textContent=index===0?'00':String(index).padStart(2,'0');
+      if(progressText) progressText.textContent=panels[index]?.dataset.label || 'Step';
+      const preview=document.querySelector('#create .wizard-preview');
+      if(preview) preview.classList.toggle('preview-visible', index===panels.length-1);
+      if(nav) nav.classList.toggle('start-hidden', index===0);
+      if(back) back.style.visibility=index===0?'hidden':'visible';
+      if(next){
+        next.style.display=index===panels.length-1?'none':'inline-flex';
+        next.innerHTML=index===0?'Continue <span>→</span>':'Next <span>→</span>';
+      }
+      root.scrollIntoView({block:'start',behavior:'smooth'});
+    }
+    next?.addEventListener('click',()=>show(index+1));
+    start?.addEventListener('click',()=>show(1));
+    back?.addEventListener('click',()=>show(index-1));
+    document.getElementById('generateDraftBtn')?.addEventListener('click',()=>show(panels.length-1));
+    window.resetLauncherWizard = ()=>show(0);
+    show(0);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initLauncherWizard); else initLauncherWizard();
+})();
+</script>
+
 </body>
 </html>
